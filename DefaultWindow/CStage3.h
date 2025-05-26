@@ -20,4 +20,5 @@ public:
 private:
     CObj* m_pHandle;
     CObj* m_pDriver;
+    CObj* m_pScreen;
 };
