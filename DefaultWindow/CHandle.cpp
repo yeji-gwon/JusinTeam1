@@ -38,9 +38,17 @@ void CHandle::Late_Update()
 }
 void CHandle::Render(HDC hDC)
 {
-	m_tInnerWO.DrawPolygon(hDC);
-	m_tOuterWO.DrawPolygon(hDC);
+
+	//m_tInnerWO.DrawPolygon(hDC);
+	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(HOLLOW_BRUSH));
+
+	//m_tOuterWO.DrawPolygon(hDC);
+	SelectObject(hDC, hOldBrush);
+
+	m_tOuterWO.DrawPolyLine(hDC, 0, 25);
+
 }
+
 
 
 void CHandle::Release()

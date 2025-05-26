@@ -23,12 +23,12 @@ void Safe_Delete(T& p)
 
 typedef struct tagInfo
 {
-	D3DXVECTOR3			vPos;	
-	
-	D3DXVECTOR3			vDir;		
+	D3DXVECTOR3			vPos;
+
+	D3DXVECTOR3			vDir;
 	D3DXVECTOR3			vLook;
 
-	D3DXVECTOR3			vNormal;	
+	D3DXVECTOR3			vNormal;
 	D3DXMATRIX			matWorld;
 }INFO;
 
@@ -43,57 +43,72 @@ static D3DXVECTOR3		Get_Mouse()
 
 
 struct tagPolygon {
-    vector<D3DXVECTOR3>m_vPoints;
-    D3DXVECTOR3 m_vScale;
-    D3DXVECTOR3 m_vCenter;
+	vector<D3DXVECTOR3>m_vPoints;
+	D3DXVECTOR3 m_vScale;
+	D3DXVECTOR3 m_vCenter;
 
-    float m_PointSize;
+	float m_PointSize;
 
-    tagPolygon()
-        :m_PointSize(3), m_vPoints(3, { 0,0,0 })
-    {
-        m_vCenter = { 0,0,0 };
-        Set_Points();
-    }
+	tagPolygon()
+		:m_PointSize(3), m_vPoints(3, { 0,0,0 })
+	{
+		m_vCenter = { 0,0,0 };
+		Set_Points();
+	}
 
 private:
-    void Set_Points() {
-        for (int i = 0; i < m_PointSize; ++i) {
-            float theta = (2 * 3.141592f * i) / m_PointSize;
-            m_vPoints[i].x = cosf(theta);
-            m_vPoints[i].y = sinf(theta);
-            m_vPoints[i].z = 0.f;
-        }
-    }
+	void Set_Points() {
+		for (int i = 0; i < m_PointSize; ++i) {
+			float theta = (2 * 3.141592f * i) / m_PointSize;
+			m_vPoints[i].x = cosf(theta);
+			m_vPoints[i].y = sinf(theta);
+			m_vPoints[i].z = 0.f;
+		}
+	}
 
 public:
-    void SyncToWorld(tagPolygon& rhs) {
-        rhs.Set_Size(m_PointSize);
-    }
-    void Set_OnePoint(int index, D3DXVECTOR3 vector) {
-        m_vPoints[index] = vector;
-    }
+	void SyncToWorld(tagPolygon& rhs) {
+		rhs.Set_Size(m_PointSize);
+	}
+	void Set_OnePoint(int index, D3DXVECTOR3 vector) {
+		m_vPoints[index] = vector;
+	}
 
-    int Size() { return m_PointSize; }
+	int Size() { return m_PointSize; }
 
-    void Set_Size(int size) {
-        if (size > m_PointSize) {
-            m_vPoints.resize(size, { 0.f, 0.f, 0.f });
-        }
-        m_PointSize = size;
-        Set_Points();
-    }
+	void Set_Size(int size) {
+		if (size > m_PointSize) {
+			m_vPoints.resize(size, { 0.f, 0.f, 0.f });
+		}
+		m_PointSize = size;
+		Set_Points();
+	}
 
-    void DrawPolygon(HDC hDC) {
-        if (m_vPoints.empty()) return;
+	void DrawPolygon(HDC hDC) {
+		if (m_vPoints.empty()) return;
 
-        std::vector<POINT> pts;
-        pts.reserve(m_vPoints.size());
+		std::vector<POINT> pts;
+		pts.reserve(m_vPoints.size());
 
-        for (const auto& v : m_vPoints) {
-            pts.push_back({ LONG(v.x), LONG(v.y) });
-        }
-        Polygon(hDC, pts.data(), static_cast<int>(pts.size()));
-    }
+		for (const auto& v : m_vPoints) {
+			pts.push_back({ LONG(v.x), LONG(v.y) });
+		}
+		Polygon(hDC, pts.data(), static_cast<int>(pts.size()));
+	}
 
+	void DrawPolyLine(HDC hDC) {
+		MoveToEx(hDC, m_vPoints[0].x, m_vPoints[0].y, nullptr);
+		for (int i = 1; i < Size(); ++i) {
+			LineTo(hDC, m_vPoints[i].x, m_vPoints[i].y);
+		}
+		LineTo(hDC, m_vPoints[0].x, m_vPoints[0].y);
+	}
+	void DrawPolyLine(HDC hDC, int first, int last) {
+		if (first < 0 || last > m_PointSize) return;
+
+		MoveToEx(hDC, m_vPoints[first].x, m_vPoints[first].y, nullptr);
+		for (int i = first+1; i < last; ++i) {
+			LineTo(hDC, m_vPoints[i].x, m_vPoints[i].y);
+		}
+	}
 };

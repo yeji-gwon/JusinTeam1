@@ -18,12 +18,12 @@ public:
     void Set_CenterRight(D3DXVECTOR3 right);
 private:
     void RenderHand(HDC hDC, tagPolygon poly);
+    void RenderArm(HDC hDC, tagPolygon poly);
 private:
     tagPolygon m_tLeftHand;
     tagPolygon m_tRightHand;
 
-    tagPolygon m_tLeftArm;
-    tagPolygon m_tRightArm;
-
+    D3DXVECTOR3 m_tLeftArm[4];
+    D3DXVECTOR3 m_tRightArm[4];
 };
 
