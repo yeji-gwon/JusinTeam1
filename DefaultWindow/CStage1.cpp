@@ -25,6 +25,9 @@ void CStage1::Late_Update()
 
 void CStage1::Render(HDC hDC)
 {
+	TCHAR	szText[32];
+	swprintf_s(szText, L"스테이지 1");
+	TextOut(hDC, 10, 10, szText, lstrlen(szText));
 }
 
 void CStage1::Release()
