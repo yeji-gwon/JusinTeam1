@@ -55,6 +55,18 @@
     <Filter Include="03. Scene\03. Stage3\Driver">
       <UniqueIdentifier>{7e3e2f10-f312-4d9a-b7c0-4ae92a3c5df0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. Scene\04. Stage4\Piano">
+      <UniqueIdentifier>{da2c6028-ab05-47d9-8778-3230c7b81294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\04. Stage4\Fingers">
+      <UniqueIdentifier>{78286177-767f-4911-ae50-0322ae7a12f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\04. Stage4\Fingers\Finger">
+      <UniqueIdentifier>{4e6d4639-6578-4dfa-93fb-9a3b75ead6f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\04. Stage4\Fingers\Finger\Joint">
+      <UniqueIdentifier>{3a563cef-6e13-4825-9029-6943fd97c7cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -114,6 +126,18 @@
     <ClInclude Include="CDriver.h">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClInclude>
+    <ClInclude Include="CPiano.h">
+      <Filter>03. Scene\04. Stage4\Piano</Filter>
+    </ClInclude>
+    <ClInclude Include="CFingers.h">
+      <Filter>03. Scene\04. Stage4\Fingers</Filter>
+    </ClInclude>
+    <ClInclude Include="CFinger.h">
+      <Filter>03. Scene\04. Stage4\Fingers\Finger</Filter>
+    </ClInclude>
+    <ClInclude Include="CJoint.h">
+      <Filter>03. Scene\04. Stage4\Fingers\Finger\Joint</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -160,6 +184,18 @@
     </ClCompile>
     <ClCompile Include="CDriver.cpp">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="CPiano.cpp">
+      <Filter>03. Scene\04. Stage4\Piano</Filter>
+    </ClCompile>
+    <ClCompile Include="CFingers.cpp">
+      <Filter>03. Scene\04. Stage4\Fingers</Filter>
+    </ClCompile>
+    <ClCompile Include="CFinger.cpp">
+      <Filter>03. Scene\04. Stage4\Fingers\Finger</Filter>
+    </ClCompile>
+    <ClCompile Include="CJoint.cpp">
+      <Filter>03. Scene\04. Stage4\Fingers\Finger\Joint</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
