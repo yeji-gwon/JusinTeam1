@@ -29,6 +29,7 @@ int CStage3::Update()
 	m_pHandle->Update();
 	static_cast<CDriver*>(m_pDriver)->Set_CenterLeft(static_cast<CHandle*>(m_pHandle)->Get_Point_World(25));
 	static_cast<CDriver*>(m_pDriver)->Set_CenterRight(static_cast<CHandle*>(m_pHandle)->Get_Point_World(49));
+	static_cast<CDriver*>(m_pDriver)->Get_Rotate(static_cast<CHandle*>(m_pHandle)->Get_Rotate());
 	m_pDriver->Update();
 	return 0;
 }

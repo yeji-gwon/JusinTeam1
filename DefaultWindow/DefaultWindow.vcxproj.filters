@@ -55,6 +55,9 @@
     <Filter Include="03. Scene\03. Stage3\Driver">
       <UniqueIdentifier>{7e3e2f10-f312-4d9a-b7c0-4ae92a3c5df0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. Scene\03. Stage3\Screen">
+      <UniqueIdentifier>{f2d3babf-b26e-4286-91ec-a314faab36ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -114,6 +117,9 @@
     <ClInclude Include="CDriver.h">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClInclude>
+    <ClInclude Include="CScreen.h">
+      <Filter>03. Scene\03. Stage3\Screen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -160,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="CDriver.cpp">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="CScreen.cpp">
+      <Filter>03. Scene\03. Stage3\Screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

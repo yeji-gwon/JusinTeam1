@@ -39,14 +39,11 @@ void CHandle::Late_Update()
 void CHandle::Render(HDC hDC)
 {
 
-	//m_tInnerWO.DrawPolygon(hDC);
+	m_tInnerWO.DrawPolygon(hDC);
 	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(HOLLOW_BRUSH));
 
-	//m_tOuterWO.DrawPolygon(hDC);
+	m_tOuterWO.DrawPolygon(hDC);
 	SelectObject(hDC, hOldBrush);
-
-	m_tOuterWO.DrawPolyLine(hDC, 0, 25);
-
 }
 
 
@@ -62,6 +59,11 @@ D3DXVECTOR3 CHandle::Get_Point_World(int i)
 	}
 	
 	return D3DXVECTOR3{};
+}
+
+D3DXVECTOR3 CHandle::Get_Rotate()
+{
+	return m_vRotate;
 }
 
 void CHandle::PolyToWorld(tagPolygon circleLC, tagPolygon& circleWO)

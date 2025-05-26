@@ -103,6 +103,7 @@ public:
 		}
 		LineTo(hDC, m_vPoints[0].x, m_vPoints[0].y);
 	}
+
 	void DrawPolyLine(HDC hDC, int first, int last) {
 		if (first < 0 || last > m_PointSize) return;
 
