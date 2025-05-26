@@ -143,6 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CArcher.h" />
+    <ClInclude Include="CArrow.h" />
+    <ClInclude Include="CBow.h" />
     <ClInclude Include="CDriver.h" />
     <ClInclude Include="CHandle.h" />
     <ClInclude Include="CKeyMgr.h" />
@@ -164,6 +167,9 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CArcher.cpp" />
+    <ClCompile Include="CArrow.cpp" />
+    <ClCompile Include="CBow.cpp" />
     <ClCompile Include="CDriver.cpp" />
     <ClCompile Include="CHandle.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
