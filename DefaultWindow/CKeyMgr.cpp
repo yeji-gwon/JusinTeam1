@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CKeyMgr.h"
 
+CKeyMgr* CKeyMgr::m_pInstance = nullptr;
+
 CKeyMgr::CKeyMgr()
 	:m_KeyContainer(256, KeyState::NONE)
 {
