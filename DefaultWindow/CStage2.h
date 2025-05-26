@@ -1,5 +1,7 @@
 #pragma once
 #include "CScene.h"
+#include "Player2.h"
+#include "Board2.h"
 
 class CStage2 :
     public CScene
@@ -14,4 +16,8 @@ public:
     void Late_Update() override;
     void Render(HDC hDC) override;
     void Release() override;
+
+private:
+    Player2* pPlayer;
+    Board2* pBoard;
 };
