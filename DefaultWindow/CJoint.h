@@ -11,7 +11,7 @@ public:
 	void Set_Scale(float _sx, float _sy, float _sz);
 	void Set_RotZ(float _rz);
 	void Set_Trans(float _tx, float _ty, float _tz);
-
+	D3DXVECTOR3* Get_Point() { return m_vPoint; }
 public:
 	void		Initialize() override;
 	int			Update() override;

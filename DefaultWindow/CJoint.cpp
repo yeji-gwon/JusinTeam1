@@ -27,34 +27,33 @@ void CJoint::Set_RotZ(float _rz)
 void CJoint::Set_Trans(float _tx, float _ty, float _tz)
 {
 	m_vTrans = D3DXVECTOR3(_tx, _ty, _tz);
-	//m_tInfo.vPos = m_vTrans;
+	m_tInfo.vPos = m_vTrans;
 
-	/*if (m_pParent)
+	if (m_pParent)
 	{
 		m_vPoint[0] = { m_tInfo.vPos.x - 8.f, m_tInfo.vPos.y, 0.f };
 		m_vPoint[1] = { m_pParent->Get_Info().vPos.x - 9.f, m_pParent->Get_Info().vPos.y , 0.f };
 		m_vPoint[2] = { m_pParent->Get_Info().vPos.x + 9.f, m_pParent->Get_Info().vPos.y, 0.f };
 		m_vPoint[3] = { m_tInfo.vPos.x + 8.f, m_tInfo.vPos.y, 0.f };
-	*/}
+
+		for (int i = 0; i < 4; ++i)
+			m_vOriginPoint[i] = m_vPoint[i];
+	}
 }
 
 void CJoint::Initialize()
 {
-
+	Set_Scale(1.f, 1.f, 1.f);
 }
 
 int CJoint::Update()
 {
-	m_vPoint[0] = { m_tInfo.vPos.x - 8.f, m_tInfo.vPos.y, 0.f };
-	m_vPoint[1] = { m_pParent->Get_Info().vPos.x - 9.f, m_pParent->Get_Info().vPos.y , 0.f };
-	m_vPoint[2] = { m_pParent->Get_Info().vPos.x + 9.f, m_pParent->Get_Info().vPos.y, 0.f };
-	m_vPoint[3] = { m_tInfo.vPos.x + 8.f, m_tInfo.vPos.y, 0.f };
 	return 0;
 }
 
 void CJoint::Late_Update()
 {
-	/*D3DXMATRIX matScale, matRotZ, matTrans;
+	D3DXMATRIX matScale, matRotZ, matTrans;
 
 	D3DXMatrixScaling(&matScale, m_vScale.x, m_vScale.y, m_vScale.z);
 	D3DXMatrixRotationZ(&matRotZ, m_vRot.z);
@@ -65,8 +64,11 @@ void CJoint::Late_Update()
 	{
 		m_vPoint[i] = m_vOriginPoint[i];
 
+		if(m_pParent)
+		m_vPoint[i] -= m_tInfo.vPos;
+
 		D3DXVec3TransformCoord(&m_vPoint[i], &m_vPoint[i], &m_tInfo.matWorld);
-	*/}
+	}
 }
 
 void CJoint::Render(HDC hDC)
