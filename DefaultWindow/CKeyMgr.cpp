@@ -31,6 +31,7 @@ int CKeyMgr::Update()
 			}
 		}
 	}
+	return 0;
 }
 
 void CKeyMgr::Late_Update()

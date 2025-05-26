@@ -49,6 +49,9 @@
     <Filter Include="02. Design\01. KeyMgr">
       <UniqueIdentifier>{3fcb5c70-3991-47e5-ad54-b9550447f9dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. Scene\03. Stage3\Handle">
+      <UniqueIdentifier>{655d2390-f307-40e3-91eb-aae070313379}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -102,6 +105,9 @@
     <ClInclude Include="CKeyMgr.h">
       <Filter>02. Design\01. KeyMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CHandle.h">
+      <Filter>03. Scene\03. Stage3\Handle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -142,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
       <Filter>02. Design\01. KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CHandle.cpp">
+      <Filter>03. Scene\03. Stage3\Handle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
