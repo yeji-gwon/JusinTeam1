@@ -21,10 +21,6 @@ public:
 
 private:
     D3DXVECTOR3 m_vCenterHead;
-    D3DXVECTOR3 m_vTopBody;
-    D3DXVECTOR3 m_vBottomBody;
-    D3DXVECTOR3 m_vLeftFoot;
-    D3DXVECTOR3 m_vRightFoot;
     
     float       m_fAngleX = 0.f;
     float       m_fAngleY = 0.f;

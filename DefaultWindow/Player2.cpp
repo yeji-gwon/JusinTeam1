@@ -14,10 +14,6 @@ Player2::~Player2()
 void Player2::Initialize()
 {
 	m_vCenterHead = { 400.f, 300.f , 0.f };
-	m_vLeftFoot = { m_vCenterHead.x - 100, m_vCenterHead.y + 400, 0.f };
-	m_vRightFoot = { m_vCenterHead.x + 100, m_vCenterHead.y + 400, 0.f };
-	m_vBottomBody = { m_vCenterHead.x, m_vCenterHead.y + 300, 0.f };
-	m_vTopBody = { m_vCenterHead.x, m_vCenterHead.y + 100 , 0.f };
 	m_fAngleX = 0.f;
 	m_fAngleY = 0.f;
 	m_fAngleZ = 0.f;
@@ -67,15 +63,6 @@ void Player2::Key_Input()
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_UP))    m_vCenterHead.y -= m_fSpeed;
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN))  m_vCenterHead.y += m_fSpeed;
 
-	// 몸체 좌표들 업데이트
-	m_vLeftFoot = { m_vCenterHead.x - 100, m_vCenterHead.y + 400, 0.f };
-	m_vRightFoot = { m_vCenterHead.x + 100, m_vCenterHead.y + 400, 0.f };
-	m_vBottomBody = { m_vCenterHead.x, m_vCenterHead.y + 300, 0.f };
-	m_vTopBody = { m_vCenterHead.x, m_vCenterHead.y + 100, 0.f };
-
-	// 머리 중심좌표 동기화
-	m_tHead.m_vCenter = m_vCenterHead;
-	m_tHead.SyncToWorld(m_tHead);
 }
 
 
@@ -96,7 +83,7 @@ void Player2::Update_Matrix()
 	
 
 	// 이동 행렬
-	D3DXMatrixTranslation(&m_matTrans, m_tHead.m_vCenter.x, m_tHead.m_vCenter.y, m_tHead.m_vCenter.z);
+	D3DXMatrixTranslation(&m_matTrans, m_vCenterHead.x, m_vCenterHead.y, m_vCenterHead.z);
 
 	// 월드 행렬 = (크기 * 회전 * 이동) * 공전 * 부모
 	m_matWorld = m_matScale * m_matRotY * m_matRotX * m_matRotZ * m_matTrans;
