@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="CObj.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CObj.cpp" />

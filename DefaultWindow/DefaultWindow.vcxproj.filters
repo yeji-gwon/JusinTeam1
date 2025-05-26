@@ -46,6 +46,9 @@
     <Filter Include="02. Design\00. SceneMgr">
       <UniqueIdentifier>{7fb7b1b1-cd0f-4269-b7c1-daf206e48b8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Design\01. KeyMgr">
+      <UniqueIdentifier>{3fcb5c70-3991-47e5-ad54-b9550447f9dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -96,6 +99,9 @@
     <ClInclude Include="CSceneMgr.h">
       <Filter>02. Design\00. SceneMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>02. Design\01. KeyMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -133,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="CSceneMgr.cpp">
       <Filter>02. Design\00. SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>02. Design\01. KeyMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
