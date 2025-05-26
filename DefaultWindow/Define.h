@@ -85,10 +85,15 @@ public:
     }
 
     void DrawPolygon(HDC hDC) {
-        MoveToEx(hDC, m_vPoints[0].x, m_vPoints[0].y, nullptr);
-        for (int i = 1; i < Size(); ++i) {
-            LineTo(hDC, m_vPoints[i].x, m_vPoints[i].y);
+        if (m_vPoints.empty()) return;
+
+        std::vector<POINT> pts;
+        pts.reserve(m_vPoints.size());
+
+        for (const auto& v : m_vPoints) {
+            pts.push_back({ LONG(v.x), LONG(v.y) });
         }
-        LineTo(hDC, m_vPoints[0].x, m_vPoints[0].y);
+        Polygon(hDC, pts.data(), static_cast<int>(pts.size()));
     }
+
 };

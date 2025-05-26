@@ -12,20 +12,23 @@ CHandle::~CHandle()
 
 void CHandle::Initialize()
 {
-	m_vPos = { 400.f,400.f,0 };
+	m_vPos = { 400.f,500.f,0 };
 	m_vRotate = { 0.f,0.f,0.f };
 
 	m_tInnerLC.m_vScale = { 55.f,55.f,0.f };
-	m_tInnerLC.Set_Size(8);
+	m_tInnerLC.Set_Size(50);
 	m_tInnerLC.SyncToWorld(m_tInnerWO);
 
 	m_tOuterLC.m_vScale = { 60.f,60.f,0.f };
+	m_tOuterLC.Set_Size(50);
+	m_tOuterLC.SyncToWorld(m_tOuterWO);
+
 }
 
 int CHandle::Update()
 {
-	CircleToWorld(m_tInnerLC, m_tInnerWO);
-	CircleToWorld(m_tOuterLC, m_tOuterWO);
+	PolyToWorld(m_tInnerLC, m_tInnerWO);
+	PolyToWorld(m_tOuterLC, m_tOuterWO);
 	KeyCheck();
 	return 0;
 }
@@ -35,8 +38,8 @@ void CHandle::Late_Update()
 }
 void CHandle::Render(HDC hDC)
 {
-	
 	m_tInnerWO.DrawPolygon(hDC);
+	m_tOuterWO.DrawPolygon(hDC);
 }
 
 
@@ -44,7 +47,16 @@ void CHandle::Release()
 {
 }
 
-void CHandle::CircleToWorld(tagPolygon circleLC, tagPolygon& circleWO)
+D3DXVECTOR3 CHandle::Get_Point_World(int i)
+{
+	if (m_tOuterWO.m_vPoints[i]) {
+		return m_tOuterWO.m_vPoints[i];
+	}
+	
+	return D3DXVECTOR3{};
+}
+
+void CHandle::PolyToWorld(tagPolygon circleLC, tagPolygon& circleWO)
 {
 	D3DXMATRIX matScale, matRotate, matTrans; //월드 포지션 / 크기/자전/이동
 	D3DXMatrixIdentity(&worldMat); //초기화
@@ -69,9 +81,11 @@ void CHandle::CircleToWorld(tagPolygon circleLC, tagPolygon& circleWO)
 void CHandle::KeyCheck()
 {
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT)) {
+		if(m_vRotate.z < 80)
 		m_vRotate.z += 5.f;
 	}
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT)) {
+		if (m_vRotate.z > -80)
 		m_vRotate.z -= 5.f;
 	}
 }
