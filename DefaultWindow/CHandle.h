@@ -1,12 +1,5 @@
 #pragma once
 #include "CObj.h"
-struct tagCirCle {
-    D3DXVECTOR3 m_vCenter;
-    D3DXVECTOR3 m_vLT;
-    D3DXVECTOR3 m_vRB;
-    D3DXVECTOR3 m_vRotate;
-    D3DXVECTOR3 m_vScale;
-};
 
 class CHandle :
     public CObj
@@ -23,14 +16,17 @@ public:
     void Release() override;
 
 private: 
-    void CircleToWorld(tagCirCle circleLC, tagCirCle& circleWO);
+    void CircleToWorld(tagPolygon circleLC, tagPolygon& circleWO);
+    void KeyCheck();
 private:
     D3DXVECTOR3 m_vPos;
+    D3DXVECTOR3 m_vRotate;
+
     D3DXMATRIX worldMat;
-    tagCirCle m_tInnerLC;
-    tagCirCle m_tOuterLC;
-    tagCirCle m_tInnerWO;
-    tagCirCle m_tOuterWO;
+    tagPolygon m_tInnerLC;
+    tagPolygon m_tOuterLC;
+    tagPolygon m_tInnerWO;
+    tagPolygon m_tOuterWO;
 private:
 };
 

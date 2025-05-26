@@ -17,6 +17,7 @@ CStage3::~CStage3()
 void CStage3::Initialize()
 {
 	m_pHandle = new CHandle;
+	m_pHandle->Initialize();
 }
 
 int CStage3::Update()
@@ -29,7 +30,6 @@ int CStage3::Update()
 void CStage3::Late_Update()
 {
 	m_pHandle->Late_Update();
-
 }
 
 void CStage3::Render(HDC hDC)
