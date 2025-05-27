@@ -1,10 +1,19 @@
 #pragma once
 #include "CObj.h"
-class CPlayer4 : public CObj
+
+template <typename T>
+struct Poly
+{
+	T	WPoly;
+	T	LPoly;
+	D3DXMATRIX	matWorld;
+};
+
+class CHead : public CObj
 {
 public:
-    CPlayer4();
-    virtual ~CPlayer4();
+	CHead();
+	virtual ~CHead();
 
 public:
 	void		Initialize() override;
@@ -14,7 +23,7 @@ public:
 	void		Release()override;
 
 private:
-	CObj*	pHead;
-	CObj*	pBody;
+	Poly<tagPolygon>	Head;
+	Poly<D3DXVECTOR3>	Eyes[2];
 };
 

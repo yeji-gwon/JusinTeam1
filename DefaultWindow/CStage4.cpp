@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CStage4.h"
 #include "CPlayer4.h"
+#include "CKeyMgr.h"
 CStage4::CStage4()
 {
 }
@@ -19,7 +20,7 @@ void CStage4::Initialize()
 int CStage4::Update()
 {
 	m_pPlayer->Update();
-
+	CKeyMgr::Get_Instance()->Update();
 	return 0;
 }
 
