@@ -12,14 +12,14 @@ CHandle::~CHandle()
 
 void CHandle::Initialize()
 {
-	m_vPos = { 400.f,500.f,0 };
+	m_vPos = { 200.f,500.f,0 };
 	m_vRotate = { 0.f,0.f,0.f };
 
-	m_tInnerLC.m_vScale = { 55.f,55.f,0.f };
+	m_tInnerLC.m_vScale = { 65.f,70.f,0.f };
 	m_tInnerLC.Set_Size(50);
 	m_tInnerLC.SyncToWorld(m_tInnerWO);
 
-	m_tOuterLC.m_vScale = { 60.f,60.f,0.f };
+	m_tOuterLC.m_vScale = { 75.f,75.f,0.f };
 	m_tOuterLC.Set_Size(50);
 	m_tOuterLC.SyncToWorld(m_tOuterWO);
 
@@ -39,14 +39,11 @@ void CHandle::Late_Update()
 void CHandle::Render(HDC hDC)
 {
 
-	//m_tInnerWO.DrawPolygon(hDC);
+	m_tInnerWO.DrawPolygon(hDC);
 	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(HOLLOW_BRUSH));
 
-	//m_tOuterWO.DrawPolygon(hDC);
+	m_tOuterWO.DrawPolygon(hDC);
 	SelectObject(hDC, hOldBrush);
-
-	m_tOuterWO.DrawPolyLine(hDC, 0, 25);
-
 }
 
 
@@ -62,6 +59,11 @@ D3DXVECTOR3 CHandle::Get_Point_World(int i)
 	}
 	
 	return D3DXVECTOR3{};
+}
+
+D3DXVECTOR3 CHandle::Get_Rotate()
+{
+	return m_vRotate;
 }
 
 void CHandle::PolyToWorld(tagPolygon circleLC, tagPolygon& circleWO)
@@ -89,11 +91,11 @@ void CHandle::PolyToWorld(tagPolygon circleLC, tagPolygon& circleWO)
 void CHandle::KeyCheck()
 {
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT)) {
-		if(m_vRotate.z < 80)
-		m_vRotate.z += 5.f;
+		if(m_vRotate.z < 40)
+		m_vRotate.z += 1.f;
 	}
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT)) {
-		if (m_vRotate.z > -80)
-		m_vRotate.z -= 5.f;
+		if (m_vRotate.z > -40)
+		m_vRotate.z -= 1.f;
 	}
 }

@@ -55,11 +55,12 @@
     <Filter Include="03. Scene\03. Stage3\Driver">
       <UniqueIdentifier>{7e3e2f10-f312-4d9a-b7c0-4ae92a3c5df0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Scene\02. Stage2\Player2">
-      <UniqueIdentifier>{17a372e9-b599-4f93-a0aa-cc1d38ff1b68}</UniqueIdentifier>
+
+    <Filter Include="03. Scene\03. Stage3\CenterLine">
+      <UniqueIdentifier>{764f5af9-9785-4957-8a84-c3b33b27b1e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Scene\02. Stage2\Board2">
-      <UniqueIdentifier>{b326e455-578e-4bcb-b61a-0316be314a26}</UniqueIdentifier>
+    <Filter Include="03. Scene\03. Stage3\Road">
+      <UniqueIdentifier>{7d7918fb-0abf-47f8-a7fd-22a472fe47b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -120,11 +121,9 @@
     <ClInclude Include="CDriver.h">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClInclude>
-    <ClInclude Include="Board2.h">
-      <Filter>03. Scene\02. Stage2\Board2</Filter>
-    </ClInclude>
-    <ClInclude Include="Player2.h">
-      <Filter>03. Scene\02. Stage2\Player2</Filter>
+
+    <ClInclude Include="CRoad.h">
+      <Filter>03. Scene\03. Stage3\Road</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -173,11 +172,9 @@
     <ClCompile Include="CDriver.cpp">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClCompile>
-    <ClCompile Include="Board2.cpp">
-      <Filter>03. Scene\02. Stage2\Board2</Filter>
-    </ClCompile>
-    <ClCompile Include="Player2.cpp">
-      <Filter>03. Scene\02. Stage2\Player2</Filter>
+
+    <ClCompile Include="CRoad.cpp">
+      <Filter>03. Scene\03. Stage3\Road</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
