@@ -11,7 +11,8 @@ public:
 	void Set_Scale(float _sx, float _sy, float _sz);
 	void Set_RotZ(float _rz);
 	void Set_Trans(float _tx, float _ty, float _tz);
-	D3DXVECTOR3* Get_Point() { return m_vPoint; }
+	D3DXVECTOR3*	Get_Point() { return m_vPoint; }
+	D3DXVECTOR3		Get_Trans() { return m_vTrans; }
 public:
 	void		Initialize() override;
 	int			Update() override;
@@ -24,6 +25,8 @@ private:
 	D3DXVECTOR3		m_vRot;
 	D3DXVECTOR3		m_vTrans;
 
+	tagPolygon		PolyPoint;
+	tagPolygon		tmpPolygon;
 	D3DXVECTOR3     m_vPoint[4];
 	D3DXVECTOR3     m_vOriginPoint[4];
 	CObj*			m_pParent;

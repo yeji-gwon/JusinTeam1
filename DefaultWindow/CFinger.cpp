@@ -63,6 +63,7 @@ void CFinger::Late_Update()
 
 void CFinger::Render(HDC hDC)
 {
+	m_pWrist->Render(hDC);
 	m_pMCP->Render(hDC);
 	m_pPIP->Render(hDC);
 	m_pDIP->Render(hDC);

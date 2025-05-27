@@ -21,29 +21,33 @@ void CJoint::Set_Scale(float _sx, float _sy, float _sz)
 
 void CJoint::Set_RotZ(float _rz)
 {
-	m_vRot.z = D3DXToRadian(_rz);
+	m_vRot.z = _rz;
 }
 
 void CJoint::Set_Trans(float _tx, float _ty, float _tz)
 {
-	m_vTrans = D3DXVECTOR3(_tx, _ty, _tz);
-	m_tInfo.vPos = m_vTrans;
-
+	if (!m_pParent)
+	{
+		m_vTrans = D3DXVECTOR3(_tx, _ty, _tz);
+	}
+	else
+	{
+		m_vTrans = D3DXVECTOR3((_tx + dynamic_cast<CJoint*>(m_pParent)->Get_Trans().x)/2,
+			(_ty + dynamic_cast<CJoint*>(m_pParent)->Get_Trans().y)/2, 0.f);
+	}
 	if (m_pParent)
 	{
-		m_vPoint[0] = { m_tInfo.vPos.x - 8.f, m_tInfo.vPos.y, 0.f };
-		m_vPoint[1] = { m_pParent->Get_Info().vPos.x - 9.f, m_pParent->Get_Info().vPos.y , 0.f };
-		m_vPoint[2] = { m_pParent->Get_Info().vPos.x + 9.f, m_pParent->Get_Info().vPos.y, 0.f };
-		m_vPoint[3] = { m_tInfo.vPos.x + 8.f, m_tInfo.vPos.y, 0.f };
-
-		for (int i = 0; i < 4; ++i)
-			m_vOriginPoint[i] = m_vPoint[i];
+		Set_Scale(10.f, sqrt(
+			(_ty - dynamic_cast<CJoint*>(m_pParent)->Get_Trans().y) * (_ty - dynamic_cast<CJoint*>(m_pParent)->Get_Trans().y))/2.f, 0.f);
+		Set_RotZ( - atan((_tx - dynamic_cast<CJoint*>(m_pParent)->Get_Trans().x )/( _ty - dynamic_cast<CJoint*>(m_pParent)->Get_Trans().y)));
 	}
+	PolyPoint.m_vCenter = { 0.f, 0.f, 0.f };
+	PolyPoint.Set_Size(8);
 }
 
 void CJoint::Initialize()
 {
-	Set_Scale(1.f, 1.f, 1.f);
+	Set_Scale(10.f, 20.f, 10.f);
 }
 
 int CJoint::Update()
@@ -60,27 +64,19 @@ void CJoint::Late_Update()
 	D3DXMatrixTranslation(&matTrans, m_vTrans.x, m_vTrans.y, m_vTrans.z);
 	m_tInfo.matWorld = matScale * matRotZ * matTrans;
 
-	for (int i = 0; i < 4; ++i)
+	tmpPolygon.Set_Size(8);
+	for (int i = 0; i < PolyPoint.Size(); ++i)
 	{
-		m_vPoint[i] = m_vOriginPoint[i];
-
-		if(m_pParent)
-		m_vPoint[i] -= m_tInfo.vPos;
-
-		D3DXVec3TransformCoord(&m_vPoint[i], &m_vPoint[i], &m_tInfo.matWorld);
+		D3DXVec3TransformCoord(&tmpPolygon.m_vPoints[i], &PolyPoint.m_vPoints[i], &m_tInfo.matWorld);
 	}
 }
 
 void CJoint::Render(HDC hDC)
 {
-	MoveToEx(hDC, (int)m_vPoint[0].x, (int)m_vPoint[0].y, NULL);
-
-	for (int i = 0; i < 4; ++i)
+	if (m_pParent)
 	{
-		LineTo(hDC, (int)m_vPoint[i].x, (int)m_vPoint[i].y);
+		tmpPolygon.DrawPolygon(hDC);
 	}
-
-	LineTo(hDC, (int)m_vPoint[0].x, (int)m_vPoint[0].y);
 }
 
 void CJoint::Release()

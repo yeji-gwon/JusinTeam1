@@ -15,11 +15,13 @@ void CFingers::Initialize()
 	m_mapFingers["thumb"] = new CFinger;
 	m_mapFingers["thumb"]->Initialize();
 	dynamic_cast<CFinger*>(m_mapFingers["thumb"])->Set_Trans({ 400, 600 }, { 300, 510 }, { 285,450 }, { 285,420 });
-	dynamic_cast<CFinger*>(m_mapFingers["thumb"])->Set_RotZ(7, 5,45);
-
+	
+	
 	m_mapFingers["index"] = new CFinger;
 	m_mapFingers["index"]->Initialize();
 	dynamic_cast<CFinger*>(m_mapFingers["index"])->Set_Trans({ 400, 600 }, { 340, 495 }, { 340, 405 }, { 340, 330 });
+	//dynamic_cast<CFinger*>(m_mapFingers["index"])->Set_RotZ(-10, -15, -15);
+
 	//dynamic_cast<CFinger*>(m_mapFingers["index"])->Set_RotZ(30, 45, 20);
 
 	m_mapFingers["middle"] = new CFinger;
