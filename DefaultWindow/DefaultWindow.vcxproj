@@ -143,14 +143,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
-=======
-    <ClInclude Include="Board2.h" />
-    <ClInclude Include="BoogiDefine.h" />
-    <ClInclude Include="CArcher.h" />
-    <ClInclude Include="CArrow.h" />
-    <ClInclude Include="CBow.h" />
->>>>>>> Stashed changes
     <ClInclude Include="CDriver.h" />
     <ClInclude Include="CHandle.h" />
     <ClInclude Include="CKeyMgr.h" />
@@ -173,13 +165,6 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
-=======
-    <ClCompile Include="Board2.cpp" />
-    <ClCompile Include="CArcher.cpp" />
-    <ClCompile Include="CArrow.cpp" />
-    <ClCompile Include="CBow.cpp" />
->>>>>>> Stashed changes
     <ClCompile Include="CDriver.cpp" />
     <ClCompile Include="CHandle.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
