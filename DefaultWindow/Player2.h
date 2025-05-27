@@ -32,8 +32,6 @@ public:
     void Update_State();
     void Update_Jump();
     void Update_Matrix();
-    void Update_Direction();
-    
 
 private:
     D3DXVECTOR3 m_vCenterHead;

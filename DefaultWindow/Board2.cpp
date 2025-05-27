@@ -18,10 +18,12 @@ void Board2::Initialize()
 
 	m_fSpeed = 5.f;
 
+	// TODO : ¹ÙÄû Ãß°¡
 	m_tBoard.m_vCenter = { 300.f, 400.f, 0.f };
 	m_tBoard.m_vScale = { 90.f, 15.f, 0.f };
 	m_tBoard.Set_Size(8);
 	m_tBoard.SyncToWorld(m_tBoard);
+	
 }
 
 int Board2::Update()

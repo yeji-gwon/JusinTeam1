@@ -24,6 +24,8 @@ void Player2::Initialize()
 	m_tHead.Set_Size(36);
 	m_tHead.SyncToWorld(m_tHead);
 
+
+	// TODO? : 입모양 추가
 	m_vBodyPoint[0] = { -6.f / (m_tHead.m_vScale.x / 2), 8.f / (m_tHead.m_vScale.y / 2), 0.f };
 	m_vBodyPoint[1] = { m_vBodyPoint[0].x - 1, m_vBodyPoint[0].y + 1, 0.f };
 	m_vBodyPoint[2] = { m_vBodyPoint[1].x + 1.25f, m_vBodyPoint[1].y + 1.25f, 0.f };
@@ -119,7 +121,7 @@ void Player2::Update_State()
 
 	switch (m_eState)
 	{
-		// TODO : Flip 점프 구상 및 구현
+	// TODO : Flip 점프 구상 및 구현 (JUMP1, 2)
 	case PLAYER_JUMP3:
 		m_vBodyPoint[0] = { 0.f / (m_tHead.m_vScale.x / 2), 10.f / (m_tHead.m_vScale.y / 2), 0.f };
 		m_vBodyPoint[1] = { m_vBodyPoint[0].x, m_vBodyPoint[0].y + 1, 0.f };
@@ -163,8 +165,6 @@ void Player2::Update_Jump()
 //OutputDebugString(szDebug);
 //OutputDebugString(L"\n");
 
-	
-
 	// 트릭 시작 시 점프 초기화
 	if (m_bOnGround)
 	{
@@ -192,6 +192,7 @@ void Player2::Update_Jump()
 		m_vCenterHead.y += m_fJumpVelocity;
 
 		// 착지 처리
+		// TODO : 보드의 중심x좌표 라인 기반 개선
 		if (m_vCenterHead.y + m_vBodyPoint[10].y >= m_fGroundY - 20.f)
 		{
 			m_vCenterHead.y = 300.f;
@@ -226,11 +227,4 @@ void Player2::Update_Matrix()
 
 	D3DXMatrixIdentity(&matScale);
 	m_matBodyWorld = matScale * matRotY * matRotX * matRotZ * matTrans;
-
-	
-}
-
-void Player2::Update_Direction()
-{
-
 }
