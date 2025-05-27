@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+
     <ClInclude Include="Board2.h" />
     <ClInclude Include="CDriver.h" />
     <ClInclude Include="CFinger.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+
     <ClCompile Include="Board2.cpp" />
     <ClCompile Include="CDriver.cpp" />
     <ClCompile Include="CFinger.cpp" />
