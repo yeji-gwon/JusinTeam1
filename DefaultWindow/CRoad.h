@@ -1,10 +1,7 @@
 #pragma once
 #include "CObj.h"
 #include "BoogiDefine.h"
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 class CRoad :
 	public CObj
 {
