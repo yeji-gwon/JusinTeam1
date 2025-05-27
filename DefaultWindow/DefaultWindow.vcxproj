@@ -150,6 +150,7 @@
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPlayer.h" />
+    <ClInclude Include="CRoad.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneMgr.h" />
     <ClInclude Include="CStage1.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPlayer.cpp" />
+    <ClCompile Include="CRoad.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
     <ClCompile Include="CStage1.cpp" />
