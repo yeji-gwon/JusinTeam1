@@ -123,6 +123,9 @@
     <ClInclude Include="CRoad.h">
       <Filter>03. Scene\03. Stage3\Road</Filter>
     </ClInclude>
+    <ClInclude Include="BoogiDefine.h">
+      <Filter>03. Scene\03. Stage3</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

@@ -71,12 +71,12 @@ void CDriver::RenderHand(HDC hDC, tagPolygon poly, bool left)
 		D3DXVec3TransformCoord(&tmpPoly.m_vPoints[i], &poly.m_vPoints[i], &matWorld);
 
 	// 팔 사각형 설정
-	tagArm* pArm = left ? &m_tLeftArm : &m_tRightArm;
+	tagRect* pArm = left ? &m_tLeftArm : &m_tRightArm;
 	RenderArm(hDC,*pArm,matWorld);
 	// 손 그리기
 	tmpPoly.DrawPolygon(hDC);
 }
-void CDriver::RenderArm(HDC hDC, tagArm& arm, const D3DXMATRIX& matParent)
+void CDriver::RenderArm(HDC hDC, tagRect& arm, const D3DXMATRIX& matParent)
 {
 	// 팔 월드 변환 행렬 구성
 	D3DXMATRIX matScale, matTrans, matWorld;
@@ -93,7 +93,7 @@ void CDriver::RenderArm(HDC hDC, tagArm& arm, const D3DXMATRIX& matParent)
 
 	matWorld *= matRotate * matParent;
 	// 꼭짓점 변환
-	tagArm tmpArm;
+	tagRect tmpArm;
 	for (int i = 0; i < 4; ++i)
 		D3DXVec3TransformCoord(&tmpArm.m_vCorner[i], &arm.m_vCorner[i], &matWorld);
 

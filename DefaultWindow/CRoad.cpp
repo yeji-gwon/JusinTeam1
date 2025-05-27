@@ -11,7 +11,7 @@ CRoad::~CRoad()
 
 void CRoad::Initialize()
 {
-    m_Horizon.fHeight = 2.f;
+    m_Horizon.fHeight = 35.f;
     m_Horizon.fWidth = WINCX;
     m_Horizon.vCenter = { 400,300,0.f };
     m_Horizon.Set_Points(40);
@@ -28,14 +28,14 @@ void CRoad::Late_Update()
 
 void CRoad::Render(HDC hDC)
 {
-    RenderHorizon();
+    RenderHorizon(hDC);
 }
 
 void CRoad::Release()
 {
 }
 
-void CRoad::RenderHorizon()
+void CRoad::RenderHorizon(HDC hDC)
 {
     D3DXMATRIX worldMat, scaleMat, transMat;
     D3DXMatrixIdentity(&worldMat);
@@ -45,9 +45,12 @@ void CRoad::RenderHorizon()
     worldMat = scaleMat * transMat;
 
     tagLine tmpLine;
+    tmpLine.Sync(m_Horizon);
     tmpLine.Set_Points(m_Horizon.Size());
 
     for (int i = 0; i < m_Horizon.Size(); ++i) {
         D3DXVec3TransformCoord(&tmpLine.Points[i], &m_Horizon.Points[i], &worldMat);
     }
+    tmpLine.Render(hDC);
 }
+

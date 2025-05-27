@@ -82,6 +82,7 @@ void CHandle::PolyToWorld(tagPolygon circleLC, tagPolygon& circleWO)
 		m_vPos.z);
 
 	worldMat = matScale * matRotate * matTrans;
+	tagPolygon tmpPoly;
 
 	for (int i = 0; i < circleLC.Size(); ++i) {
 		D3DXVec3TransformCoord(&circleWO.m_vPoints[i], &circleLC.m_vPoints[i], &worldMat);
