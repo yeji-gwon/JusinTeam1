@@ -13,6 +13,10 @@ public:
         m_tBoard.m_vCenter.x = _x;
         m_tBoard.m_vCenter.x = _y;
     }
+    pair<float, float> Get_Center()
+    {
+        return { m_tBoard.m_vCenter.x ,m_tBoard.m_vCenter.y };
+    }
 
 public:
     void Initialize() override;

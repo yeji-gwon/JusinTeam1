@@ -10,6 +10,18 @@ public:
 	virtual ~Player2();
 
 public:
+    void Set_Center(float _x, float _y)
+    {
+        m_vCenterHead.x = _x;
+        m_vCenterHead.y = _y;
+    }
+    pair<float, float> Get_Center()
+    {
+        return { m_vCenterHead.x ,m_vCenterHead.y };
+    }
+    PLAYERSTATE Get_State() { return m_eState; };
+
+public:
     void Initialize() override;
     int  Update() override;
     void Late_Update() override;

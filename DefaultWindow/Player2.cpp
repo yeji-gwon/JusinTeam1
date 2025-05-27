@@ -44,6 +44,7 @@ int Player2::Update()
 {
 	if (m_bHardFlip || m_bFlip || m_bShuvit)
 		Update_Jump();
+
 	Update_State();
 	Key_Input();
 	CKeyMgr::Get_Instance()->Update();
@@ -118,8 +119,8 @@ void Player2::Update_State()
 
 	switch (m_eState)
 	{
-		// TODO : Flip 점프 구현
-	case PLAYER_JUMP1:
+		// TODO : Flip 점프 구상 및 구현
+	case PLAYER_JUMP3:
 		m_vBodyPoint[0] = { 0.f / (m_tHead.m_vScale.x / 2), 10.f / (m_tHead.m_vScale.y / 2), 0.f };
 		m_vBodyPoint[1] = { m_vBodyPoint[0].x, m_vBodyPoint[0].y + 1, 0.f };
 
@@ -132,7 +133,7 @@ void Player2::Update_State()
 		m_vBodyPoint[6] = { m_vBodyPoint[1].x, m_vBodyPoint[1].y + 1.5f, 0.f };
 
 		m_vBodyPoint[7] = { m_vBodyPoint[6].x + 1, m_vBodyPoint[6].y - 1, 0.f };
-		m_vBodyPoint[8] = { m_vBodyPoint[7].x + 2, m_vBodyPoint[6].y + 2, 0.f };
+		m_vBodyPoint[8] = { m_vBodyPoint[6].x + 2, m_vBodyPoint[6].y + 2, 0.f };
 
 		m_vBodyPoint[9] = { m_vBodyPoint[6].x - 1, m_vBodyPoint[6].y - 1, 0.f };
 		m_vBodyPoint[10] = { m_vBodyPoint[6].x - 2, m_vBodyPoint[6].y + 2, 0.f };
@@ -156,27 +157,36 @@ void Player2::Update_State()
 
 void Player2::Update_Jump()
 {
-	m_eState = PLAYER_JUMP1;
-	wchar_t szDebug[256];
-	swprintf_s(szDebug, L"발끝 Y좌표: %.2f, 지면: %.2f, 점프속도: %.2f, 온그라운드: %s",
-		m_vBodyPoint[10].y, m_vCenterHead.y + m_vBodyPoint[10].y, m_fJumpVelocity, m_bOnGround ? L"참" : L"거짓");
-	OutputDebugString(szDebug);
-	OutputDebugString(L"\n");
+	//wchar_t szDebug[256];
+//swprintf_s(szDebug, L"발끝 Y좌표: %.2f, 지면: %.2f, 점프속도: %.2f, 온그라운드: %s",
+//	m_vBodyPoint[10].y, m_vCenterHead.y + m_vBodyPoint[10].y, m_fJumpVelocity, m_bOnGround ? L"참" : L"거짓");
+//OutputDebugString(szDebug);
+//OutputDebugString(L"\n");
+
+	
+
 	// 트릭 시작 시 점프 초기화
 	if (m_bOnGround)
 	{
 		if (m_bFlip)
+		{
 			m_fJumpVelocity = -12.0f;      // 킥플립: 높은 점프
+			m_eState = PLAYER_JUMP1;
+		}
 		else if (m_bShuvit)
+		{
 			m_fJumpVelocity = -8.0f;       // 슈빗: 낮은 점프
+			m_eState = PLAYER_JUMP2;
+		}
 		else if (m_bHardFlip)
+		{
 			m_fJumpVelocity = -14.0f;      // 하드플립: 가장 높은 점프
+			m_eState = PLAYER_JUMP3;
+		}
 
 		m_bOnGround = false;
 	}
-
-	// 중력 적용
-	if (!m_bOnGround)
+	else
 	{
 		m_fJumpVelocity += m_fGravity;
 		m_vCenterHead.y += m_fJumpVelocity;
@@ -187,6 +197,7 @@ void Player2::Update_Jump()
 			m_vCenterHead.y = 300.f;
 			m_fJumpVelocity = 0.0f;
 			m_bOnGround = true;
+
 			m_bFlip = false;
 			m_bShuvit = false;
 			m_bHardFlip = false;
