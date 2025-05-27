@@ -65,9 +65,15 @@ private:
 		vLB.x = vCenter.x - fBotWidth / 2;
 		vRB.x = vCenter.x + fBotWidth / 2;
 
+<<<<<<< Updated upstream
 		vLT.y = vCenter.y- fHeight / 2;
 		vRT.y = vCenter.y + fTopWidth / 2;
 		vLB.y = vCenter.y- fBotWidth / 2;
+=======
+		vLT.y = vCenter.y - fHeight / 2;
+		vRT.y = vCenter.y + fTopWidth / 2;
+		vLB.y = vCenter.y - fBotWidth / 2;
+>>>>>>> Stashed changes
 		vRB.y = vCenter.y + fBotWidth / 2;
 	}
 private:

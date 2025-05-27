@@ -1,6 +1,10 @@
 #pragma once
 #include "CObj.h"
 #include "BoogiDefine.h"
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 class CRoad :
 	public CObj
 {
@@ -14,6 +18,7 @@ public:
 	void Late_Update() override;
 	void Render(HDC hDC) override;
 	void Release() override;
+
 
 public:
 	void RenderHorizon(HDC hDC);
