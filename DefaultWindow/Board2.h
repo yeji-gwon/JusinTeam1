@@ -8,6 +8,13 @@ public:
 	virtual ~Board2();
 
 public:
+    void Set_Center(float _x, float _y)
+    {
+        m_tBoard.m_vCenter.x = _x;
+        m_tBoard.m_vCenter.x = _y;
+    }
+
+public:
     void Initialize() override;
     int  Update() override;
     void Late_Update() override;
