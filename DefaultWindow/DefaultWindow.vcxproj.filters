@@ -55,8 +55,6 @@
     <Filter Include="03. Scene\03. Stage3\Driver">
       <UniqueIdentifier>{7e3e2f10-f312-4d9a-b7c0-4ae92a3c5df0}</UniqueIdentifier>
     </Filter>
-
-
     <Filter Include="03. Scene\03. Stage3\CenterLine">
       <UniqueIdentifier>{764f5af9-9785-4957-8a84-c3b33b27b1e7}</UniqueIdentifier>
     </Filter>
@@ -122,11 +120,35 @@
     <ClInclude Include="CDriver.h">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClInclude>
-
-
-
     <ClInclude Include="CRoad.h">
       <Filter>03. Scene\03. Stage3\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="Board2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CFinger.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CFingers.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CJoint.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CPiano.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Player2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CArcher.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CArrow.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CBow.h">
+      <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -175,10 +197,35 @@
     <ClCompile Include="CDriver.cpp">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClCompile>
-
-
     <ClCompile Include="CRoad.cpp">
       <Filter>03. Scene\03. Stage3\Road</Filter>
+    </ClCompile>
+    <ClCompile Include="Board2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CFinger.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CFingers.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CJoint.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CPiano.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Player2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CArcher.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CArrow.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CBow.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

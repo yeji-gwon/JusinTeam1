@@ -143,8 +143,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-
     <ClInclude Include="Board2.h" />
+    <ClInclude Include="CArcher.h" />
+    <ClInclude Include="CArrow.h" />
+    <ClInclude Include="CBow.h" />
     <ClInclude Include="CDriver.h" />
     <ClInclude Include="CFinger.h" />
     <ClInclude Include="CFingers.h" />
@@ -172,8 +174,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-
     <ClCompile Include="Board2.cpp" />
+    <ClCompile Include="CArcher.cpp" />
+    <ClCompile Include="CArrow.cpp" />
+    <ClCompile Include="CBow.cpp" />
     <ClCompile Include="CDriver.cpp" />
     <ClCompile Include="CFinger.cpp" />
     <ClCompile Include="CFingers.cpp" />
