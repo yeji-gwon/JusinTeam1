@@ -55,8 +55,11 @@
     <Filter Include="03. Scene\03. Stage3\Driver">
       <UniqueIdentifier>{7e3e2f10-f312-4d9a-b7c0-4ae92a3c5df0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Scene\03. Stage3\Screen">
-      <UniqueIdentifier>{f2d3babf-b26e-4286-91ec-a314faab36ec}</UniqueIdentifier>
+    <Filter Include="03. Scene\03. Stage3\CenterLine">
+      <UniqueIdentifier>{764f5af9-9785-4957-8a84-c3b33b27b1e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\03. Stage3\Road">
+      <UniqueIdentifier>{7d7918fb-0abf-47f8-a7fd-22a472fe47b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,8 +120,8 @@
     <ClInclude Include="CDriver.h">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClInclude>
-    <ClInclude Include="CScreen.h">
-      <Filter>03. Scene\03. Stage3\Screen</Filter>
+    <ClInclude Include="CRoad.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -167,8 +170,8 @@
     <ClCompile Include="CDriver.cpp">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClCompile>
-    <ClCompile Include="CScreen.cpp">
-      <Filter>03. Scene\03. Stage3\Screen</Filter>
+    <ClCompile Include="CRoad.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

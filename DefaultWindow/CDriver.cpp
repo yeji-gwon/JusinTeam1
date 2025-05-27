@@ -18,7 +18,7 @@ void CDriver::Initialize()
 
 	m_tLeftArm.m_vScale = { 1.5f,10.f,0.f };
 	m_tLeftArm.m_vPos = { 0.f,5.f,0.f };
-	m_tLeftArm.m_vRotate = { 0.f,0.f,0.f };
+	m_tLeftArm.m_vRotate = { 0.f,0.f,10.f };
 
 	// 팔의 로컬 꼭짓점 (기본 정사각형 기준)
 	m_tLeftArm.m_vCorner[0] = { -0.5f, -0.5f, 0.f }; // LT
@@ -64,21 +64,21 @@ void CDriver::RenderHand(HDC hDC, tagPolygon poly, bool left)
 	D3DXMatrixTranslation(&matTrans, poly.m_vCenter.x, poly.m_vCenter.y, poly.m_vCenter.z);
 	matWorld = matScale * matTrans;
 
-	// 2. 손 좌표 변환
+	// 손 좌표 변환
 	tagPolygon tmpPoly;
 	poly.SyncToWorld(tmpPoly);
 	for (int i = 0; i < poly.Size(); ++i)
 		D3DXVec3TransformCoord(&tmpPoly.m_vPoints[i], &poly.m_vPoints[i], &matWorld);
 
-	// 3. 팔 사각형 설정
+	// 팔 사각형 설정
 	tagArm* pArm = left ? &m_tLeftArm : &m_tRightArm;
 	RenderArm(hDC,*pArm,matWorld);
-	// 5. 손 그리기
+	// 손 그리기
 	tmpPoly.DrawPolygon(hDC);
 }
 void CDriver::RenderArm(HDC hDC, tagArm& arm, const D3DXMATRIX& matParent)
 {
-	// 1. 팔 월드 변환 행렬 구성
+	// 팔 월드 변환 행렬 구성
 	D3DXMATRIX matScale, matTrans, matWorld;
 	D3DXMatrixScaling(&matScale, arm.m_vScale.x, arm.m_vScale.y, arm.m_vScale.z);
 	D3DXMatrixTranslation(&matTrans, arm.m_vPos.x, arm.m_vPos.y, arm.m_vPos.z);
@@ -125,5 +125,5 @@ void CDriver::Set_CenterRight(D3DXVECTOR3 right)
 void CDriver::Get_Rotate(D3DXVECTOR3 Rot)
 {
 	m_tLeftArm.m_vRotate = Rot*0.3;
-	m_tRightArm.m_vRotate = Rot * 0.3;
+	m_tRightArm.m_vRotate = Rot * -0.4;
 }

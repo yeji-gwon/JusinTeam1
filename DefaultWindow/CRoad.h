@@ -1,14 +1,11 @@
 #pragma once
-#include "CScene.h"
-
-class CObj;
-
-class CStage3 :
-    public CScene
+#include "CObj.h"
+class CRoad :
+    public CObj
 {
 public:
-    CStage3();
-    virtual ~CStage3();
+    CRoad();
+    ~CRoad();
 
 public:
     void Initialize() override;
@@ -18,7 +15,8 @@ public:
     void Release() override;
 
 private:
-    CObj* m_pHandle;
-    CObj* m_pDriver;
-    CObj* m_pRoad;
+    //중앙선
+    //지평선
+    //도로
 };
+
