@@ -121,7 +121,7 @@
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClInclude>
     <ClInclude Include="CRoad.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>03. Scene\03. Stage3\Road</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +171,7 @@
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClCompile>
     <ClCompile Include="CRoad.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>03. Scene\03. Stage3\Road</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
