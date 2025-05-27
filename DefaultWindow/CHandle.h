@@ -17,6 +17,7 @@ public:
 
 public :
     D3DXVECTOR3 Get_Point_World(int i);
+    D3DXVECTOR3 Get_Rotate();
 private: 
     void PolyToWorld(tagPolygon circleLC, tagPolygon& circleWO);
     void PolyToWorld(tagPolygon circleLC, tagPolygon& circleWO, D3DXVECTOR3 center);

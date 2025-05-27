@@ -55,14 +55,13 @@
     <Filter Include="03. Scene\03. Stage3\Driver">
       <UniqueIdentifier>{7e3e2f10-f312-4d9a-b7c0-4ae92a3c5df0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Scene\01. Stage1\00. Archer">
-      <UniqueIdentifier>{97d13421-6602-4a63-9160-c0f6e29dafdc}</UniqueIdentifier>
+
+
+    <Filter Include="03. Scene\03. Stage3\CenterLine">
+      <UniqueIdentifier>{764f5af9-9785-4957-8a84-c3b33b27b1e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Scene\01. Stage1\01. Bow">
-      <UniqueIdentifier>{e7ade343-72c5-4aa6-8b07-4857325e38b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03. Scene\01. Stage1\02. Arrow">
-      <UniqueIdentifier>{1b1a7d66-bbab-4b91-a11b-f599565d771f}</UniqueIdentifier>
+    <Filter Include="03. Scene\03. Stage3\Road">
+      <UniqueIdentifier>{7d7918fb-0abf-47f8-a7fd-22a472fe47b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,14 +122,11 @@
     <ClInclude Include="CDriver.h">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClInclude>
-    <ClInclude Include="CArcher.h">
-      <Filter>03. Scene\01. Stage1\00. Archer</Filter>
-    </ClInclude>
-    <ClInclude Include="CBow.h">
-      <Filter>03. Scene\01. Stage1\01. Bow</Filter>
-    </ClInclude>
-    <ClInclude Include="CArrow.h">
-      <Filter>03. Scene\01. Stage1\02. Arrow</Filter>
+
+
+
+    <ClInclude Include="CRoad.h">
+      <Filter>03. Scene\03. Stage3\Road</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,14 +175,10 @@
     <ClCompile Include="CDriver.cpp">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClCompile>
-    <ClCompile Include="CArcher.cpp">
-      <Filter>03. Scene\01. Stage1\00. Archer</Filter>
-    </ClCompile>
-    <ClCompile Include="CBow.cpp">
-      <Filter>03. Scene\01. Stage1\01. Bow</Filter>
-    </ClCompile>
-    <ClCompile Include="CArrow.cpp">
-      <Filter>03. Scene\01. Stage1\02. Arrow</Filter>
+
+
+    <ClCompile Include="CRoad.cpp">
+      <Filter>03. Scene\03. Stage3\Road</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

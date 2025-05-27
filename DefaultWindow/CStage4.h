@@ -1,5 +1,6 @@
 #pragma once
 #include "CScene.h"
+#include "CObj.h"
 
 class CStage4 :
     public CScene
@@ -14,4 +15,7 @@ public:
     void Late_Update() override;
     void Render(HDC hDC) override;
     void Release() override;
+
+private:
+    CObj*   m_pFingers;
 };
