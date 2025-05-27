@@ -38,9 +38,9 @@ void CStage2::Render(HDC hDC)
 	swprintf_s(szText, L"스테이지 2");
 	TextOut(hDC, 10, 10, szText, lstrlen(szText));
 
-
-	pPlayer->Render(hDC);
 	pBoard->Render(hDC);
+	pPlayer->Render(hDC);
+	
 }
 
 void CStage2::Release()

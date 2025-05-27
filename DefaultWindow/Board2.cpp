@@ -27,7 +27,7 @@ void Board2::Initialize()
 int Board2::Update()
 {
 	if (m_bFlip)
-		m_fAngleX += 0.5f;
+		m_fAngleX += 0.35f;  // 0.2f에서 증가 - 더 빠른 플립
 	if (m_fAngleX >= 2 * 3.141592f)
 	{
 		m_bFlip = false;
@@ -35,7 +35,7 @@ int Board2::Update()
 	}
 
 	if (m_bShuvit)
-		m_fAngleY += 0.5f;
+		m_fAngleY += 0.4f;   // 0.5f에서 감소 - 조금 더 부드러운 회전
 	if (m_fAngleY >= 2 * 3.141592f)
 	{
 		m_bShuvit = false;
@@ -43,7 +43,7 @@ int Board2::Update()
 	}
 
 	if (m_bHardFlip)
-		m_fAngleZ += 0.5f;
+		m_fAngleZ += 0.45f;  // 0.5f에서 감소 - X축과 조화로운 속도
 	if (m_fAngleZ >= 2 * 3.141592f)
 	{
 		m_bHardFlip = false;
@@ -79,6 +79,11 @@ void Board2::Release()
 
 void Board2::Key_Input()
 {
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT))  m_tBoard.m_vCenter.x -= m_fSpeed;
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT)) m_tBoard.m_vCenter.x += m_fSpeed;
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_UP))    m_tBoard.m_vCenter.y -= m_fSpeed;
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN))  m_tBoard.m_vCenter.y += m_fSpeed;
+
 	if (CKeyMgr::Get_Instance()->Key_Tap('Q'))
 		m_bFlip = true;
 	if (CKeyMgr::Get_Instance()->Key_Tap('W'))
