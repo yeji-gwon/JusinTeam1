@@ -28,31 +28,31 @@ void Player2::Initialize()
 	m_vRelativeBody = { 0.f, 50.f, 0.f };  // 머리 아래 50픽셀
 	m_fAngleBody = 0.f;
 	m_tBody.m_vScale = { 20.f, 40.f, 0.f };
-	m_tBody.Set_Size(4);  // 사각형
+	m_tBody.Set_Size(2);  // 사각형
 
 	// 왼팔 (머리 기준 상대 위치)
 	m_vRelativeLeftArm = { -30.f, 40.f, 0.f };  // 머리 왼쪽 아래
 	m_fAngleLeftArm = 0.f;
 	m_tLeftArm.m_vScale = { 8.f, 25.f, 0.f };
-	m_tLeftArm.Set_Size(4);
+	m_tLeftArm.Set_Size(2);
 
 	// 오른팔 (머리 기준 상대 위치)
 	m_vRelativeRightArm = { 30.f, 40.f, 0.f };  // 머리 오른쪽 아래
 	m_fAngleRightArm = 0.f;
 	m_tRightArm.m_vScale = { 8.f, 25.f, 0.f };
-	m_tRightArm.Set_Size(4);
+	m_tRightArm.Set_Size(2);
 
 	// 왼다리 (머리 기준 상대 위치)
 	m_vRelativeLeftLeg = { -15.f, 90.f, 0.f };  // 몸통 아래 왼쪽
 	m_fAngleLeftLeg = 0.f;
 	m_tLeftLeg.m_vScale = { 8.f, 30.f, 0.f };
-	m_tLeftLeg.Set_Size(4);
+	m_tLeftLeg.Set_Size(2);
 
 	// 오른다리 (머리 기준 상대 위치)
 	m_vRelativeRightLeg = { 15.f, 90.f, 0.f };  // 몸통 아래 오른쪽
 	m_fAngleRightLeg = 0.f;
 	m_tRightLeg.m_vScale = { 8.f, 30.f, 0.f };
-	m_tRightLeg.Set_Size(4);
+	m_tRightLeg.Set_Size(2);
 
 }
 
@@ -82,35 +82,35 @@ void Player2::Render(HDC hDC)
 
 	// 몸통 렌더링
 	struct tagPolygon WorldBody;
-	WorldBody.Set_Size(4);
+	WorldBody.Set_Size(2);
 	for (int i = 0; i < m_tBody.Size(); i++)
 		D3DXVec3TransformCoord(&WorldBody.m_vPoints[i], &m_tBody.m_vPoints[i], &m_matWorldBody);
 	WorldBody.DrawPolygon(hDC);
 
 	// 왼팔 렌더링
 	struct tagPolygon WorldLeftArm;
-	WorldLeftArm.Set_Size(4);
+	WorldLeftArm.Set_Size(2);
 	for (int i = 0; i < m_tLeftArm.Size(); i++)
 		D3DXVec3TransformCoord(&WorldLeftArm.m_vPoints[i], &m_tLeftArm.m_vPoints[i], &m_matWorldLeftArm);
 	WorldLeftArm.DrawPolygon(hDC);
 
 	// 오른팔 렌더링
 	struct tagPolygon WorldRightArm;
-	WorldRightArm.Set_Size(4);
+	WorldRightArm.Set_Size(2);
 	for (int i = 0; i < m_tRightArm.Size(); i++)
 		D3DXVec3TransformCoord(&WorldRightArm.m_vPoints[i], &m_tRightArm.m_vPoints[i], &m_matWorldRightArm);
 	WorldRightArm.DrawPolygon(hDC);
 
 	// 왼다리 렌더링
 	struct tagPolygon WorldLeftLeg;
-	WorldLeftLeg.Set_Size(4);
+	WorldLeftLeg.Set_Size(2);
 	for (int i = 0; i < m_tLeftLeg.Size(); i++)
 		D3DXVec3TransformCoord(&WorldLeftLeg.m_vPoints[i], &m_tLeftLeg.m_vPoints[i], &m_matWorldLeftLeg);
 	WorldLeftLeg.DrawPolygon(hDC);
 
 	// 오른다리 렌더링
 	struct tagPolygon WorldRightLeg;
-	WorldRightLeg.Set_Size(4);
+	WorldRightLeg.Set_Size(2);
 	for (int i = 0; i < m_tRightLeg.Size(); i++)
 		D3DXVec3TransformCoord(&WorldRightLeg.m_vPoints[i], &m_tRightLeg.m_vPoints[i], &m_matWorldRightLeg);
 	WorldRightLeg.DrawPolygon(hDC);
