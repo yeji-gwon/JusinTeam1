@@ -25,7 +25,6 @@ void Player2::Initialize()
 	m_tHead.m_vCenter = m_vCenterHead;
 	m_tHead.m_vScale = { 20.f, 20.f, 0.f };
 	m_tHead.Set_Size(36);
-	m_tHead.SyncToWorld(m_tHead);
 
 
 	// TODO? : 입모양 추가
@@ -40,8 +39,6 @@ void Player2::Initialize()
 	m_vBodyPoint[8] = { m_vBodyPoint[7].x, m_vBodyPoint[6].y + 2, 0.f };
 	m_vBodyPoint[9] = { m_vBodyPoint[6].x - 1, m_vBodyPoint[6].y + 1, 0.f };
 	m_vBodyPoint[10] = { m_vBodyPoint[6].x - 2, m_vBodyPoint[6].y + 2, 0.f };
-
-
 
 }
 

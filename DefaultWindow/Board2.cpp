@@ -23,20 +23,17 @@ void Board2::Initialize()
 	m_tBoard.m_vCenter = { 300.f, 400.f, 0.f };
 	m_tBoard.m_vScale = { 90.f, 15.f, 0.f };
 	m_tBoard.Set_Size(8);
-	m_tBoard.SyncToWorld(m_tBoard);
 
 	// 바퀴 설정 (보드 중심 기준으로 앞뒤 배치)
 	// 앞바퀴 (보드 중심에서 앞쪽으로 30.f)
 	m_tWheel[0].m_vCenter = { 40.f, 20.f, 0.f };
 	m_tWheel[0].m_vScale = { 8.f, 8.f, 0.f };
 	m_tWheel[0].Set_Size(36);
-	m_tWheel[0].SyncToWorld(m_tWheel[0]);
 
 	// 뒷바퀴 (보드 중심에서 뒤쪽으로 30.f)
 	m_tWheel[1].m_vCenter = { -40.f, 20.f, 0.f };
 	m_tWheel[1].m_vScale = { 8.f, 8.f, 0.f };
 	m_tWheel[1].Set_Size(36);
-	m_tWheel[1].SyncToWorld(m_tWheel[1]);
 
 }
 
