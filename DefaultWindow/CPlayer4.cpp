@@ -10,6 +10,11 @@ CPlayer4::~CPlayer4()
 {
 }
 
+void CPlayer4::Init_Type()
+{
+    dynamic_cast<CBody*>(pBody)->Init_Angle();
+}
+
 void CPlayer4::Initialize()
 {
     pHead = new CHead;

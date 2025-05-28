@@ -19,8 +19,18 @@ public:
 
 public:
     void Key_Check();
-
+    RECT* Get_Rect();
+    float* Get_AnglePt();
+    float* Get_LandinfPt();
+    void Set_Landed(bool landed);
 private:
+    bool m_bLanded;
+    float m_fArmDir;
+    float fLandingPoint;
+    float fNow_Angle;
+    float fPrev_Angle;
+    RECT m_SkiFloor;
+
     D3DXVECTOR3 m_vCenter;
     D3DXVECTOR3 m_vRotate;
     D3DXVECTOR3 m_vScale;
@@ -37,7 +47,5 @@ private:
     tagRectangle m_pLeftLeg;
     tagRectangle m_pRightLeg;
 
-    RECT m_SkiFloor;
-    float m_fArmDir;
 };
 

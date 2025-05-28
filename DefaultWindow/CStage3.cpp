@@ -20,6 +20,8 @@ void CStage3::Initialize()
 	m_pSki->Initialize();
 	m_pSlope = new CSlope;
 	m_pSlope->Initialize();
+
+	static_cast<CSlope*>(m_pSlope)->Set_Target(static_cast<CSki*>(m_pSki));
 }
 
 int CStage3::Update()
@@ -38,9 +40,8 @@ void CStage3::Late_Update()
 
 void CStage3::Render(HDC hDC)
 {
-	m_pSki->Render(hDC);
 	m_pSlope->Render(hDC);
-
+	m_pSki->Render(hDC);
 }
 
 void CStage3::Release()

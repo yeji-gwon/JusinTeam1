@@ -12,11 +12,11 @@ CStage2::~CStage2()
 
 void CStage2::Initialize()
 {
-	pPlayer = new Player2;
+	pPlayer = Player2::Get_Instance();
 	pPlayer->Initialize();
-	pBoard = new Board2;
+	pBoard = Board2::Get_Instance();
 	pBoard->Initialize();
-	
+
 }
 
 int CStage2::Update()
@@ -41,13 +41,13 @@ void CStage2::Render(HDC hDC)
 
 	pBoard->Render(hDC);
 	pPlayer->Render(hDC);
-	
+
 }
 
 void CStage2::Release()
 {
-	Safe_Delete(pPlayer);
-	Safe_Delete(pBoard);
+	pPlayer->Destroy_Instance();
+	pBoard->Destroy_Instance();
 }
 
 void CStage2::SyncPlayer()
@@ -57,11 +57,11 @@ void CStage2::SyncPlayer()
 	switch (m_eCurState)
 	{
 	case PLAYER_IDLE:
-		pPlayer->Set_Center(fCenter.first + 75.f, pPlayer->Get_Center().second);
+		pPlayer->Set_Center(fCenter.first + 40.f, pPlayer->Get_Center().second);
 		break;
 	default:
 		pPlayer->Set_Center(fCenter.first, pPlayer->Get_Center().second);
 		break;
 	}
-	
+
 }
