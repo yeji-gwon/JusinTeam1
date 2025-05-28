@@ -25,6 +25,11 @@ public:
     {
         return { m_tBoard.m_vCenter.x, m_tBoard.m_vCenter.y };
     }
+
+    pair<float, float> Get_Scale()
+    {
+        return { m_tBoard.m_vScale.x, m_tBoard.m_vScale.y };
+    }
 public:
     void Initialize() override;
     int  Update() override;
