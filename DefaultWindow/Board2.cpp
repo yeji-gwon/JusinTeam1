@@ -24,6 +24,8 @@ void Board2::Initialize()
 	m_tBoard.m_vScale = { 90.f, 15.f, 0.f };
 	m_tBoard.Set_Size(8);
 
+	// IP TODO : 시간되면 바퀴안에 사각형 만들기(회전 시각화)
+
 	// 바퀴 설정 (보드 중심 기준으로 앞뒤 배치)
 	// 앞바퀴 (보드 중심에서 앞쪽으로 30.f)
 	m_tWheel[0].m_vCenter = { 40.f, 20.f, 0.f };
@@ -142,6 +144,8 @@ void Board2::Update_Matrix()
 	D3DXMatrixScaling(&m_matScaleW, m_tWheel[0].m_vScale.x, m_tWheel[0].m_vScale.y, m_tWheel[0].m_vScale.z);
 	//D3DXMatrixScaling(&m_matScaleW[1], m_tWheel[1].m_vScale.x, m_tWheel[1].m_vScale.y, m_tWheel[1].m_vScale.z);
 
+
+	// TODO : 바퀴의 회전 구현
 	// 회전 행렬 업데이트
 	D3DXMatrixRotationX(&m_matRotX, m_fAngleX);
 	D3DXMatrixRotationY(&m_matRotY, m_fAngleY);
@@ -156,6 +160,7 @@ void Board2::Update_Matrix()
 
 	// 월드 행렬 = (크기 * 회전 * 이동) * 공전 * 부모
 	m_matWorld = m_matScaleB * m_matRotY * m_matRotX * m_matRotZ * m_matTransB;
+
 	// 바퀴 행렬 계산 (보드와 동일한 회전과 이동 적용)
 	//m_matWorldWheel[0] = m_matScaleW * m_matRotY * m_matRotX * m_matRotZ * m_matTransW[0] * m_matTransB;
 	//m_matWorldWheel[1] = m_matScaleW * m_matRotY * m_matRotX * m_matRotZ * m_matTransW[1] * m_matTransB;

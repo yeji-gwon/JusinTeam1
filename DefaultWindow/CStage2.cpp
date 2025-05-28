@@ -50,6 +50,7 @@ void CStage2::Release()
 	pBoard->Destroy_Instance();
 }
 
+// IP TODO : 자연스러운 싱크 
 void CStage2::SyncPlayer()
 {
 	m_eCurState = pPlayer->Get_State();

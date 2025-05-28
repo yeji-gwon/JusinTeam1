@@ -27,7 +27,6 @@ void Player2::Initialize()
 	m_tHead.Set_Size(36);
 
 
-	// TODO? : 입모양 추가
 	m_vBodyPoint[0] = { -6.f / (m_tHead.m_vScale.x / 2), 8.f / (m_tHead.m_vScale.y / 2), 0.f };
 	m_vBodyPoint[1] = { m_vBodyPoint[0].x - 1, m_vBodyPoint[0].y + 1, 0.f };
 	m_vBodyPoint[2] = { m_vBodyPoint[1].x + 1.25f, m_vBodyPoint[1].y + 1.25f, 0.f };
@@ -217,11 +216,6 @@ void Player2::Update_State()
 
 void Player2::Update_Jump()
 {
-	//wchar_t szDebug[256];
-//swprintf_s(szDebug, L"발끝 Y좌표: %.2f, 지면: %.2f, 점프속도: %.2f, 온그라운드: %s",
-//	m_vBodyPoint[10].y, m_vCenterHead.y + m_vBodyPoint[10].y, m_fJumpVelocity, m_bOnGround ? L"참" : L"거짓");
-//OutputDebugString(szDebug);
-//OutputDebugString(L"\n");
 
 	// 트릭 시작 시 점프 초기화
 	if (m_bOnGround)
@@ -256,7 +250,7 @@ void Player2::Update_Jump()
 		}
 		float fHeight = 5.f * m_tHead.m_vScale.y;
 		float fBoardLineY = Board2::Get_Instance()->Get_Center().second - (Board2::Get_Instance()->Get_Scale().second / 2.f);
-		// 착지 처리 : -10.f 마진
+		// 착지 처리 : -20.f 마진
 		if (m_vCenterHead.y + fHeight >= fBoardLineY - 5.f)
 		{
 			// 머리 좌표 = 발 좌표(주로 오른발이 바닥에 먼저 닫는다) - 머리 중심 좌표(=0) + 보드 중심 y 좌표  (relative)
