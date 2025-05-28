@@ -125,6 +125,11 @@
     </ClInclude>
     <ClInclude Include="BoogiDefine.h">
       <Filter>03. Scene\03. Stage3</Filter>
+    <ClInclude Include="Board2.h">
+      <Filter>03. Scene\02. Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Player2.h">
+      <Filter>03. Scene\02. Stage2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +180,13 @@
     </ClCompile>
     <ClCompile Include="CRoad.cpp">
       <Filter>03. Scene\03. Stage3\Road</Filter>
+    </ClCompile>
+    <ClCompile Include="Board2.cpp">
+
+      <Filter>03. Scene\02. Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Player2.cpp">
+      <Filter>03. Scene\02. Stage2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

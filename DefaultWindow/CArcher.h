@@ -9,13 +9,27 @@ public:
     virtual ~CArcher();
 
 public:
-    void Initialize() override;
-    int Update() override;
-    void Late_Update() override;
-    void Render(HDC hDC) override;
-    void Release() override;
+    void            Set_Bow(CObj* pBow) { m_pBow = pBow; }
+
+public:
+    void            Initialize() override;
+    int             Update() override;
+    void            Late_Update() override;
+    void            Render(HDC hDC) override;
+    void            Release() override;
 
 private:
-    D3DXVECTOR3     m_vBodyP[4];
-    D3DXVECTOR3     m_vBodyQ[4];
+    void            Key_Input();
+
+private:
+    D3DXVECTOR3     m_vBodyPoint[4];
+    D3DXVECTOR3     m_vOriginBodyPoint[4];
+
+    D3DXVECTOR3     m_vUpperArmPoint[4];
+    D3DXVECTOR3     m_vOriginUpperArmPoint[4];
+
+    D3DXVECTOR3     m_vForeArmPoint[4];
+    D3DXVECTOR3     m_vOriginForeArmPoint[4];
+
+    CObj*           m_pBow;
 };
