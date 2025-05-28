@@ -23,6 +23,7 @@ int CStage2::Update()
 {
 	pPlayer->Update();
 	pBoard->Update();
+	SyncPlayer();
 	return 0;
 }
 
@@ -38,13 +39,29 @@ void CStage2::Render(HDC hDC)
 	swprintf_s(szText, L"스테이지 2");
 	TextOut(hDC, 10, 10, szText, lstrlen(szText));
 
-
-	pPlayer->Render(hDC);
 	pBoard->Render(hDC);
+	pPlayer->Render(hDC);
+	
 }
 
 void CStage2::Release()
 {
 	Safe_Delete(pPlayer);
 	Safe_Delete(pBoard);
+}
+
+void CStage2::SyncPlayer()
+{
+	m_eCurState = pPlayer->Get_State();
+	pair<float, float> fCenter = pBoard->Get_Center();
+	switch (m_eCurState)
+	{
+	case PLAYER_IDLE:
+		pPlayer->Set_Center(fCenter.first + 75.f, pPlayer->Get_Center().second);
+		break;
+	default:
+		pPlayer->Set_Center(fCenter.first, pPlayer->Get_Center().second);
+		break;
+	}
+	
 }

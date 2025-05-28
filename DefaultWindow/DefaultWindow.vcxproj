@@ -176,6 +176,8 @@
     <ClCompile Include="Board2.cpp" />
     <ClCompile Include="CArcher.cpp" />
     <ClCompile Include="CBody.cpp" />
+    <ClCompile Include="CArrow.cpp" />
+    <ClCompile Include="CBow.cpp" />
     <ClCompile Include="CDriver.cpp" />
     <ClCompile Include="CHandle.cpp" />
     <ClCompile Include="CHead.cpp" />
