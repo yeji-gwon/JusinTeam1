@@ -56,7 +56,6 @@
       <UniqueIdentifier>{7e3e2f10-f312-4d9a-b7c0-4ae92a3c5df0}</UniqueIdentifier>
     </Filter>
 
-
     <Filter Include="03. Scene\03. Stage3\CenterLine">
       <UniqueIdentifier>{764f5af9-9785-4957-8a84-c3b33b27b1e7}</UniqueIdentifier>
     </Filter>
@@ -123,10 +122,14 @@
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClInclude>
 
-
-
     <ClInclude Include="CRoad.h">
       <Filter>03. Scene\03. Stage3\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="Board2.h">
+      <Filter>03. Scene\02. Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Player2.h">
+      <Filter>03. Scene\02. Stage2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -176,9 +179,14 @@
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClCompile>
 
-
     <ClCompile Include="CRoad.cpp">
       <Filter>03. Scene\03. Stage3\Road</Filter>
+    </ClCompile>
+    <ClCompile Include="Board2.cpp">
+      <Filter>03. Scene\02. Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Player2.cpp">
+      <Filter>03. Scene\02. Stage2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
