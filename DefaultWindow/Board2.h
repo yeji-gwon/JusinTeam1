@@ -49,7 +49,10 @@ private:
     bool        m_bShuvit = false;
     bool        m_bHardFlip = false;
 
-    D3DXMATRIX  m_matWorld; // 최종 변환 행렬
     struct tagPolygon m_tBoard;
+    D3DXMATRIX  m_matWorld; // 최종 변환 행렬
+    
+    struct tagPolygon m_tWheel[2];
+    D3DXMATRIX  m_matWorldWheel[2];
 };
 

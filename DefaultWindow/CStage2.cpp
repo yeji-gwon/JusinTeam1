@@ -57,7 +57,7 @@ void CStage2::SyncPlayer()
 	switch (m_eCurState)
 	{
 	case PLAYER_IDLE:
-		pPlayer->Set_Center(fCenter.first + 75.f, pPlayer->Get_Center().second);
+		pPlayer->Set_Center(fCenter.first + 40.f, pPlayer->Get_Center().second);
 		break;
 	default:
 		pPlayer->Set_Center(fCenter.first, pPlayer->Get_Center().second);

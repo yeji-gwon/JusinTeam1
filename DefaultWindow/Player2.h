@@ -1,6 +1,7 @@
 #pragma once
 #include "CPlayer.h"
 #include "CKeyMgr.h"
+#include "Board2.h"
 
 enum PLAYERSTATE { PLAYER_IDLE, PLAYER_JUMP1, PLAYER_JUMP2, PLAYER_JUMP3, PLAYER_END };
 class Player2 : public CPlayer
@@ -78,5 +79,7 @@ private:
     float m_fGravity = 0.8f;
     float m_fGroundY = 400.0f;  // Áö¸é Y ÁÂÇ¥
     bool m_bOnGround = true;
+
+    
 };
 
