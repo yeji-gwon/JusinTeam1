@@ -70,6 +70,9 @@
     <ClCompile Include="pch.cpp">
       <Filter>etc</Filter>
     </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>02. Design\03. TimeMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMainGame.h">
@@ -156,6 +159,9 @@
     <ClInclude Include="targetver.h">
       <Filter>etc</Filter>
     </ClInclude>
+    <ClInclude Include="CTimeMgr.h">
+      <Filter>02. Design\03. TimeMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="DefaultWindow.ico">
@@ -237,6 +243,9 @@
     </Filter>
     <Filter Include="01. Obj\00. Player">
       <UniqueIdentifier>{0535b49b-cda4-41e4-820e-3e5b36ecf9fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\03. TimeMgr">
+      <UniqueIdentifier>{f112fc57-adb7-431f-bb3f-6c43551646c3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
