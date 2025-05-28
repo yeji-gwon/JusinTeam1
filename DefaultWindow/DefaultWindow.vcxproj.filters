@@ -195,9 +195,6 @@
     <ClInclude Include="CDriver.h">
       <Filter>03. Scene\03. Stage3\Driver</Filter>
     </ClInclude>
-    <ClInclude Include="CRoad.h">
-      <Filter>03. Scene\03. Stage3\Road</Filter>
-    </ClInclude>
     <ClInclude Include="Board2.h">
       <Filter>03. Scene\02. Stage2</Filter>
     </ClInclude>

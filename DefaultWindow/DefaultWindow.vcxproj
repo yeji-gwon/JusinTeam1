@@ -182,8 +182,6 @@
     <ClCompile Include="CBody.cpp" />
     <ClCompile Include="CArrow.cpp" />
     <ClCompile Include="CBow.cpp" />
-    <ClCompile Include="CDriver.cpp" />
-    <ClCompile Include="CHandle.cpp" />
     <ClCompile Include="CGameSystem4.cpp" />
     <ClCompile Include="CHead.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
