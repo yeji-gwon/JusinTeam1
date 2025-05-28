@@ -1,19 +1,18 @@
 #pragma once
 #include "CObj.h"
 #include "CHead.h"
-//template <typename T>
-//struct Poly
-//{
-//	T	WPoly;
-//	T	LPoly;
-//	D3DXMATRIX	matWorld;
-//};
+#include "CGameSystem4.h"
 
 class CBody : public CObj
 {
 public:
 	CBody();
 	virtual ~CBody();
+
+public:
+	BTYPE Get_BType() { return m_ePlayerBType; }
+	WTYPE Get_WType() { return m_ePlayerWType; }
+	void Init_Angle();
 
 public:
 	void		Initialize() override;
@@ -35,5 +34,8 @@ private:
 
 	float			m_fLAngle;
 	float			m_fRAngle;
+
+	BTYPE			m_ePlayerBType;
+	WTYPE			m_ePlayerWType;
 };
 

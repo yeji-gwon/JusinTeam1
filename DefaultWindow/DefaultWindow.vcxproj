@@ -143,7 +143,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-
     <ClInclude Include="BoogiDefine.h" />
     <ClInclude Include="Board2.h" />
     <ClInclude Include="CArcher.h" />
@@ -152,19 +151,17 @@
     <ClInclude Include="CBow.h" />
     <ClInclude Include="CDriver.h" />
     <ClInclude Include="CHandle.h" />
+    <ClInclude Include="CGameSystem4.h" />
     <ClInclude Include="CHead.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPlayer.h" />
-
     <ClInclude Include="CPlayer4.h" />
-<<<<<<< Updated upstream
-    <ClInclude Include="CRoad.h" />
-=======
+
     <ClInclude Include="CRandom.h" />
->>>>>>> Stashed changes
+
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneMgr.h" />
     <ClInclude Include="CSki.h" />
@@ -173,6 +170,7 @@
     <ClInclude Include="CStage2.h" />
     <ClInclude Include="CStage3.h" />
     <ClInclude Include="CStage4.h" />
+    <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="DefaultWindow.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="framework.h" />
@@ -182,27 +180,22 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-
     <ClCompile Include="Board2.cpp" />
     <ClCompile Include="CArcher.cpp" />
     <ClCompile Include="CBody.cpp" />
     <ClCompile Include="CArrow.cpp" />
     <ClCompile Include="CBow.cpp" />
-    <ClCompile Include="CDriver.cpp" />
-    <ClCompile Include="CHandle.cpp" />
+    <ClCompile Include="CGameSystem4.cpp" />
     <ClCompile Include="CHead.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPlayer.cpp" />
-
     <ClCompile Include="CPlayer4.cpp" />
-<<<<<<< Updated upstream
-    <ClCompile Include="CRoad.cpp" />
-=======
+
     <ClCompile Include="CRandom.cpp" />
->>>>>>> Stashed changes
+
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
     <ClCompile Include="CSki.cpp" />
@@ -211,6 +204,7 @@
     <ClCompile Include="CStage2.cpp" />
     <ClCompile Include="CStage3.cpp" />
     <ClCompile Include="CStage4.cpp" />
+    <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="DefaultWindow.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -18,4 +18,5 @@ public:
 
 private:
     CObj*   m_pPlayer;
+    CObj*   m_pGameSystem;
 };
