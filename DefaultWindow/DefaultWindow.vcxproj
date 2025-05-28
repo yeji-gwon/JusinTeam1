@@ -160,7 +160,11 @@
     <ClInclude Include="CPlayer.h" />
 
     <ClInclude Include="CPlayer4.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="CRoad.h" />
+=======
+    <ClInclude Include="CRandom.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneMgr.h" />
     <ClInclude Include="CSki.h" />
@@ -194,7 +198,11 @@
     <ClCompile Include="CPlayer.cpp" />
 
     <ClCompile Include="CPlayer4.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="CRoad.cpp" />
+=======
+    <ClCompile Include="CRandom.cpp" />
+>>>>>>> Stashed changes
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
     <ClCompile Include="CSki.cpp" />
