@@ -162,7 +162,11 @@
     <ClInclude Include="CPlayer4.h" />
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <ClInclude Include="CRoad.h" />
+=======
+    <ClInclude Include="CRandom.h" />
+>>>>>>> Stashed changes
 =======
     <ClInclude Include="CRandom.h" />
 >>>>>>> Stashed changes
@@ -204,7 +208,11 @@
     <ClCompile Include="CPlayer4.cpp" />
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <ClCompile Include="CRoad.cpp" />
+=======
+    <ClCompile Include="CRandom.cpp" />
+>>>>>>> Stashed changes
 =======
     <ClCompile Include="CRandom.cpp" />
 >>>>>>> Stashed changes
