@@ -213,7 +213,25 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CMainGame.cpp">
-      <Filter>00. MainGame</Filter>
+      <Filter>00. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="CMenu.cpp">
+      <Filter>03. Stage\00. Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage1.cpp">
+      <Filter>03. Stage\01. Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage2.cpp">
+      <Filter>03. Stage\02. Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage3.cpp">
+      <Filter>03. Stage\03. Stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage4.cpp">
+      <Filter>03. Stage\04. Stage4</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>02. Design\00. KeyMgr</Filter>
     </ClCompile>
     <ClCompile Include="CObj.cpp">
       <Filter>01. Obj</Filter>
@@ -222,48 +240,141 @@
       <Filter>01. Obj\00. Player</Filter>
     </ClCompile>
     <ClCompile Include="CScene.cpp">
-      <Filter>03. Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="CMenu.cpp">
-      <Filter>03. Scene\00. Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="CStage1.cpp">
-      <Filter>03. Scene\01. Stage1</Filter>
-    </ClCompile>
-    <ClCompile Include="CStage2.cpp">
-      <Filter>03. Scene\02. Stage2</Filter>
-    </ClCompile>
-    <ClCompile Include="CStage3.cpp">
-      <Filter>03. Scene\03. Stage3</Filter>
-    </ClCompile>
-    <ClCompile Include="DefaultWindow.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CStage4.cpp">
-      <Filter>03. Scene\04. Stage4</Filter>
+      <Filter>02. Design\01. SceneMgr\Scene</Filter>
     </ClCompile>
     <ClCompile Include="CSceneMgr.cpp">
-      <Filter>02. Design\00. SceneMgr</Filter>
+      <Filter>02. Design\01. SceneMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CKeyMgr.cpp">
-      <Filter>02. Design\01. KeyMgr</Filter>
+    <ClCompile Include="CArcher.cpp">
+      <Filter>03. Stage\01. Stage1\00. Archer</Filter>
     </ClCompile>
-    <ClCompile Include="CHandle.cpp">
-      <Filter>03. Scene\03. Stage3\Handle</Filter>
-    </ClCompile>
-    <ClCompile Include="CDriver.cpp">
-      <Filter>03. Scene\03. Stage3\Driver</Filter>
-    </ClCompile>
-    <ClCompile Include="CRoad.cpp">
-      <Filter>03. Scene\03. Stage3\Road</Filter>
-    </ClCompile>
-    <ClCompile Include="Board2.cpp">
-
-      <Filter>03. Scene\02. Stage2</Filter>
+    <ClCompile Include="CArrow.cpp">
+      <Filter>03. Stage\01. Stage1\01. Arrow</Filter>
     </ClCompile>
     <ClCompile Include="Player2.cpp">
-      <Filter>03. Scene\02. Stage2</Filter>
+      <Filter>03. Stage\02. Stage2\00. Player2</Filter>
     </ClCompile>
+    <ClCompile Include="Board2.cpp">
+      <Filter>03. Stage\02. Stage2\01. Board2</Filter>
+    </ClCompile>
+    <ClCompile Include="CSki.cpp">
+      <Filter>03. Stage\03. Stage3\00. Ski</Filter>
+    </ClCompile>
+    <ClCompile Include="CSlope.cpp">
+      <Filter>03. Stage\03. Stage3\01. Slope</Filter>
+    </ClCompile>
+    <ClCompile Include="CBow.cpp">
+      <Filter>03. Stage\01. Stage1\03. Bow</Filter>
+    </ClCompile>
+    <ClCompile Include="CBody.cpp">
+      <Filter>03. Stage\04. Stage4\00. Body</Filter>
+    </ClCompile>
+    <ClCompile Include="CHead.cpp">
+      <Filter>03. Stage\04. Stage4\01. Head</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer4.cpp">
+      <Filter>03. Stage\04. Stage4\02. Player4</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultWindow.cpp">
+      <Filter>etc</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>etc</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>02. Design\03. TimeMgr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CMainGame.h">
+      <Filter>00. Main</Filter>
+    </ClInclude>
+    <ClInclude Include="CMenu.h">
+      <Filter>03. Stage\00. Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage1.h">
+      <Filter>03. Stage\01. Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage2.h">
+      <Filter>03. Stage\02. Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage3.h">
+      <Filter>03. Stage\03. Stage3</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage4.h">
+      <Filter>03. Stage\04. Stage4</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>02. Design\00. KeyMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CObj.h">
+      <Filter>01. Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>01. Obj\00. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>02. Design\01. SceneMgr\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneMgr.h">
+      <Filter>02. Design\01. SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CArcher.h">
+      <Filter>03. Stage\01. Stage1\00. Archer</Filter>
+    </ClInclude>
+    <ClInclude Include="CArrow.h">
+      <Filter>03. Stage\01. Stage1\01. Arrow</Filter>
+    </ClInclude>
+    <ClInclude Include="Player2.h">
+      <Filter>03. Stage\02. Stage2\00. Player2</Filter>
+    </ClInclude>
+    <ClInclude Include="Board2.h">
+      <Filter>03. Stage\02. Stage2\01. Board2</Filter>
+    </ClInclude>
+    <ClInclude Include="CSki.h">
+      <Filter>03. Stage\03. Stage3\00. Ski</Filter>
+    </ClInclude>
+    <ClInclude Include="CSlope.h">
+      <Filter>03. Stage\03. Stage3\01. Slope</Filter>
+    </ClInclude>
+    <ClInclude Include="CBow.h">
+      <Filter>03. Stage\01. Stage1\03. Bow</Filter>
+    </ClInclude>
+    <ClInclude Include="CBody.h">
+      <Filter>03. Stage\04. Stage4\00. Body</Filter>
+    </ClInclude>
+    <ClInclude Include="CHead.h">
+      <Filter>03. Stage\04. Stage4\01. Head</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer4.h">
+      <Filter>03. Stage\04. Stage4\02. Player4</Filter>
+    </ClInclude>
+    <ClInclude Include="BoogiDefine.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultWindow.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeMgr.h">
+      <Filter>02. Design\03. TimeMgr</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <Image Include="DefaultWindow.ico">
       <Filter>etc</Filter>
     </Image>
@@ -353,15 +464,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DefaultWindow.rc">
-      <Filter>리소스 파일</Filter>
+      <Filter>etc</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="DefaultWindow.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
   </ItemGroup>
 </Project>
