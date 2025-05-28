@@ -9,18 +9,18 @@ public:
     virtual ~CBow();
 
 public:
-    void Set_Pos(D3DXVECTOR3 _vPos) { m_tInfo.vPos = _vPos; }
-    void Set_Angle(float _fAngle) { m_fAngle = _fAngle; }
-    void Set_Offset(float _fOffset) { m_fOffset = _fOffset; }
-
-    float   Get_Offset() { return m_fOffset; }
+    void                Set_VecArrow(vector<CObj*>* pVecArrow) { m_pVecArrow = pVecArrow; }
+    void                Set_Offset(float fOffset) { m_fOffset = fOffset; }
+    void                Add_Offset(float fOffset) { m_fOffset += fOffset; }
+     
+    void                Set_Fire() { m_bFire = true; }
 
 public:
-    void Initialize() override;
-    int Update() override;
-    void Late_Update() override;
-    void Render(HDC hDC) override;
-    void Release() override;
+    void                Initialize() override;
+    int                 Update() override;
+    void                Late_Update() override;
+    void                Render(HDC hDC) override;
+    void                Release() override;
 
 private:
     float               m_fOffset;
@@ -30,4 +30,9 @@ private:
 
     struct tagPolygon   m_tPolygon;
     struct tagPolygon   m_tOriginPolygon;
+
+    vector<CObj*>*      m_pVecArrow;
+
+    bool                m_bReload;
+    bool                m_bFire;
 };

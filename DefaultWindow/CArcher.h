@@ -1,6 +1,5 @@
 #pragma once
 #include "CObj.h"
-#include "CBow.h"
 
 class CArcher :
     public CObj
@@ -10,18 +9,17 @@ public:
     virtual ~CArcher();
 
 public:
-    void Set_Bow(CObj* _pBow) { m_pBow = _pBow; }
-    void Set_VecArrow(vector<CObj*>* _pVecArrow) { m_pVecArrow = _pVecArrow; }
+    void            Set_Bow(CObj* pBow) { m_pBow = pBow; }
 
 public:
-    void Initialize() override;
-    int Update() override;
-    void Late_Update() override;
-    void Render(HDC hDC) override;
-    void Release() override;
+    void            Initialize() override;
+    int             Update() override;
+    void            Late_Update() override;
+    void            Render(HDC hDC) override;
+    void            Release() override;
 
 private:
-    void    Key_Input();
+    void            Key_Input();
 
 private:
     D3DXVECTOR3     m_vBodyPoint[4];
@@ -33,8 +31,5 @@ private:
     D3DXVECTOR3     m_vForeArmPoint[4];
     D3DXVECTOR3     m_vOriginForeArmPoint[4];
 
-    CObj* m_pBow;
-    vector<CObj*>* m_pVecArrow;
-
-    bool            m_bArrow;
+    CObj*           m_pBow;
 };

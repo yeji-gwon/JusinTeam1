@@ -19,5 +19,7 @@ public:
 private:
     CObj* m_pArcher;
     CObj* m_pBow;
-    vector<CObj*> m_vecArrow;
+    CObj* m_pArrow;
+
+    vector<CObj*>   m_vecArrow;
 };
