@@ -4,30 +4,34 @@
 //#include "CSlope.h"
 
 namespace Boogi {
-
-	static float Dir;
-	static float Limit;
-	static bool bForward;
+	static float Dir = 0.f;
+	static float Time = 0.f;
+	static float Limit = 0.6f;
+	static bool bForward = true;
 
 	static void ChangeDir(float delta)
 	{
 		if (bForward) {
-			Dir += delta;
-			if (Dir >= Limit) {
-				bForward = false; // 반대 방향으로
-				Limit = CRandom::GetFloat(0.f, 8.f);
-				Dir = Limit;
+			Time += delta;
+			Dir = Time / Limit*5; // 0 → 1 (점점 커짐)
+
+			if (Time >= Limit) {
+				bForward = false;
+				Limit = CRandom::GetFloat(0.3f, 1.9f);
+				Time = 0;
 			}
 		}
 		else {
-			Dir -= delta;
-			if (Dir <= -Limit) {
-				bForward = true; // 다시 앞으로
-				Limit = CRandom::GetFloat(0.f, 8.f);
-				Dir = -Limit;
+			Time += delta;
+			Dir = -Time / Limit; // 0 → -1 (점점 작아짐)
+
+			if (Time >= Limit) {
+				bForward = true;
+				Limit = CRandom::GetFloat(0.3f, 1.9f);
+				Time = 0;
 			}
 		}
-	};
+	}
 
 	static float Get_Dir() { return Dir; }
 	static float Flip_Dir() { return !bForward; }
@@ -245,20 +249,19 @@ namespace Boogi {
 		D3DXVECTOR3 vEndWO;
 
 		void Update() {
-			
-			D3DXMATRIX matScale, matRot, matTrans;
+
+			D3DXMATRIX matScale, matTrans;
 			D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
-			D3DXMatrixRotationZ(&matRot, D3DXToRadian(2.f));
 			D3DXMatrixTranslation(&matTrans, 0.f, 0.f, 0.f);
 
-			matWorld = matScale * matRot * matTrans * matParent;
+			matWorld = matScale  * matTrans * matParent;
 			D3DXVec3TransformCoord(&vStartWO, &vStart, &matWorld);
 			D3DXVec3TransformCoord(&vEndWO, &vEnd, &matWorld);
-		
+			
 		}
 
 		void Render(HDC hDC) {
-			
+
 			MoveToEx(hDC, vStartWO.x, vStartWO.y, nullptr);
 			LineTo(hDC, vEndWO.x, vEndWO.y);
 		}
@@ -266,21 +269,31 @@ namespace Boogi {
 		float Get_Angle() {
 			return fAngle;
 		}
-
 		bool check_x(const RECT& rc) {
 			float minX = min(vStartWO.x, vEndWO.x);
 			float maxX = max(vStartWO.x, vEndWO.x);
 
-			// 사각형의 왼쪽과 오른쪽 둘 다 검사
-			return (rc.left >= minX && rc.left <= maxX) ||
-				(rc.right >= minX && rc.right <= maxX);
+			float rcLeft = static_cast<float>(rc.left);
+			float rcRight = static_cast<float>(rc.right);
+
+			// 겹치면 true (AABB 충돌)
+			return !(rcRight < minX || rcLeft > maxX);
+		}
+
+		bool check_y(const RECT& rc) {
+			float minY = min(vStartWO.y, vEndWO.y);
+			float maxY = max(vStartWO.y, vEndWO.y);
+
+			float rcTop = static_cast<float>(rc.top);
+			float rcBottom = static_cast<float>(rc.bottom);
+
+			float margin = 1.5f;
+
+			// 사각형 Y 범위와 선분 Y 범위가 겹치면 true
+			return !(rcBottom < minY - margin || rcTop > maxY + margin);
 		}
 
 
-		bool check_y(RECT& rc) {
-			float thres = (vEndWO.y + vStartWO.y) / 2;
-			return fabsf(rc.bottom - thres) < 4.5f;
-		}
 
 		bool OutOfScreen() {
 			return vEndWO.x < -50;
@@ -288,7 +301,14 @@ namespace Boogi {
 
 		void Line_Link(float distance) {
 			vEnd.x = vStart.x + distance;
-			vEnd.y = vStart.y + Boogi::Dir*0.4f;
+			vEnd.y = vStart.y +Dir*1.3f;
+
+			if (vEnd.y > WINCY - 70) {
+				vEnd.y = WINCY - 70;
+			}
+			else if (vEnd.y < 100) {
+				vEnd.y = 100;
+			}
 		}
 
 		void Set_Angle() {
@@ -309,7 +329,7 @@ namespace Boogi {
 		void Initialize(float Count, float distance) {
 			LineContainer.resize(Count);
 			fDistanceX = distance;
-			Link_Line();
+			Link_LineFirst();
 		}
 
 		void Update()
@@ -344,17 +364,17 @@ namespace Boogi {
 			}
 		}
 
-		void Link_Line() {
+		void Link_LineFirst() {
 			for (auto iter = LineContainer.begin(); iter != LineContainer.end(); ++iter) {
 				if (iter == LineContainer.begin()) {
 					(*iter).vStart = { 0.f,400.f,0.f };
-					(*iter).vEnd = { fDistanceX,401.f,0.f };
+					(*iter).vEnd = { fDistanceX,409.f,0.f };
 				}
 				else {
 					auto prev = std::prev(iter); // 이전 요소
 					iter->vStart = prev->vEnd;
+					iter->vEnd = iter->vStart;
 				}
-				(*iter).Line_Link(fDistanceX);
 				(*iter).Set_Angle();
 			}
 		}
@@ -364,10 +384,10 @@ namespace Boogi {
 				[&rc](tagLinePoint& line) {
 
 					if (!line.check_x(rc)) return false;
-					//if (!line.check_y(rc)) return false;
+					if (!line.check_y(rc)) return false;
 					return true;
 				}
-			); // ✅ 이 세미콜론이 꼭 있어야 함
+			); 
 
 			if (iter != LineContainer.end()) {
 				tagLinePoint& line = *iter;
@@ -387,7 +407,4 @@ namespace Boogi {
 			return false;
 		}
 	};
-
-	
-
-	};
+};

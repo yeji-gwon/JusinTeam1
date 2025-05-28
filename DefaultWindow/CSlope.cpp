@@ -21,30 +21,20 @@ void CSlope::Initialize()
 int CSlope::Update()
 {
 
-	float delta = CTimeMgr::Get_Instance()->Get_Delta() * 3.f; // 속도 조절용
+	float delta = CTimeMgr::Get_Instance()->Get_Delta(); // 속도 조절용
 	ChangeDir(delta);
 
 	m_Slope.Update();
-	bool collision = m_Slope.CheckCollision(*m_pTarget->Get_Rect(), m_pTarget->Get_LandinfPt(), m_pTarget->Get_AnglePt());
-	m_pTarget->Set_Landed(collision);
 
-	m_Slope.vPos.x -= 250 * delta;
-
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_UP)) {
-		m_Slope.vScale.x += delta*0.3;
-		m_Slope.vScale.y += delta*0.3;
-		m_Slope.vScale.z += delta*0.3;
-	}
-	if (CKeyMgr::Get_Instance()->Key_Tap(VK_DOWN)) {
-		m_Slope.vScale.x -= delta * 0.3;
-		m_Slope.vScale.y -= delta * 0.3;
-		m_Slope.vScale.z -= delta * 0.3;
-	}
+	m_Slope.vPos.x -= 50*55 * delta;
+	
 	return 0;
 }
 
 void CSlope::Late_Update()
 {
+	bool collision = m_Slope.CheckCollision(*m_pTarget->Get_Rect(), m_pTarget->Get_LandinfPt(), m_pTarget->Get_AnglePt());
+	m_pTarget->Set_Landed(collision);
 }
 
 void CSlope::Render(HDC hDC)
