@@ -73,6 +73,9 @@
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>02. Design\03. TimeMgr</Filter>
     </ClCompile>
+    <ClCompile Include="CTarget.cpp">
+      <Filter>03. Stage\01. Stage1\04. Target</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMainGame.h">
@@ -162,6 +165,9 @@
     <ClInclude Include="CTimeMgr.h">
       <Filter>02. Design\03. TimeMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CTarget.h">
+      <Filter>03. Stage\01. Stage1\04. Target</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="DefaultWindow.ico">
@@ -246,6 +252,9 @@
     </Filter>
     <Filter Include="02. Design\03. TimeMgr">
       <UniqueIdentifier>{f112fc57-adb7-431f-bb3f-6c43551646c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\01. Stage1\04. Target">
+      <UniqueIdentifier>{1d548388-db65-438b-8c7d-1636dc6d88bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

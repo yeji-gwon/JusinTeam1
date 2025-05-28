@@ -9,6 +9,7 @@ public:
     virtual ~CBow();
 
 public:
+    void                Set_Target(CObj* pTarget) { m_pTarget = pTarget; }
     void                Set_VecArrow(vector<CObj*>* pVecArrow) { m_pVecArrow = pVecArrow; }
     void                Set_Offset(float fOffset) { m_fOffset = fOffset; }
     void                Add_Offset(float fOffset) { m_fOffset += fOffset; }
@@ -35,4 +36,6 @@ private:
 
     bool                m_bReload;
     bool                m_bFire;
+
+    CObj*               m_pTarget;
 };
