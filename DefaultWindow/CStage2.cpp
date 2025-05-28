@@ -12,9 +12,9 @@ CStage2::~CStage2()
 
 void CStage2::Initialize()
 {
-	pPlayer = Player2::Get_Instance();
+	pPlayer = new Player2;
 	pPlayer->Initialize();
-	pBoard = Board2::Get_Instance();
+	pBoard = new Board2;
 	pBoard->Initialize();
 	
 }
@@ -46,8 +46,8 @@ void CStage2::Render(HDC hDC)
 
 void CStage2::Release()
 {
-	pPlayer->Destroy_Instance();
-	pBoard->Destroy_Instance();
+	Safe_Delete(pPlayer);
+	Safe_Delete(pBoard);
 }
 
 void CStage2::SyncPlayer()

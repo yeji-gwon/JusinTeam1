@@ -22,8 +22,7 @@ private:
 
 private:
     Player2* pPlayer;
-    Board2* pBoard;
-    PLAYERSTATE m_eCurState = PLAYER_IDLE;
+    PLAYERSTATE m_eCurState;
     PLAYERSTATE m_ePreState = PLAYER_IDLE;
-    
+    Board2* pBoard;
 };

@@ -8,23 +8,16 @@ public:
 	virtual ~Board2();
 
 public:
-    static Board2* Get_Instance()
+    void Set_Center(float _x, float _y)
     {
-        if (!pInstance)
-            pInstance = new Board2;
-
-        return pInstance;
+        m_tBoard.m_vCenter.x = _x;
+        m_tBoard.m_vCenter.x = _y;
     }
-    static void Destroy_Instance()
-    {
-        if (pInstance)
-            Safe_Delete(pInstance);
-    }
-
     pair<float, float> Get_Center()
     {
-        return { m_tBoard.m_vCenter.x, m_tBoard.m_vCenter.y };
+        return { m_tBoard.m_vCenter.x ,m_tBoard.m_vCenter.y };
     }
+
 public:
     void Initialize() override;
     int  Update() override;
@@ -39,7 +32,7 @@ private:
 
 
 private:
-    static Board2*     pInstance;
+
     float       m_fAngleX = 0.f;
     float       m_fAngleY = 0.f;
     float       m_fAngleZ = 0.f;

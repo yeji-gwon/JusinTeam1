@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "Player2.h"
 
-Player2* Player2::pInstance(nullptr);
-
 Player2::Player2()
 {
 }
@@ -19,7 +17,6 @@ void Player2::Initialize()
 	m_fAngleX = 0.f;
 	m_fAngleY = 0.f;
 	m_fAngleZ = 0.f;
-	m_fAngleA = 0.f;
 	m_fSpeed = 5.f;
 
 	m_tHead.m_vCenter = m_vCenterHead;
@@ -124,16 +121,16 @@ void Player2::Update_State()
 
 	switch (m_eState)
 	{
-	// TODO : Flip 점프 구상 및 구현 (JUMP2, 3)
-	case PLAYER_JUMP1:
+	// TODO : Flip 점프 구상 및 구현 (JUMP1, 2)
+	case PLAYER_JUMP3:
 		m_vBodyPoint[0] = { 0.f / (m_tHead.m_vScale.x / 2), 10.f / (m_tHead.m_vScale.y / 2), 0.f };
 		m_vBodyPoint[1] = { m_vBodyPoint[0].x, m_vBodyPoint[0].y + 1, 0.f };
 
 		m_vBodyPoint[2] = { m_vBodyPoint[1].x + 1.25f, m_vBodyPoint[1].y - 1.25f, 0.f };
 		m_vBodyPoint[3] = { m_vBodyPoint[1].x + 2.5f, m_vBodyPoint[1].y - 2.5f, 0.f };
 
-		m_vBodyPoint[4] = { m_vBodyPoint[1].x - 1.25f, m_vBodyPoint[1].y - 1.25f, 0.f };
-		m_vBodyPoint[5] = { m_vBodyPoint[1].x - 2.5f, m_vBodyPoint[1].y - 2.5f, 0.f };
+		m_vBodyPoint[4] = { m_vBodyPoint[1].x - 1, m_vBodyPoint[1].y - 1, 0.f };
+		m_vBodyPoint[5] = { m_vBodyPoint[1].x - 2, m_vBodyPoint[1].y - 2, 0.f };
 
 		m_vBodyPoint[6] = { m_vBodyPoint[1].x, m_vBodyPoint[1].y + 1.5f, 0.f };
 
@@ -144,53 +141,6 @@ void Player2::Update_State()
 		m_vBodyPoint[10] = { m_vBodyPoint[6].x - 2, m_vBodyPoint[6].y + 2, 0.f };
 		break;
 
-	case PLAYER_JUMP2:
-		m_vBodyPoint[0] = { 0.f / (m_tHead.m_vScale.x / 2), 10.f / (m_tHead.m_vScale.y / 2), 0.f };
-		m_vBodyPoint[1] = { m_vBodyPoint[0].x, m_vBodyPoint[0].y + 1, 0.f };
-
-		m_vBodyPoint[2] = { m_vBodyPoint[1].x + 1.f, m_vBodyPoint[1].y + 0.8f, 0.f };
-		m_vBodyPoint[3] = { m_vBodyPoint[1].x + 2.f, m_vBodyPoint[1].y + 1.6f, 0.f };
-
-		m_vBodyPoint[4] = { m_vBodyPoint[1].x - 1.f, m_vBodyPoint[1].y + 1.f, 0.f };
-		m_vBodyPoint[5] = { m_vBodyPoint[4].x + 1.25f/2.f, m_vBodyPoint[4].y + 1.25f/2.5f, 0.f };
-
-		m_vBodyPoint[6] = { m_vBodyPoint[1].x, m_vBodyPoint[1].y + 1.5f, 0.f };
-
-		m_vBodyPoint[7] = { m_vBodyPoint[6].x, m_vBodyPoint[6].y + 1, 0.f };
-		m_vBodyPoint[8] = { m_vBodyPoint[6].x, m_vBodyPoint[6].y + 2, 0.f };
-
-		m_vBodyPoint[9] = { m_vBodyPoint[6].x - 1.f, m_vBodyPoint[6].y + 0.8f, 0.f };
-		m_vBodyPoint[10] = { m_vBodyPoint[9].x + 0.5f, m_vBodyPoint[9].y + 0.8f, 0.f };
-
-		m_fAngleY += 0.4f;
-		break;
-
-	case PLAYER_JUMP3:
-		m_vBodyPoint[0] = { 0.f / (m_tHead.m_vScale.x / 2), 10.f / (m_tHead.m_vScale.y / 2), 0.f };
-
-		// 목
-		m_vBodyPoint[1] = { m_vBodyPoint[0].x, m_vBodyPoint[0].y + 1, 0.f };
-
-		// 오른팔 (회전을 위해 몸 앞쪽으로)
-		m_vBodyPoint[2] = { m_vBodyPoint[1].x + 0.8f, m_vBodyPoint[1].y + 0.5f, 0.f };
-		m_vBodyPoint[3] = { m_vBodyPoint[2].x + 1.2f, m_vBodyPoint[2].y + 0.3f, 0.f };
-
-		// 왼팔 (회전 반대쪽으로)
-		m_vBodyPoint[4] = { m_vBodyPoint[1].x - 0.8f, m_vBodyPoint[1].y + 0.8f, 0.f };
-		m_vBodyPoint[5] = { m_vBodyPoint[4].x - 1.0f, m_vBodyPoint[4].y + 0.5f, 0.f };
-
-		// 몸통
-		m_vBodyPoint[6] = { m_vBodyPoint[1].x, m_vBodyPoint[1].y + 1.8f, 0.f };
-
-		// 오른다리 (무릎 구부림)
-		m_vBodyPoint[7] = { m_vBodyPoint[6].x + 0.5f, m_vBodyPoint[6].y + 1.2f, 0.f };
-		m_vBodyPoint[8] = { m_vBodyPoint[7].x + 0.3f, m_vBodyPoint[7].y + 1.5f, 0.f };
-
-		// 왼다리 (약간 뒤로)
-		m_vBodyPoint[9] = { m_vBodyPoint[6].x - 0.3f, m_vBodyPoint[6].y + 1.0f, 0.f };
-		m_vBodyPoint[10] = { m_vBodyPoint[9].x - 0.2f, m_vBodyPoint[9].y + 1.8f, 0.f };
-		m_fAngleA += 0.45f;
-		break;
 	default:
 		m_vBodyPoint[0] = { -6.f / (m_tHead.m_vScale.x / 2), 8.f / (m_tHead.m_vScale.y / 2), 0.f };
 		m_vBodyPoint[1] = { m_vBodyPoint[0].x - 1, m_vBodyPoint[0].y + 1, 0.f };
@@ -232,7 +182,6 @@ void Player2::Update_Jump()
 		{
 			m_fJumpVelocity = -14.0f;      // 하드플립: 가장 높은 점프
 			m_eState = PLAYER_JUMP3;
-			m_vRotAxis = { 1.0f, 0.2f, 0.8f };
 		}
 
 		m_bOnGround = false;
@@ -241,7 +190,7 @@ void Player2::Update_Jump()
 	{
 		m_fJumpVelocity += m_fGravity;
 		m_vCenterHead.y += m_fJumpVelocity;
-		
+
 		// 착지 처리
 		// TODO : 보드의 중심x좌표 라인 기반 개선
 		if (m_vCenterHead.y + m_vBodyPoint[10].y >= m_fGroundY - 20.f)
@@ -249,12 +198,10 @@ void Player2::Update_Jump()
 			m_vCenterHead.y = 300.f;
 			m_fJumpVelocity = 0.0f;
 			m_bOnGround = true;
-			
+
 			m_bFlip = false;
 			m_bShuvit = false;
-			m_fAngleY = 0.f;
 			m_bHardFlip = false;
-			m_fAngleA = 0.f;
 			m_eState = PLAYER_IDLE;
 		}
 	}
@@ -263,27 +210,21 @@ void Player2::Update_Jump()
 
 void Player2::Update_Matrix()
 {
-	D3DXMATRIX matScale, matRotX, matRotY, matRotZ, matTrans, matRotAxis;
+	D3DXMATRIX matScale, matRotX, matRotY, matRotZ, matTrans;
 	D3DXMatrixIdentity(&matScale);
 	D3DXMatrixIdentity(&matRotX);
 	D3DXMatrixIdentity(&matRotY);
 	D3DXMatrixIdentity(&matRotZ);
 	D3DXMatrixIdentity(&matTrans);
-	D3DXMatrixIdentity(&matRotAxis);
-	// 크기
-	D3DXMatrixScaling(&matScale, m_tHead.m_vScale.x, m_tHead.m_vScale.y, m_tHead.m_vScale.z);
-	// 자전
+
 	D3DXMatrixRotationX(&matRotX, m_fAngleX);
 	D3DXMatrixRotationY(&matRotY, m_fAngleY);
 	D3DXMatrixRotationZ(&matRotZ, m_fAngleZ);
-	// 이동
+	// 1. 머리 월드 행렬 (부모)
+	D3DXMatrixScaling(&matScale, m_tHead.m_vScale.x, m_tHead.m_vScale.y, m_tHead.m_vScale.z);
 	D3DXMatrixTranslation(&matTrans, m_vCenterHead.x, m_vCenterHead.y, m_vCenterHead.z);
-	// 공전
-	D3DXMatrixRotationAxis(&matRotAxis, &m_vRotAxis, m_fAngleA);
-	// 부모 : X
-	m_matWorld = matScale * matRotY * matRotX * matRotZ * matTrans * matRotAxis;
+	m_matWorld = matScale * matRotY * matRotX  * matRotZ * matTrans;
 
 	D3DXMatrixIdentity(&matScale);
-	// 크자이공부
-	m_matBodyWorld = matScale * matRotY * matRotX * matRotZ * matTrans * matRotAxis;
+	m_matBodyWorld = matScale * matRotY * matRotX * matRotZ * matTrans;
 }
