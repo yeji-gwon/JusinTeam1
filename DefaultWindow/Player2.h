@@ -6,20 +6,38 @@ enum PLAYERSTATE {PLAYER_IDLE, PLAYER_JUMP1, PLAYER_JUMP2, PLAYER_JUMP3, PLAYER_
 class Player2 : public CPlayer
 {
 public:
-	Player2();
-	virtual ~Player2();
+    Player2();
+    virtual ~Player2();
 
 public:
+    static Player2* Get_Instance()
+    {
+        if (!pInstance)
+            pInstance = new Player2;
+
+        return pInstance;
+    }
+    static void Destroy_Instance()
+    {
+        if (pInstance)
+            Safe_Delete(pInstance);
+    }
+
     void Set_Center(float _x, float _y)
     {
         m_vCenterHead.x = _x;
         m_vCenterHead.y = _y;
     }
+
     pair<float, float> Get_Center()
     {
-        return { m_vCenterHead.x ,m_vCenterHead.y };
+        return { m_vCenterHead.x , m_vCenterHead.y };
     }
-    PLAYERSTATE Get_State() { return m_eState; };
+
+    PLAYERSTATE Get_State()
+    {
+        return m_eState;
+    };
 
 public:
     void Initialize() override;
@@ -34,12 +52,15 @@ public:
     void Update_Matrix();
 
 private:
+    static Player2* pInstance;
     D3DXVECTOR3 m_vCenterHead;
     D3DXVECTOR3 m_vBodyPoint[11];
+    D3DXVECTOR3 m_vRotAxis;
     
     float       m_fAngleX = 0.f;
     float       m_fAngleY = 0.f;
     float       m_fAngleZ = 0.f;
+    float       m_fAngleA = 0.f;
     float       m_fSpeed = 0.f;   // 이동 속도
 
     bool        m_bFlip = false;    // 플립중인지

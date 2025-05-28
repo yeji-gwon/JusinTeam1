@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Board2.h"
 
+Board2* Board2::pInstance(nullptr);
+
 Board2::Board2()
 {
 }
