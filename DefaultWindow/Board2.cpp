@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Board2.h"
 
+Board2* Board2::pInstance(nullptr);
+
 Board2::Board2()
 {
 }
@@ -23,7 +25,7 @@ void Board2::Initialize()
 	m_tBoard.m_vScale = { 90.f, 15.f, 0.f };
 	m_tBoard.Set_Size(8);
 	m_tBoard.SyncToWorld(m_tBoard);
-	
+
 }
 
 int Board2::Update()
@@ -99,7 +101,7 @@ void Board2::Update_Matrix()
 	D3DXMATRIX	m_matScale;
 	// 회전 행렬
 	D3DXMATRIX  m_matRotX;
-	D3DXMATRIX  m_matRotY;   
+	D3DXMATRIX  m_matRotY;
 	D3DXMATRIX  m_matRotZ;
 
 	D3DXMATRIX  m_matTrans;
