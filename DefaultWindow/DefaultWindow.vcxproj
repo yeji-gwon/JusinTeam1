@@ -149,8 +149,6 @@
     <ClInclude Include="CArrow.h" />
     <ClInclude Include="CBody.h" />
     <ClInclude Include="CBow.h" />
-    <ClInclude Include="CDriver.h" />
-    <ClInclude Include="CHandle.h" />
     <ClInclude Include="CGameSystem4.h" />
     <ClInclude Include="CHead.h" />
     <ClInclude Include="CKeyMgr.h" />
@@ -159,9 +157,7 @@
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPlayer4.h" />
-
     <ClInclude Include="CRandom.h" />
-
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneMgr.h" />
     <ClInclude Include="CSki.h" />
@@ -194,9 +190,7 @@
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CPlayer4.cpp" />
-
     <ClCompile Include="CRandom.cpp" />
-
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
     <ClCompile Include="CSki.cpp" />
