@@ -18,6 +18,11 @@ public:
     void Release() override;
 
 private:
+    void SyncPlayer();
+
+private:
     Player2* pPlayer;
+    PLAYERSTATE m_eCurState;
+    PLAYERSTATE m_ePreState = PLAYER_IDLE;
     Board2* pBoard;
 };
