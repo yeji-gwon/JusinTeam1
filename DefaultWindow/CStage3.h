@@ -18,7 +18,6 @@ public:
     void Release() override;
 
 private:
-    CObj* m_pHandle;
-    CObj* m_pDriver;
-    CObj* m_pRoad;
+    CObj* m_pSki;
+    CObj* m_pSlope;
 };
