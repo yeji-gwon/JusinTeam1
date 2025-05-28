@@ -1,6 +1,217 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="00. MainGame">
+      <UniqueIdentifier>{e175344b-4a4d-4888-bbac-23b906a7647f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj">
+      <UniqueIdentifier>{462aac54-7e40-4347-b65d-2f3eb15c5e53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\00. Player">
+      <UniqueIdentifier>{e67dc2fe-dc5d-4b7c-8c9e-e90765b3792a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design">
+      <UniqueIdentifier>{55e9412d-b082-4b72-b9dd-bb6bebe3b00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene">
+      <UniqueIdentifier>{815afb04-3a59-4721-8b97-b15129940f0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\00. Menu">
+      <UniqueIdentifier>{7ad6b20c-0c35-44f0-96fb-d156e14ea862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\01. Stage1">
+      <UniqueIdentifier>{a963d332-322e-4e43-b3e9-045eb80a071f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\02. Stage2">
+      <UniqueIdentifier>{b4476867-fa4f-49ee-9a06-4e7cff3b75e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\03. Stage3">
+      <UniqueIdentifier>{502eef46-7d96-4c90-82e9-af142e77f89f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\04. Stage4">
+      <UniqueIdentifier>{abbf0efc-d3cf-4a7b-bf77-399fdbb4c7d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\00. SceneMgr">
+      <UniqueIdentifier>{7fb7b1b1-cd0f-4269-b7c1-daf206e48b8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\01. KeyMgr">
+      <UniqueIdentifier>{3fcb5c70-3991-47e5-ad54-b9550447f9dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\03. Stage3\Handle">
+      <UniqueIdentifier>{655d2390-f307-40e3-91eb-aae070313379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\03. Stage3\Driver">
+      <UniqueIdentifier>{7e3e2f10-f312-4d9a-b7c0-4ae92a3c5df0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\03. Stage3\CenterLine">
+      <UniqueIdentifier>{764f5af9-9785-4957-8a84-c3b33b27b1e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\03. Stage3\Road">
+      <UniqueIdentifier>{7d7918fb-0abf-47f8-a7fd-22a472fe47b0}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="CMainGame.cpp">
+      <Filter>00. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="CMenu.cpp">
+      <Filter>03. Stage\00. Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage1.cpp">
+      <Filter>03. Stage\01. Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage2.cpp">
+      <Filter>03. Stage\02. Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage3.cpp">
+      <Filter>03. Stage\03. Stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage4.cpp">
+      <Filter>03. Stage\04. Stage4</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>02. Design\00. KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CObj.cpp">
+      <Filter>01. Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>01. Obj\00. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>02. Design\01. SceneMgr\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneMgr.cpp">
+      <Filter>02. Design\01. SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CArcher.cpp">
+      <Filter>03. Stage\01. Stage1\00. Archer</Filter>
+    </ClCompile>
+    <ClCompile Include="CArrow.cpp">
+      <Filter>03. Stage\01. Stage1\01. Arrow</Filter>
+    </ClCompile>
+    <ClCompile Include="Player2.cpp">
+      <Filter>03. Stage\02. Stage2\00. Player2</Filter>
+    </ClCompile>
+    <ClCompile Include="Board2.cpp">
+      <Filter>03. Stage\02. Stage2\01. Board2</Filter>
+    </ClCompile>
+    <ClCompile Include="CSki.cpp">
+      <Filter>03. Stage\03. Stage3\00. Ski</Filter>
+    </ClCompile>
+    <ClCompile Include="CSlope.cpp">
+      <Filter>03. Stage\03. Stage3\01. Slope</Filter>
+    </ClCompile>
+    <ClCompile Include="CBow.cpp">
+      <Filter>03. Stage\01. Stage1\03. Bow</Filter>
+    </ClCompile>
+    <ClCompile Include="CBody.cpp">
+      <Filter>03. Stage\04. Stage4\00. Body</Filter>
+    </ClCompile>
+    <ClCompile Include="CHead.cpp">
+      <Filter>03. Stage\04. Stage4\01. Head</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer4.cpp">
+      <Filter>03. Stage\04. Stage4\02. Player4</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultWindow.cpp">
+      <Filter>etc</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>etc</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>02. Design\03. TimeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameSystem4.cpp">
+      <Filter>03. Stage\04. Stage4\99. GameSystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultWindow.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CMainGame.h">
+      <Filter>00. MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CObj.h">
+      <Filter>01. Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>01. Obj\00. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>03. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CMenu.h">
+      <Filter>03. Scene\00. Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage1.h">
+      <Filter>03. Scene\01. Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage2.h">
+      <Filter>03. Scene\02. Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage3.h">
+      <Filter>03. Scene\03. Stage3</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage4.h">
+      <Filter>03. Scene\04. Stage4</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneMgr.h">
+      <Filter>02. Design\00. SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>02. Design\01. KeyMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CHandle.h">
+      <Filter>03. Scene\03. Stage3\Handle</Filter>
+    </ClInclude>
+    <ClInclude Include="CDriver.h">
+      <Filter>03. Scene\03. Stage3\Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="CRoad.h">
+      <Filter>03. Scene\03. Stage3\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="Board2.h">
+      <Filter>03. Scene\02. Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Player2.h">
+      <Filter>03. Scene\02. Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameSystem4.h">
+      <Filter>03. Stage\04. Stage4\99. GameSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="CMainGame.cpp">
       <Filter>00. Main</Filter>
     </ClCompile>
@@ -246,6 +457,9 @@
     </Filter>
     <Filter Include="02. Design\03. TimeMgr">
       <UniqueIdentifier>{f112fc57-adb7-431f-bb3f-6c43551646c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\04. Stage4\99. GameSystem">
+      <UniqueIdentifier>{90913d75-4e24-4e1e-ad90-e84835cc5efb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
