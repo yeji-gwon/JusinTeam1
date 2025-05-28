@@ -1,13 +1,15 @@
 #pragma once
-#include "CScene.h"
 #include "CObj.h"
 
-class CStage4 :
-    public CScene
+class CArrow :
+    public CObj
 {
 public:
-    CStage4();
-    virtual ~CStage4();
+    CArrow();
+    virtual ~CArrow();
+
+public:
+    void Set_Angle(float _fAngle) { m_fAngle = _fAngle; }
 
 public:
     void Initialize() override;
@@ -17,5 +19,6 @@ public:
     void Release() override;
 
 private:
-    CObj*   m_pFingers;
+    D3DXVECTOR3     m_vPoint[2];
+    D3DXVECTOR3     m_vOriginPoint[2];
 };

@@ -143,13 +143,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+
     <ClInclude Include="Board2.h" />
     <ClInclude Include="CDriver.h" />
+    <ClInclude Include="CFinger.h" />
+    <ClInclude Include="CFingers.h" />
     <ClInclude Include="CHandle.h" />
+    <ClInclude Include="CJoint.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="CObj.h" />
+    <ClInclude Include="CPiano.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CRoad.h" />
     <ClInclude Include="CScene.h" />
@@ -167,13 +172,18 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+
     <ClCompile Include="Board2.cpp" />
     <ClCompile Include="CDriver.cpp" />
+    <ClCompile Include="CFinger.cpp" />
+    <ClCompile Include="CFingers.cpp" />
     <ClCompile Include="CHandle.cpp" />
+    <ClCompile Include="CJoint.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="CPiano.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CRoad.cpp" />
     <ClCompile Include="CScene.cpp" />
