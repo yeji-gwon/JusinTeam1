@@ -112,6 +112,7 @@ void CSki::Late_Update()
 	float delta = CTimeMgr::Get_Instance()->Get_Delta() * 450; // 속도 조절용
 
 	if (m_bLanded) {
+		m_fRotPer = 0;
 		m_vCenter.y = fLandingPoint - 50;
 		if (fabsf(m_pBody.Get_Rotate().z) > 0.5f) {
 			if (m_pBody.Get_Rotate().z > 0) {
@@ -142,11 +143,11 @@ void CSki::Render(HDC hDC)
 	HBRUSH hBrushBody = CreateSolidBrush(RGB(255, 235, 250));    // 빨간색
 	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, hBrushBody);
 
-	Rectangle(hDC,
-		m_SkiFloor.left,
-		m_SkiFloor.top,
-		m_SkiFloor.right,
-		m_SkiFloor.bottom);
+	//Rectangle(hDC,
+	//	m_SkiFloor.left,
+	//	m_SkiFloor.top,
+	//	m_SkiFloor.right,
+	//	m_SkiFloor.bottom);
 
 	m_pLeftArm.Render(hDC);
 	m_pLeftLeg.Render(hDC);

@@ -23,6 +23,7 @@ public:
     float* Get_AnglePt();
     float* Get_LandinfPt();
     void Set_Landed(bool landed);
+    int* Get_Count() { return &m_Count; };
 private:
     bool m_bLanded;
     int m_Count;
