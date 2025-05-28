@@ -17,5 +17,5 @@ public:
     void Release() override;
 
 private:
-    CObj*   m_pFingers;
+    CObj*   m_pPlayer;
 };
