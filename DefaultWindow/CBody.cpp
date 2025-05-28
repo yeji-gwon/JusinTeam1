@@ -10,6 +10,14 @@ CBody::~CBody()
 {
 }
 
+void CBody::Init_Angle()
+{
+	m_fLAngle = 0.f;
+	m_fRAngle = 0.f;
+	m_ePlayerBType = BEND;
+	m_ePlayerWType = WEND;
+}
+
 void CBody::Initialize()
 {
 	Body.LPoly.m_vCenter = { 0, 0, 0 };
@@ -143,20 +151,13 @@ void CBody::Render(HDC hDC)
 	LineTo(hDC, Leg[1].WPoly.x, Leg[1].WPoly.y);
 
 	{
-		HBRUSH hBrushRed = CreateSolidBrush(RGB(196, 48, 43));
-		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, hBrushRed);
-		WhiteFlag.WPoly.DrawPolygon(hDC);
-		SelectObject(hDC, hOldBrush);
-		DeleteObject(hBrushRed);
-	}
-
-	{
 		HBRUSH hBrushBlue = CreateSolidBrush(RGB(65, 105, 225));
 		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, hBrushBlue);
-		BlueFlag.WPoly.DrawPolygon(hDC);
+		WhiteFlag.WPoly.DrawPolygon(hDC);
 		SelectObject(hDC, hOldBrush);
 		DeleteObject(hBrushBlue);
 	}
+	BlueFlag.WPoly.DrawPolygon(hDC);
 }
 
 void CBody::Release()
@@ -166,12 +167,33 @@ void CBody::Release()
 void CBody::Key_Input()
 {
 	if (CKeyMgr::Get_Instance()->Key_Down('Q'))
+	{
 		m_fLAngle = -80.f;						//왼손 up
+		m_ePlayerBType = BD;
+	}
+	if (CKeyMgr::Get_Instance()->Key_Down('W'))
+	{
+		m_fLAngle = 0.f;
+		m_ePlayerBType = BTYPE::BEND;
+	}
 	if (CKeyMgr::Get_Instance()->Key_Down('E'))
+	{
 		m_fLAngle = 30.f;						//왼.손 down
-
+		m_ePlayerBType = BTYPE::BU;
+	}
 	if (CKeyMgr::Get_Instance()->Key_Down('I'))
+	{
 		m_fRAngle = 80.f;						//오른손 up
+		m_ePlayerWType = WD;
+	}
+	if (CKeyMgr::Get_Instance()->Key_Down('O'))
+	{
+		m_fRAngle = 0.f;						//오른손 up
+		m_ePlayerWType = WEND;
+	}
 	if (CKeyMgr::Get_Instance()->Key_Down('P'))
+	{
 		m_fRAngle = -30.f;						//오른손 down
+		m_ePlayerWType = WU;
+	}
 }

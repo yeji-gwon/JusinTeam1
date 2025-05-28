@@ -150,6 +150,7 @@
     <ClInclude Include="CBow.h" />
     <ClInclude Include="CDriver.h" />
     <ClInclude Include="CHandle.h" />
+    <ClInclude Include="CGameSystem4.h" />
     <ClInclude Include="CHead.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CMainGame.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="CBow.cpp" />
     <ClCompile Include="CDriver.cpp" />
     <ClCompile Include="CHandle.cpp" />
+    <ClCompile Include="CGameSystem4.cpp" />
     <ClCompile Include="CHead.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CMainGame.cpp" />

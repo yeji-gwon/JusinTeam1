@@ -61,6 +61,81 @@
     <Filter Include="03. Scene\03. Stage3\Road">
       <UniqueIdentifier>{7d7918fb-0abf-47f8-a7fd-22a472fe47b0}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="CMainGame.cpp">
+      <Filter>00. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="CMenu.cpp">
+      <Filter>03. Stage\00. Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage1.cpp">
+      <Filter>03. Stage\01. Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage2.cpp">
+      <Filter>03. Stage\02. Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage3.cpp">
+      <Filter>03. Stage\03. Stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage4.cpp">
+      <Filter>03. Stage\04. Stage4</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>02. Design\00. KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CObj.cpp">
+      <Filter>01. Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>01. Obj\00. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>02. Design\01. SceneMgr\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneMgr.cpp">
+      <Filter>02. Design\01. SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CArcher.cpp">
+      <Filter>03. Stage\01. Stage1\00. Archer</Filter>
+    </ClCompile>
+    <ClCompile Include="CArrow.cpp">
+      <Filter>03. Stage\01. Stage1\01. Arrow</Filter>
+    </ClCompile>
+    <ClCompile Include="Player2.cpp">
+      <Filter>03. Stage\02. Stage2\00. Player2</Filter>
+    </ClCompile>
+    <ClCompile Include="Board2.cpp">
+      <Filter>03. Stage\02. Stage2\01. Board2</Filter>
+    </ClCompile>
+    <ClCompile Include="CSki.cpp">
+      <Filter>03. Stage\03. Stage3\00. Ski</Filter>
+    </ClCompile>
+    <ClCompile Include="CSlope.cpp">
+      <Filter>03. Stage\03. Stage3\01. Slope</Filter>
+    </ClCompile>
+    <ClCompile Include="CBow.cpp">
+      <Filter>03. Stage\01. Stage1\03. Bow</Filter>
+    </ClCompile>
+    <ClCompile Include="CBody.cpp">
+      <Filter>03. Stage\04. Stage4\00. Body</Filter>
+    </ClCompile>
+    <ClCompile Include="CHead.cpp">
+      <Filter>03. Stage\04. Stage4\01. Head</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer4.cpp">
+      <Filter>03. Stage\04. Stage4\02. Player4</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultWindow.cpp">
+      <Filter>etc</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>etc</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>02. Design\03. TimeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameSystem4.cpp">
+      <Filter>03. Stage\04. Stage4\99. GameSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -129,6 +204,9 @@
     <ClInclude Include="Player2.h">
       <Filter>03. Scene\02. Stage2</Filter>
     </ClInclude>
+    <ClInclude Include="CGameSystem4.h">
+      <Filter>03. Stage\04. Stage4\99. GameSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -186,6 +264,92 @@
     <ClCompile Include="Player2.cpp">
       <Filter>03. Scene\02. Stage2</Filter>
     </ClCompile>
+    <Image Include="DefaultWindow.ico">
+      <Filter>etc</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>etc</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="00. Main">
+      <UniqueIdentifier>{a9a8e5cc-f251-4851-8def-539688ae6f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="etc">
+      <UniqueIdentifier>{fea3bf3d-7174-4056-8ea3-1788ae983b99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage">
+      <UniqueIdentifier>{ff66d18c-a407-4752-b0f0-a335a5bb7ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\01. Stage1">
+      <UniqueIdentifier>{5b90fec3-bba1-4eb0-84f9-8ebe173f92de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\01. Stage1\00. Archer">
+      <UniqueIdentifier>{a9e714ee-6be2-4a4e-9d89-f6cf7faa5ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\01. Stage1\01. Arrow">
+      <UniqueIdentifier>{007dbda6-eefa-4740-8817-85ea2443b6cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\01. Stage1\03. Bow">
+      <UniqueIdentifier>{38b8f2aa-f72a-428f-a0c0-4c414e9219f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\02. Stage2">
+      <UniqueIdentifier>{e9886812-56eb-4abd-a533-69be052dd1ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\02. Stage2\00. Player2">
+      <UniqueIdentifier>{138c2ca4-ee87-4bbf-bc86-85175be7eb40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\02. Stage2\01. Board2">
+      <UniqueIdentifier>{db867d64-22b4-464e-81e1-bab172bf7bd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\03. Stage3">
+      <UniqueIdentifier>{764eda31-21fa-44dc-9a89-9d7ff95f2b6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\03. Stage3\00. Ski">
+      <UniqueIdentifier>{bd3df81e-2559-472b-ad39-8a93a386d2ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\03. Stage3\01. Slope">
+      <UniqueIdentifier>{3f947aa4-b384-4954-bdcb-ac206a0ef1fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\04. Stage4">
+      <UniqueIdentifier>{b97ee0b6-7897-412a-a4f2-25265b211950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\04. Stage4\00. Body">
+      <UniqueIdentifier>{8a6039ef-4bf3-4501-b657-5b8184b8134f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\04. Stage4\01. Head">
+      <UniqueIdentifier>{ca724bce-8219-41be-bf56-676070ef2c7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\04. Stage4\02. Player4">
+      <UniqueIdentifier>{8b809ccb-1ae1-4348-bd50-ff6d44606758}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\00. Menu">
+      <UniqueIdentifier>{80f6e495-2782-47f2-a0fa-c24125fcc494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design">
+      <UniqueIdentifier>{1bb37cb8-1a86-4ea8-86c5-b4ee135f0c3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\01. SceneMgr">
+      <UniqueIdentifier>{401e1da5-86f3-4624-9d08-ffbb5df35e15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\01. SceneMgr\Scene">
+      <UniqueIdentifier>{4b1762cf-22ff-42a5-ba0b-d2ae928b8653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\00. KeyMgr">
+      <UniqueIdentifier>{92bb8269-41b5-4ba3-9178-6ffa5fcb7ab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj">
+      <UniqueIdentifier>{b3882816-c3c5-4061-a2ac-5c53ae78b914}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\00. Player">
+      <UniqueIdentifier>{0535b49b-cda4-41e4-820e-3e5b36ecf9fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\03. TimeMgr">
+      <UniqueIdentifier>{f112fc57-adb7-431f-bb3f-6c43551646c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Stage\04. Stage4\99. GameSystem">
+      <UniqueIdentifier>{90913d75-4e24-4e1e-ad90-e84835cc5efb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DefaultWindow.rc">
