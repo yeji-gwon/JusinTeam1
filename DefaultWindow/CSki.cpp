@@ -1,12 +1,13 @@
 #include "pch.h"
 #include "CSki.h"
 #include "CKeyMgr.h"
+#include "CTimeMgr.h"
 
 
 using namespace Boogi;
 
 CSki::CSki()
-	:m_fArmDir(-1.f)
+	:m_fArmDir(-1.f),m_bLanded(false), fNow_Angle(0.f), fPrev_Angle(0.f)
 {
 }
 
@@ -90,7 +91,9 @@ int CSki::Update()
 	m_pLeftLeg.Update_World();
 	m_pRightLeg.Update_World();
 
-	m_pBody.Set_Rotate(m_vRotate);
+	//m_pBody.Set_Rotate(m_vRotate);
+	m_pBody.Set_Rotate({ 0,0, fNow_Angle});
+
 	m_pBody.Set_Scale(m_vScale);
 	Key_Check();
 	return 0;
@@ -105,14 +108,20 @@ void CSki::Late_Update()
 		m_fArmDir *= -1;
 	}
 
-	m_vCenter.y += 0.5f;
+	if (!m_bLanded)
+		m_vCenter.y += 1.f;
+	else {
+		m_vCenter.y = fLandingPoint-20;
+	}
 
 	m_SkiFloor = {
-		m_pRight.Get_WorldLB().x,
-		m_pRight.Get_WorldRB().y,
+		m_pLeft.Get_WorldLB().x,
+		m_pRight.Get_WorldLT().y,
 		m_pLeft.Get_WorldRB().x,
-		m_pLeft.Get_WorldLB().y
+		m_pRight.Get_WorldLB().y
 	};
+
+
 }
 void CSki::Render(HDC hDC)
 {
@@ -137,10 +146,13 @@ void CSki::Render(HDC hDC)
 	DeleteObject(hBrushBody);
 
 	//Rectangle(hDC,
-	//	m_SkiFloor.left,
-	//	m_SkiFloor.top,
-	//	m_SkiFloor.right,
-	//	m_SkiFloor.bottom);
+	//m_SkiFloor.left,
+	//m_SkiFloor.top,
+	//m_SkiFloor.right,
+	//m_SkiFloor.bottom);
+	TCHAR szAngle[64];
+	_stprintf_s(szAngle, _T("fAngle : %.2f"), fNow_Angle);
+	TextOut(hDC, 10, 10, szAngle, lstrlen(szAngle));
 }
 
 
@@ -150,5 +162,36 @@ void CSki::Release()
 
 void CSki::Key_Check()
 {
-	
+	float delta = CTimeMgr::Get_Instance()->Get_Delta() * 1.f; // 속도 조절용
+
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_UP)) {
+		m_vScale.x += delta*0.3;
+		m_vScale.y += delta*0.3;
+		m_vScale.z += delta*0.3;
+	}
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN)) {
+		m_vScale.x -= delta *0.3;
+		m_vScale.y -= delta *0.3;
+		m_vScale.z -= delta *0.3;
+	}
+}
+
+RECT* CSki::Get_Rect()
+{
+	return &m_SkiFloor;
+}
+
+float* CSki::Get_AnglePt()
+{
+	return &fNow_Angle;
+}
+
+float* CSki::Get_LandinfPt()
+{
+	return &fLandingPoint;
+}
+
+void CSki::Set_Landed(bool landed)
+{
+	m_bLanded = landed;
 }

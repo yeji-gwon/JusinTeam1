@@ -159,6 +159,9 @@
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPlayer4.h" />
+
+    <ClInclude Include="CRandom.h" />
+
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneMgr.h" />
     <ClInclude Include="CSki.h" />
@@ -190,6 +193,9 @@
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CPlayer4.cpp" />
+
+    <ClCompile Include="CRandom.cpp" />
+
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
     <ClCompile Include="CSki.cpp" />
