@@ -205,5 +205,13 @@ namespace Boogi {
 		}
 	};
 
+	struct  tagLinePoint {
+		D3DXVECTOR3 vStart;
+		D3DXVECTOR3 vEnd;
+		D3DXMATRIX matWorld;
+	};
 
+	struct tagSlope {
+
+	};
 };

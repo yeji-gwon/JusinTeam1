@@ -18,6 +18,7 @@ void CSki::Initialize()
 {
 	m_vCenter = { 200.f,200.f,0.f };
 	m_vRotate = { 0,0,0 };
+	m_vScale = { 1.f,1.f,1.f };
 	m_pBody.Set_Scale({ 1.f, 1.f, 1.f });
 	m_pBody.Set_Rotate({ 0.f, 0.f, 0.f });
 	m_pBody.Set_Offset(10.f, 10.f, 20.f, 20.f);
@@ -90,6 +91,7 @@ int CSki::Update()
 	m_pRightLeg.Update_World();
 
 	m_pBody.Set_Rotate(m_vRotate);
+	m_pBody.Set_Scale(m_vScale);
 	Key_Check();
 	return 0;
 }

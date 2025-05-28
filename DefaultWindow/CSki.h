@@ -23,6 +23,8 @@ public:
 private:
     D3DXVECTOR3 m_vCenter;
     D3DXVECTOR3 m_vRotate;
+    D3DXVECTOR3 m_vScale;
+
 
     tagRectangle m_pLeft;
     tagRectangle m_pRight;
