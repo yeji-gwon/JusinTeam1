@@ -4,20 +4,27 @@
 class Board2 : public CObj
 {
 public:
-	Board2();
-	virtual ~Board2();
+    Board2();
+    virtual ~Board2();
 
 public:
-    void Set_Center(float _x, float _y)
+    static Board2* Get_Instance()
     {
-        m_tBoard.m_vCenter.x = _x;
-        m_tBoard.m_vCenter.x = _y;
+        if (!pInstance)
+            pInstance = new Board2;
+
+        return pInstance;
     }
-    pair<float, float> Get_Center()
+    static void Destroy_Instance()
     {
-        return { m_tBoard.m_vCenter.x ,m_tBoard.m_vCenter.y };
+        if (pInstance)
+            Safe_Delete(pInstance);
     }
 
+    pair<float, float> Get_Center()
+    {
+        return { m_tBoard.m_vCenter.x, m_tBoard.m_vCenter.y };
+    }
 public:
     void Initialize() override;
     int  Update() override;
@@ -32,7 +39,7 @@ private:
 
 
 private:
-
+    static Board2* pInstance;
     float       m_fAngleX = 0.f;
     float       m_fAngleY = 0.f;
     float       m_fAngleZ = 0.f;
@@ -42,7 +49,10 @@ private:
     bool        m_bShuvit = false;
     bool        m_bHardFlip = false;
 
-    D3DXMATRIX  m_matWorld; // 최종 변환 행렬
     struct tagPolygon m_tBoard;
+    D3DXMATRIX  m_matWorld; // 최종 변환 행렬
+    
+    struct tagPolygon m_tWheel[2];
+    D3DXMATRIX  m_matWorldWheel[2];
 };
 
