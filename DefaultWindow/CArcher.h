@@ -10,6 +10,7 @@ public:
 
 public:
     void            Set_Bow(CObj* pBow) { m_pBow = pBow; }
+    void            Add_Point(int iPoint) { m_iPoint += iPoint; }
 
 public:
     void            Initialize() override;
@@ -31,5 +32,13 @@ private:
     D3DXVECTOR3     m_vForeArmPoint[4];
     D3DXVECTOR3     m_vOriginForeArmPoint[4];
 
+    D3DXVECTOR3     m_vLegPoint[7];
+    D3DXVECTOR3     m_vOriginLegPoint[7];
+
     CObj*           m_pBow;
+
+    int             m_iMaxArrow;
+    int             m_iArrow;
+
+    int             m_iPoint;
 };

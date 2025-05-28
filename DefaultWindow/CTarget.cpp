@@ -18,6 +18,8 @@ void CTarget::Initialize()
     m_tOriginPolygon.m_vScale = { 30.f, 60.f, 1.f };
     m_tOriginPolygon.Set_Size(36);
     m_tPolygon.Set_Size(36);
+    m_tPolygon1.Set_Size(36);
+    m_tPolygon2.Set_Size(36);
     m_tOriginPolygon.SyncToWorld(m_tPolygon);
 
     m_vRange[0] = { m_tInfo.vPos.x, m_tInfo.vPos.y - m_tOriginPolygon.m_vScale.y, 0.f };
@@ -30,7 +32,7 @@ int CTarget::Update()
     D3DXMATRIX  matRotZ;
     D3DXMATRIX  matTrans;
 
-    /// Target
+    /// Target 0
     D3DXMatrixScaling(&matScale, m_tOriginPolygon.m_vScale.x, m_tOriginPolygon.m_vScale.y, m_tOriginPolygon.m_vScale.z);
     D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
     D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, m_tInfo.vPos.z);
@@ -39,6 +41,23 @@ int CTarget::Update()
 
     for (int i = 0; i < m_tOriginPolygon.Size(); ++i)
         D3DXVec3TransformCoord(&m_tPolygon.m_vPoints[i], &m_tOriginPolygon.m_vPoints[i], &m_tInfo.matWorld);
+
+    /// Target 1
+    D3DXMatrixScaling(&matScale, m_tOriginPolygon.m_vScale.x * 0.6f, m_tOriginPolygon.m_vScale.y * 0.6f, m_tOriginPolygon.m_vScale.z);
+
+    m_tInfo.matWorld = matScale * matRotZ * matTrans;
+
+    for (int i = 0; i < m_tOriginPolygon.Size(); ++i)
+        D3DXVec3TransformCoord(&m_tPolygon1.m_vPoints[i], &m_tOriginPolygon.m_vPoints[i], &m_tInfo.matWorld);
+
+    /// Target 2
+    D3DXMatrixScaling(&matScale, m_tOriginPolygon.m_vScale.x * 0.3f, m_tOriginPolygon.m_vScale.y * 0.3f, m_tOriginPolygon.m_vScale.z);
+
+    m_tInfo.matWorld = matScale * matRotZ * matTrans;
+
+    for (int i = 0; i < m_tOriginPolygon.Size(); ++i)
+        D3DXVec3TransformCoord(&m_tPolygon2.m_vPoints[i], &m_tOriginPolygon.m_vPoints[i], &m_tInfo.matWorld);
+
 
 	return 0;
 }
@@ -51,9 +70,11 @@ void CTarget::Render(HDC hDC)
 {
     /// Target
     m_tPolygon.DrawPolyLine(hDC);
+    m_tPolygon1.DrawPolyLine(hDC);
+    m_tPolygon2.DrawPolyLine(hDC);
 
-    MoveToEx(hDC, 100, 0, nullptr);
-    LineTo(hDC, 100, 600);
+    //MoveToEx(hDC, 100, 0, nullptr);
+    //LineTo(hDC, 100, 600);
 }
 
 void CTarget::Release()

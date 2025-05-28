@@ -50,7 +50,14 @@ int CStage1::Update()
 	m_pTarget->Update();
 
 	for (auto pArrow : m_vecArrow)
+	{
 		pArrow->Update();
+		if (dynamic_cast<CArrow*>(pArrow)->Check_Hit() && dynamic_cast<CArrow*>(pArrow)->Check_Active())
+		{
+			dynamic_cast<CArcher*>(m_pArcher)->Add_Point(dynamic_cast<CArrow*>(pArrow)->Get_Point());
+			dynamic_cast<CArrow*>(pArrow)->Set_InActive();
+		}
+	} 
 
 	return 0;
 }
@@ -80,7 +87,7 @@ void CStage1::Render(HDC hDC)
 	LineTo(hDC, 800, 500);
 
 	TCHAR	szText[32];
-	swprintf_s(szText, L"스테이지 1");
+	swprintf_s(szText, L"스테이지 1. 양궁");
 	TextOut(hDC, 10, 10, szText, lstrlen(szText));
 }
 

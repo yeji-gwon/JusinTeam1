@@ -89,9 +89,8 @@ int CBow::Update()
     { 
         dynamic_cast<CArrow*>(m_pVecArrow->back())->Set_Fire();
         m_bReload = false;
-        //m_bFire = false;
+        m_bFire = false;
     }
-
 
     return 0;
 }

@@ -21,6 +21,8 @@ public:
 
 private:
     struct tagPolygon   m_tPolygon;
+    struct tagPolygon   m_tPolygon1;
+    struct tagPolygon   m_tPolygon2;
     struct tagPolygon   m_tOriginPolygon;
 
     D3DXVECTOR3         m_vRange[2];
