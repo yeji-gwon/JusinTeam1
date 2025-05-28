@@ -143,16 +143,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CDriver.h" />
-    <ClInclude Include="CHandle.h" />
+    <ClInclude Include="BoogiDefine.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CPlayer.h" />
-    <ClInclude Include="CRoad.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneMgr.h" />
+    <ClInclude Include="CSki.h" />
+    <ClInclude Include="CSlope.h" />
     <ClInclude Include="CStage1.h" />
     <ClInclude Include="CStage2.h" />
     <ClInclude Include="CStage3.h" />
@@ -165,16 +165,15 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CDriver.cpp" />
-    <ClCompile Include="CHandle.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CObj.cpp" />
     <ClCompile Include="CPlayer.cpp" />
-    <ClCompile Include="CRoad.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
+    <ClCompile Include="CSki.cpp" />
+    <ClCompile Include="CSlope.cpp" />
     <ClCompile Include="CStage1.cpp" />
     <ClCompile Include="CStage2.cpp" />
     <ClCompile Include="CStage3.cpp" />

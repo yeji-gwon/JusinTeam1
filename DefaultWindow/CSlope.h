@@ -1,16 +1,15 @@
 #pragma once
 #include "CObj.h"
 #include "BoogiDefine.h"
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
-class CRoad :
+using namespace Boogi;
+
+class CSlope :
 	public CObj
 {
 public:
-	CRoad();
-	~CRoad();
+	CSlope();
+	virtual ~CSlope() override;
 
 public:
 	void Initialize() override;
@@ -19,13 +18,5 @@ public:
 	void Render(HDC hDC) override;
 	void Release() override;
 
-
 public:
-	void RenderHorizon(HDC hDC);
-private:
-	//중앙선
-	tagLine m_Horizon;
-	//지평선
-	//도로
 };
-
