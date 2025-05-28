@@ -219,9 +219,6 @@
 =======
     <ClCompile Include="CRandom.cpp" />
 >>>>>>> Stashed changes
-=======
-    <ClCompile Include="CRandom.cpp" />
->>>>>>> Stashed changes
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
     <ClCompile Include="CSki.cpp" />
