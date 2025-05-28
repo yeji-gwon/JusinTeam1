@@ -3,7 +3,7 @@
 #include "CKeyMgr.h"
 #include "CArrow.h"
 
-CBow::CBow()    :   m_fOffset(0.f), m_pVecArrow(nullptr), m_bReload(false), m_bFire(false)
+CBow::CBow()    :   m_fOffset(0.f), m_pVecArrow(nullptr), m_bReload(false), m_bFire(false), m_pTarget(nullptr)
 {
 }
 
@@ -74,6 +74,7 @@ int CBow::Update()
         {
             CObj* pArrow = new CArrow;
             pArrow->Initialize();
+            dynamic_cast<CArrow*>(pArrow)->Set_Target(m_pTarget);
             m_pVecArrow->push_back(pArrow);
 
             m_bReload = true;
@@ -88,7 +89,7 @@ int CBow::Update()
     { 
         dynamic_cast<CArrow*>(m_pVecArrow->back())->Set_Fire();
         m_bReload = false;
-        m_bFire = false;
+        //m_bFire = false;
     }
 
 
@@ -108,16 +109,6 @@ void CBow::Render(HDC hDC)
     MoveToEx(hDC, (int)m_vPoint[0].x, (int)m_vPoint[0].y, nullptr);
     for (int i = 0; i < 3; ++i)
         LineTo(hDC, (int)m_vPoint[i].x, (int)m_vPoint[i].y);
-
-
-    /// 
-    TCHAR   szText[32];
-    swprintf_s(szText, (m_bFire) ? L"True" : L"False");
-    TextOut(hDC, 100, 100, szText, lstrlen(szText));
-    swprintf_s(szText, (m_bReload) ? L"True" : L"False");
-    TextOut(hDC, 100, 120, szText, lstrlen(szText));
-    swprintf_s(szText, L"%d", m_pVecArrow->size());
-    TextOut(hDC, 100, 140, szText, lstrlen(szText));
 }
 
 void CBow::Release()

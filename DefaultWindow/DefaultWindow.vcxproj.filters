@@ -281,6 +281,9 @@
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>02. Design\03. TimeMgr</Filter>
     </ClCompile>
+    <ClCompile Include="CTarget.cpp">
+      <Filter>03. Stage\01. Stage1\04. Target</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMainGame.h">
@@ -369,6 +372,9 @@
     </ClInclude>
     <ClInclude Include="CTimeMgr.h">
       <Filter>02. Design\03. TimeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CTarget.h">
+      <Filter>03. Stage\01. Stage1\04. Target</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

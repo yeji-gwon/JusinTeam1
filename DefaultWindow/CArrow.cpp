@@ -1,10 +1,12 @@
 #include "pch.h"
 #include "CArrow.h"
+#include "CTarget.h"
 
-CArrow::CArrow()	: m_bFire(false), m_fShootAngle(0.f), m_fTime(0.f)
+CArrow::CArrow()	: m_bFire(false), m_fShootAngle(0.f), m_fTime(0.f), m_pTarget(nullptr)
 {
 	ZeroMemory(&m_vPoint, sizeof(m_vPoint));
 	ZeroMemory(&m_vOriginPoint, sizeof(m_vOriginPoint));
+	ZeroMemory(&m_vStartPos, sizeof(m_vStartPos));
 }
 
 CArrow::~CArrow()
@@ -35,26 +37,39 @@ int CArrow::Update()
 
 	if (!m_bFire)
 	{
+		m_vStartPos = m_tInfo.vPos;
 		m_fShootAngle = m_fAngle;
 		m_fTime = 0.f;
-	
 	}
 	else
-	{
+	{ 
+		float fX = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMin().x;
+		float fMinY = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMin().y;
+		float fMaxY = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMax().y;
+
+		if (m_tInfo.vPos.x - 60.f * cosf(D3DXToRadian(m_fAngle)) <= fX &&
+			m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= fMinY &&
+			m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) <= fMaxY)
+		{
+			m_tInfo.vPos.x = fX + 60.f * cosf(D3DXToRadian(m_fAngle));
+			m_bFire = false;
+			return 0;
+		}
 		if (m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= 500.f)
 		{
 			m_tInfo.vPos.y = 500.f + 60.f * sinf(D3DXToRadian(m_fAngle));
 			m_bFire = false;
-			//m_tInfo.vPos.y = 500.f; 
+			return 0;
 		}
-		else
-		{
-			m_tInfo.vPos.y -= m_fSpeed * sinf(D3DXToRadian(m_fShootAngle)) * m_fTime - (9.8f * m_fTime * m_fTime * 0.5f);
-			m_tInfo.vPos.x -= m_fSpeed * cosf(D3DXToRadian(m_fShootAngle)) * m_fTime;
-			m_fTime += 0.2f;
-	
-			m_fAngle -= 5.f * sinf(D3DXToRadian(m_fShootAngle)); 
-		}
+
+
+		m_tInfo.vPos.y -= m_fSpeed * sinf(D3DXToRadian(m_fShootAngle)) * m_fTime - (9.8f * m_fTime * m_fTime * 0.5f);
+		m_tInfo.vPos.x -= m_fSpeed * cosf(D3DXToRadian(m_fShootAngle)) * m_fTime;
+
+		m_fTime += 0.2f;
+
+		m_fAngle -= 5.f * sinf(D3DXToRadian(m_fShootAngle));
+		 
 	}
 
 	return 0;
@@ -70,6 +85,18 @@ void CArrow::Render(HDC hDC)
 	LineTo(hDC, (int)m_vPoint[1].x, (int)m_vPoint[1].y);
 
 	Ellipse(hDC, (int)m_vPoint[0].x - 5, (int)m_vPoint[0].y - 5, (int)m_vPoint[0].x + 5, (int)m_vPoint[0].y + 5);
+
+	TCHAR szText[32];
+	swprintf_s(szText, L"%f", m_vPoint[0].x);
+	TextOut(hDC, 100, 100, szText, lstrlen(szText));
+	swprintf_s(szText, L"%f", m_vPoint[0].y);
+	TextOut(hDC, 100, 120, szText, lstrlen(szText));
+	swprintf_s(szText, L"%f", m_vPoint[1].x);
+	TextOut(hDC, 100, 140, szText, lstrlen(szText));
+	swprintf_s(szText, L"%f", m_vPoint[1].y);
+	TextOut(hDC, 100, 160, szText, lstrlen(szText));
+	swprintf_s(szText, L"%f", m_tInfo.vPos.x);
+	TextOut(hDC, 100, 80, szText, lstrlen(szText));
 }
 
 void CArrow::Release()

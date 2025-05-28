@@ -3,8 +3,9 @@
 #include "CKeyMgr.h"
 #include "CBow.h"
 #include "CArrow.h"
+#include "CTarget.h"
 
-CStage1::CStage1() : m_pArcher(nullptr), m_pBow(nullptr), m_pArrow(nullptr)
+CStage1::CStage1() : m_pArcher(nullptr), m_pBow(nullptr), m_pTarget(nullptr)
 {
 }
 
@@ -25,17 +26,19 @@ void CStage1::Initialize()
 	{
 		m_pBow = new CBow;
 		m_pBow->Initialize();
+	} 
+
+	if (!m_pTarget)
+	{
+		m_pTarget = new CTarget;
+		m_pTarget->Initialize();
 	}
 
+	m_vecArrow.reserve(10);
+
 	dynamic_cast<CArcher*>(m_pArcher)->Set_Bow(m_pBow);
-
-	//if (!m_pArrow)
-	//{
-	//	m_pArrow = new CArrow;
-	//	m_pArrow->Initialize();
-	//}
-
 	dynamic_cast<CBow*>(m_pBow)->Set_VecArrow(&m_vecArrow);
+	dynamic_cast<CBow*>(m_pBow)->Set_Target(m_pTarget);
 }
 
 int CStage1::Update()
@@ -44,7 +47,7 @@ int CStage1::Update()
 
 	m_pArcher->Update();
 	m_pBow->Update();
-	//m_pArrow->Update();
+	m_pTarget->Update();
 
 	for (auto pArrow : m_vecArrow)
 		pArrow->Update();
@@ -58,7 +61,7 @@ void CStage1::Late_Update()
 
 	m_pArcher->Late_Update();
 	m_pBow->Late_Update();
-	//m_pArrow->Late_Update();
+	m_pTarget->Late_Update();
 
 	for (auto pArrow : m_vecArrow)
 		pArrow->Late_Update();
@@ -68,7 +71,7 @@ void CStage1::Render(HDC hDC)
 {
 	m_pArcher->Render(hDC);
 	m_pBow->Render(hDC);
-	//m_pArrow->Render(hDC);
+	m_pTarget->Render(hDC);
 
 	for (auto pArrow : m_vecArrow)
 		pArrow->Render(hDC);
@@ -87,7 +90,7 @@ void CStage1::Release()
 
 	m_pArcher->Release();
 	m_pBow->Release();
-	//m_pArrow->Release();
+	m_pTarget->Release();
 
 	for_each(m_vecArrow.begin(), m_vecArrow.end(), Safe_Delete<CObj*>);
 	m_vecArrow.clear();
