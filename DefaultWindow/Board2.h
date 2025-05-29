@@ -25,6 +25,11 @@ public:
     {
         return { m_tBoard.m_vCenter.x, m_tBoard.m_vCenter.y };
     }
+
+    pair<float, float> Get_Scale()
+    {
+        return { m_tBoard.m_vScale.x, m_tBoard.m_vScale.y };
+    }
 public:
     void Initialize() override;
     int  Update() override;
@@ -43,6 +48,7 @@ private:
     float       m_fAngleX = 0.f;
     float       m_fAngleY = 0.f;
     float       m_fAngleZ = 0.f;
+    float       m_fDelta = 0.f;
     float       m_fSpeed = 0.f;   // 이동 속도
 
     bool        m_bFlip = false;    // 플립중인지
@@ -54,5 +60,8 @@ private:
     
     struct tagPolygon m_tWheel[2];
     D3DXMATRIX  m_matWorldWheel[2];
+
+    tagPolygon m_tWheelHub[2];
+    D3DXMATRIX  m_matWorldHub[2];
 };
 

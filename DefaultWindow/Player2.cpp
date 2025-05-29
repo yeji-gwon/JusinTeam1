@@ -27,7 +27,6 @@ void Player2::Initialize()
 	m_tHead.Set_Size(36);
 
 
-	// TODO? : 입모양 추가
 	m_vBodyPoint[0] = { -6.f / (m_tHead.m_vScale.x / 2), 8.f / (m_tHead.m_vScale.y / 2), 0.f };
 	m_vBodyPoint[1] = { m_vBodyPoint[0].x - 1, m_vBodyPoint[0].y + 1, 0.f };
 	m_vBodyPoint[2] = { m_vBodyPoint[1].x + 1.25f, m_vBodyPoint[1].y + 1.25f, 0.f };
@@ -103,8 +102,11 @@ void Player2::Key_Input()
 {
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT))  m_vCenterHead.x -= m_fSpeed;
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT)) m_vCenterHead.x += m_fSpeed;
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_UP))    m_vCenterHead.y -= m_fSpeed;
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN))  m_vCenterHead.y += m_fSpeed;
+	if (!m_bFlip && !m_bShuvit && !m_bHardFlip)
+	{
+		if (CKeyMgr::Get_Instance()->Key_Down(VK_UP))    m_vCenterHead.y -= m_fSpeed;
+		if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN))  m_vCenterHead.y += m_fSpeed;
+	}
 
 
 	if (CKeyMgr::Get_Instance()->Key_Tap('Q'))
@@ -217,11 +219,6 @@ void Player2::Update_State()
 
 void Player2::Update_Jump()
 {
-	//wchar_t szDebug[256];
-//swprintf_s(szDebug, L"발끝 Y좌표: %.2f, 지면: %.2f, 점프속도: %.2f, 온그라운드: %s",
-//	m_vBodyPoint[10].y, m_vCenterHead.y + m_vBodyPoint[10].y, m_fJumpVelocity, m_bOnGround ? L"참" : L"거짓");
-//OutputDebugString(szDebug);
-//OutputDebugString(L"\n");
 
 	// 트릭 시작 시 점프 초기화
 	if (m_bOnGround)
@@ -248,12 +245,19 @@ void Player2::Update_Jump()
 	{
 		m_fJumpVelocity += m_fGravity;
 		m_vCenterHead.y += m_fJumpVelocity;
-
-		// 착지 처리
-		// TODO : 보드의 중심x좌표 라인 기반 개선
-		if (m_vCenterHead.y + m_vBodyPoint[10].y >= m_fGroundY - 20.f)
+		float fBottomY = m_vBodyPoint[0].y;
+		for (int i = 0; i < size(m_vBodyPoint); i++)
 		{
-			m_vCenterHead.y = 300.f - 7.5f;
+			if (m_vBodyPoint[i].y > fBottomY)
+				fBottomY = m_vBodyPoint[i].y;
+		}
+		float fHeight = 5.f * m_tHead.m_vScale.y;
+		float fBoardLineY = Board2::Get_Instance()->Get_Center().second - (Board2::Get_Instance()->Get_Scale().second / 2.f);
+		// 착지 처리 : -5.f 마진
+		if ((m_vCenterHead.y + fHeight >= fBoardLineY - 5.f))
+		{
+			// 머리 좌표 = 발 좌표(주로 오른발이 바닥에 먼저 닫는다) - 머리 중심 좌표(=0) + 보드 중심 y 좌표  (relative)
+			m_vCenterHead.y = fBoardLineY - fHeight;
 			m_fJumpVelocity = 0.0f;
 			m_bOnGround = true;
 
