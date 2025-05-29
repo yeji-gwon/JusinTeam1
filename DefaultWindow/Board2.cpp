@@ -137,6 +137,10 @@ void Board2::Update_Matrix()
 	D3DXMATRIX  m_matRotY;
 	D3DXMATRIX  m_matRotZ;
 
+	D3DXMATRIX  m_matRotXW;
+	D3DXMATRIX  m_matRotYW;
+	D3DXMATRIX  m_matRotZW;
+
 	D3DXMATRIX  m_matTransB;
 	D3DXMATRIX  m_matTransW[2];
 
@@ -144,12 +148,22 @@ void Board2::Update_Matrix()
 	D3DXMatrixScaling(&m_matScaleW, m_tWheel[0].m_vScale.x, m_tWheel[0].m_vScale.y, m_tWheel[0].m_vScale.z);
 	//D3DXMatrixScaling(&m_matScaleW[1], m_tWheel[1].m_vScale.x, m_tWheel[1].m_vScale.y, m_tWheel[1].m_vScale.z);
 
+<<<<<<< Updated upstream
 
 	// TODO : 바퀴의 회전 구현
 	// 회전 행렬 업데이트
+=======
+	// 회전 행렬 업데이트 : 보드
+>>>>>>> Stashed changes
 	D3DXMatrixRotationX(&m_matRotX, m_fAngleX);
 	D3DXMatrixRotationY(&m_matRotY, m_fAngleY);
 	D3DXMatrixRotationZ(&m_matRotZ, m_fAngleZ);
+
+	// 회전 : 바퀴(보드에 대한 공전)
+	D3DXMatrixRotationX(&m_matRotXW, m_fAngleX);
+	D3DXMatrixRotationY(&m_matRotYW, m_fAngleY);
+	D3DXMatrixRotationZ(&m_matRotZW, m_fAngleZ);
+
 
 
 	// 이동 행렬
@@ -164,6 +178,6 @@ void Board2::Update_Matrix()
 	// 바퀴 행렬 계산 (보드와 동일한 회전과 이동 적용)
 	//m_matWorldWheel[0] = m_matScaleW * m_matRotY * m_matRotX * m_matRotZ * m_matTransW[0] * m_matTransB;
 	//m_matWorldWheel[1] = m_matScaleW * m_matRotY * m_matRotX * m_matRotZ * m_matTransW[1] * m_matTransB;
-	m_matWorldWheel[0] = m_matScaleW * m_matTransW[0] * m_matTransB;
-	m_matWorldWheel[1] = m_matScaleW * m_matTransW[1] * m_matTransB;
+	m_matWorldWheel[0] = m_matScaleW * m_matTransW[0] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB ;
+	m_matWorldWheel[1] = m_matScaleW * m_matTransW[1] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
 }
