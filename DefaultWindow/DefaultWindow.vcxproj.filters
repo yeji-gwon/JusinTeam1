@@ -73,6 +73,9 @@
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>02. Design\03. TimeMgr</Filter>
     </ClCompile>
+    <ClCompile Include="Obstacle2.cpp">
+      <Filter>03. Stage\02. Stage2\02. Obstacle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMainGame.h">
@@ -161,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="CTimeMgr.h">
       <Filter>02. Design\03. TimeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle2.h">
+      <Filter>03. Stage\02. Stage2\02. Obstacle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

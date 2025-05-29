@@ -30,6 +30,11 @@ public:
         m_vCenterHead.y = _y;
     }
 
+    void Set_Hp(int _hp)
+    {
+        m_iHp -= _hp;
+    }
+
     pair<float, float> Get_Center()
     {
         return { m_vCenterHead.x , m_vCenterHead.y };
@@ -40,6 +45,11 @@ public:
     {
         return m_eState;
     };
+
+    int Get_Hp()
+    {
+        return m_iHp;
+    }
 
 public:
     void Initialize() override;
@@ -58,6 +68,7 @@ private:
     D3DXVECTOR3 m_vCenterHead;
     D3DXVECTOR3 m_vBodyPoint[11];
     D3DXVECTOR3 m_vRotAxis;
+    int         m_iHp = 100.f; // 플레이어 체력
 
     float       m_fAngleX = 0.f;
     float       m_fAngleY = 0.f;
