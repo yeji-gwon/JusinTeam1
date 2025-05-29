@@ -96,6 +96,7 @@
     </ClCompile>
     <ClCompile Include="Obstacle2.cpp">
       <Filter>03. Stage\02. Stage2\02. Obstacle</Filter>
+    </ClCompile>
     <ClCompile Include="CGameSystem4.cpp">
       <Filter>03. Stage\04. Stage4\99. GameSystem</Filter>
     </ClCompile>
@@ -435,6 +436,7 @@
     </Filter>
     <Filter Include="03. Stage\02. Stage2\02. Obstacle">
       <UniqueIdentifier>{dc9445c3-6b28-473c-8b78-f7c17f365de3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="03. Stage\04. Stage4\99. GameSystem">
       <UniqueIdentifier>{90913d75-4e24-4e1e-ad90-e84835cc5efb}</UniqueIdentifier>
     </Filter>
