@@ -146,23 +146,13 @@ void Board2::Key_Input()
 
 void Board2::Update_Matrix()
 {
-	D3DXMATRIX	m_matScaleB;
-	D3DXMATRIX	m_matScaleW;
-	D3DXMATRIX	m_matScaleH;
-	// 회전 행렬
-	D3DXMATRIX  m_matRotX;
-	D3DXMATRIX  m_matRotY;
-	D3DXMATRIX  m_matRotZ;
+	D3DXMATRIX	m_matScaleB, m_matScaleW, m_matScaleH;
 
-	D3DXMATRIX  m_matRotXW;
-	D3DXMATRIX  m_matRotYW;
-	D3DXMATRIX  m_matRotZW;
-
+	D3DXMATRIX  m_matRotX, m_matRotY, m_matRotZ;
+	D3DXMATRIX  m_matRotXW, m_matRotYW, m_matRotZW;
 	D3DXMATRIX  m_matRotZH;
 
-	D3DXMATRIX  m_matTransB;
-	D3DXMATRIX  m_matTransW[2];
-	D3DXMATRIX  m_matTransH[2];
+	D3DXMATRIX  m_matTransB, m_matTransW[2], m_matTransH[2];
 
 	D3DXMatrixScaling(&m_matScaleB, m_tBoard.m_vScale.x, m_tBoard.m_vScale.y, m_tBoard.m_vScale.z);
 	D3DXMatrixScaling(&m_matScaleW, m_tWheel[0].m_vScale.x, m_tWheel[0].m_vScale.y, m_tWheel[0].m_vScale.z);
@@ -180,21 +170,18 @@ void Board2::Update_Matrix()
 
 	D3DXMatrixRotationZ(&m_matRotZH, m_fDelta);
 
-
 	// 이동 행렬
 	D3DXMatrixTranslation(&m_matTransB, m_tBoard.m_vCenter.x, m_tBoard.m_vCenter.y, m_tBoard.m_vCenter.z);
 	D3DXMatrixTranslation(&m_matTransW[0], m_tWheel[0].m_vCenter.x, m_tWheel[0].m_vCenter.y, m_tWheel[0].m_vCenter.z);
 	D3DXMatrixTranslation(&m_matTransW[1], m_tWheel[1].m_vCenter.x, m_tWheel[1].m_vCenter.y, m_tWheel[1].m_vCenter.z);
-
-
-	// 월드 행렬 = (크기 * 회전 * 이동) * 공전 * 부모
+	
+	// 보드 월드 행렬 = (크기 * 회전 * 이동) * 공전 * 부모
 	m_matWorld = m_matScaleB * m_matRotY * m_matRotX * m_matRotZ * m_matTransB;
-
-	// 바퀴 행렬 계산 (보드와 동일한 회전과 이동 적용)
-	m_matWorldWheel[0] = m_matScaleW * m_matTransW[0] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
-	m_matWorldWheel[1] = m_matScaleW * m_matTransW[1] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
-
-	// 허브 행렬 계산
-	m_matWorldHub[0] = m_matScaleH * m_matRotZH * m_matTransW[0] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
-	m_matWorldHub[1] = m_matScaleH * m_matRotZH * m_matTransW[1] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
+	for (int i = 0; i < 2; i++)
+	{
+		// 바퀴 월드 행렬
+		m_matWorldWheel[i] = m_matScaleW * m_matTransW[i] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
+		// 보드 월드 행렬
+		m_matWorldHub[i] = m_matScaleH * m_matRotZH * m_matTransW[i] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
+	}
 }
