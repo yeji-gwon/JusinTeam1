@@ -114,8 +114,11 @@ void CGameSystem4::Render(HDC hDC)
 {
 	if (!q.empty())
 	{
-		TextOut(hDC, 100, 25, SelectBString.c_str(), SelectBString.length());
-		TextOut(hDC, 100, 50, SelectWString.c_str(), SelectWString.length());
+		HFONT font = CreateFont(25, 0, 0, 0, 150, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, 0, L"±¼¸²");
+		SelectObject(hDC, font);
+		TextOut(hDC, 250, 25, SelectBString.c_str(), SelectBString.length());
+		TextOut(hDC, 250, 50, SelectWString.c_str(), SelectWString.length());
+		DeleteObject(font);
 	}
 	if (m_fResultTime >= 0.f) return;
 
