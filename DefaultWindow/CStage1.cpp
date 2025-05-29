@@ -90,7 +90,7 @@ void CStage1::Render(HDC hDC)
 	LineTo(hDC, 800, 500);
 
 	TCHAR	szText[32];
-	swprintf_s(szText, L"스테이지 1. 양궁");
+	swprintf_s(szText, L"명중력 Lv.99");
 	TextOut(hDC, 10, 10, szText, lstrlen(szText));
 }
 

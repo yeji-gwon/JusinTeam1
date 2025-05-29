@@ -86,7 +86,7 @@ void CStage2::Render(HDC hDC)
 	}
 
 	TCHAR	szText[128];
-	swprintf_s(szText, L"스테이지 2");
+	swprintf_s(szText, L"간지 회피술");
 	TextOut(hDC, 10, 10, szText, lstrlen(szText));
 	swprintf_s(szText, L"남은 시간 : %2.2f", fS2Time);
 	TextOut(hDC, 300, 10, szText, lstrlen(szText));

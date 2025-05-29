@@ -42,13 +42,13 @@ void CMenu::Render(HDC hDC)
 	TCHAR	szText[128];
 	swprintf_s(szText, L"쥬신 155기 체육관" );
 	TextOut(hDC, 320, 200, szText, lstrlen(szText));
-	swprintf_s(szText, L"1. 양궁");
+	swprintf_s(szText, L"1. 명중력 Lv.99");
 	TextOut(hDC, 320, 280, szText, lstrlen(szText));
-	swprintf_s(szText, L"2. 스케이트 보드");
+	swprintf_s(szText, L"2. 간지 회피술");
 	TextOut(hDC, 320, 320, szText, lstrlen(szText));
-	swprintf_s(szText, L"3. 스키");
+	swprintf_s(szText, L"3. 빙판 멘붕존");
 	TextOut(hDC, 320, 360, szText, lstrlen(szText));
-	swprintf_s(szText, L"4. 청기 백기");
+	swprintf_s(szText, L"4. 뇌와 손의 불협화음");
 	TextOut(hDC, 320, 400, szText, lstrlen(szText));
 }
 
