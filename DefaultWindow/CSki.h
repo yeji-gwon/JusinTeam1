@@ -23,14 +23,19 @@ public:
     float* Get_AnglePt();
     float* Get_LandinfPt();
     void Set_Landed(bool landed);
+    int* Get_Count() { return &m_Count; };
 private:
     bool m_bLanded;
+    int m_Count;
+    float m_fRotPer;
+
     float m_fArmDir;
     float fLandingPoint;
     float fNow_Angle;
     float fPrev_Angle;
     RECT m_SkiFloor;
 
+    D3DXVECTOR3 m_vJump;
     D3DXVECTOR3 m_vCenter;
     D3DXVECTOR3 m_vRotate;
     D3DXVECTOR3 m_vScale;
