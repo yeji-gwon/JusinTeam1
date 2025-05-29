@@ -42,9 +42,9 @@ public:
 	}
 
 private:
-	static CSceneMgr* m_pInstance;
-	CScene* m_pScene;
+	static CSceneMgr*	m_pInstance;
+	CScene*				m_pScene;
 
-	SCENEID		m_eCurScene;
-	SCENEID		m_ePreScene;
+	SCENEID				m_eCurScene;
+	SCENEID				m_ePreScene;
 };

@@ -1,8 +1,40 @@
 ﻿#pragma once
 #include "pch.h"
-#pragma once
-#include <d3dx9math.h>
+#include "CRandom.h"
+//#include "CSlope.h"
+
 namespace Boogi {
+	static float Dir = 0.f;
+	static float Time = 0.f;
+	static float Limit = 0.6f;
+	static bool bForward = true;
+
+	static void ChangeDir(float delta)
+	{
+		if (bForward) {
+			Time += delta;
+			Dir = Time / Limit*5; // 0 → 1 (점점 커짐)
+
+			if (Time >= Limit) {
+				bForward = false;
+				Limit = CRandom::GetFloat(0.3f, 1.9f);
+				Time = 0;
+			}
+		}
+		else {
+			Time += delta;
+			Dir = -Time / Limit; // 0 → -1 (점점 작아짐)
+
+			if (Time >= Limit) {
+				bForward = true;
+				Limit = CRandom::GetFloat(0.3f, 1.9f);
+				Time = 0;
+			}
+		}
+	}
+
+	static float Get_Dir() { return Dir; }
+	static float Flip_Dir() { return !bForward; }
 	struct tagRectangle {
 	private:
 		D3DXVECTOR3 m_vCenter = { 0.f, 0.f, 0.f };
@@ -28,11 +60,11 @@ namespace Boogi {
 		void Set_Rotate(const D3DXVECTOR3& v) { m_vRotate = v; }
 		void Set_Pivot(const D3DXVECTOR3& v) { m_vPivot = v; }
 		void Set_Orbit(const D3DXVECTOR3& v) { m_vOrbit = v; }
-		void Set_Parent(D3DXMATRIX* parent) {m_pParent = parent;}
+		void Set_Parent(D3DXMATRIX* parent) { m_pParent = parent; }
 
 		void Add_Rotate(float z) { m_vRotate.z += z; }
 		void Add_Orbit(float z) { m_vOrbit.z += z; }
-		void Add_Center(float x, float y,float z) {
+		void Add_Center(float x, float y, float z) {
 			m_vCenter.x += x;
 			m_vCenter.y += y;
 			m_vCenter.z += z;
@@ -61,7 +93,7 @@ namespace Boogi {
 		const D3DXVECTOR3 Get_RT() { return m_vCorner[1]; }
 		const D3DXVECTOR3 Get_RB() { return m_vCorner[2]; }
 		const D3DXVECTOR3 Get_LB() { return m_vCorner[3]; }
-		const POINT Get_WorldLT() {	return WorldPoints[0]; }
+		const POINT Get_WorldLT() { return WorldPoints[0]; }
 		const POINT Get_WorldRT() { return WorldPoints[1]; }
 		const POINT Get_WorldRB() { return WorldPoints[2]; }
 		const POINT Get_WorldLB() { return WorldPoints[3]; }
@@ -107,7 +139,7 @@ namespace Boogi {
 			}
 		}
 		void Render(HDC hDC) {
-			
+
 
 			for (int i = 0; i < 4; ++i) {
 				D3DXVECTOR3 worldPt;
@@ -163,7 +195,7 @@ namespace Boogi {
 		{
 			for (int i = 0; i < m_iPointSize; ++i) {
 				float theta = (2.f * D3DX_PI * i) / m_iPointSize;
-				m_vLocalPoints[i] = { cosf(theta)* m_fRadius, sinf(theta)* m_fRadius, 0.f };
+				m_vLocalPoints[i] = { cosf(theta) * m_fRadius, sinf(theta) * m_fRadius, 0.f };
 			}
 		}
 
@@ -209,9 +241,170 @@ namespace Boogi {
 		D3DXVECTOR3 vStart;
 		D3DXVECTOR3 vEnd;
 		D3DXMATRIX matWorld;
+		D3DXMATRIX matParent;
+		float fAngle;
+		float momentum = 0.f;
+
+		D3DXVECTOR3 vStartWO;
+		D3DXVECTOR3 vEndWO;
+
+		void Update() {
+
+			D3DXMATRIX matScale, matTrans;
+			D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
+			D3DXMatrixTranslation(&matTrans, 0.f, 0.f, 0.f);
+
+			matWorld = matScale  * matTrans * matParent;
+			D3DXVec3TransformCoord(&vStartWO, &vStart, &matWorld);
+			D3DXVec3TransformCoord(&vEndWO, &vEnd, &matWorld);
+			
+		}
+
+		void Render(HDC hDC) {
+
+			MoveToEx(hDC, vStartWO.x, vStartWO.y, nullptr);
+			LineTo(hDC, vEndWO.x, vEndWO.y);
+		}
+
+		float Get_Angle() {
+			return fAngle;
+		}
+		bool check_x(const RECT& rc) {
+			float minX = min(vStartWO.x, vEndWO.x);
+			float maxX = max(vStartWO.x, vEndWO.x);
+
+			float rcLeft = static_cast<float>(rc.left);
+			float rcRight = static_cast<float>(rc.right);
+
+			// 겹치면 true (AABB 충돌)
+			return !(rcRight < minX || rcLeft > maxX);
+		}
+
+		bool check_y(const RECT& rc) {
+			float minY = min(vStartWO.y, vEndWO.y);
+			float maxY = max(vStartWO.y, vEndWO.y);
+
+			float rcTop = static_cast<float>(rc.top);
+			float rcBottom = static_cast<float>(rc.bottom);
+
+			float margin = 1.5f;
+
+			// 사각형 Y 범위와 선분 Y 범위가 겹치면 true
+			return !(rcBottom < minY - margin || rcTop > maxY + margin);
+		}
+
+
+
+		bool OutOfScreen() {
+			return vEndWO.x < -50;
+		}
+
+		void Line_Link(float distance) {
+			vEnd.x = vStart.x + distance;
+			vEnd.y = vStart.y +Dir*1.3f;
+
+			if (vEnd.y > WINCY - 70) {
+				vEnd.y = WINCY - 70;
+			}
+			else if (vEnd.y < 100) {
+				vEnd.y = 100;
+			}
+		}
+
+		void Set_Angle() {
+			D3DXVECTOR3 dir = vEnd - vStart;
+			fAngle = atan2f(dir.x, dir.y);
+		}
 	};
 
 	struct tagSlope {
+		list<tagLinePoint> LineContainer;
+		D3DXVECTOR3 vPos = { 0.f,0.f,0.f };
+		D3DXVECTOR3 vScale = { 1.f,1.f,1.f };
 
+		D3DXMATRIX matWorld;
+		float fStartX;
+		float fDistanceX;
+
+		void Initialize(float Count, float distance) {
+			LineContainer.resize(Count);
+			fDistanceX = distance;
+			Link_LineFirst();
+		}
+
+		void Update()
+		{
+			D3DXMATRIX matScale, matTrans;
+			D3DXMatrixScaling(&matScale, vScale.x, vScale.y, vScale.z);
+			D3DXMatrixTranslation(&matTrans, vPos.x, vPos.y, vPos.z);
+
+			matWorld = matScale * matTrans;
+
+			for (auto iter = LineContainer.begin(); iter != LineContainer.end(); ++iter) {
+				iter->matParent = matWorld;
+				if (iter->OutOfScreen()) {
+					if (iter == LineContainer.begin()) {
+						auto last = std::prev(LineContainer.end());
+						iter->vStart = last->vEnd;
+					}
+					else {
+						auto prev = std::prev(iter); // 이전 요소
+						iter->vStart = prev->vEnd;
+					}
+					(*iter).Line_Link(fDistanceX);
+				}
+
+				(*iter).Update();
+				(*iter).Set_Angle();
+			}
+		}
+		void Render(HDC hDC) {
+			for (tagLinePoint line : LineContainer) {
+				line.Render(hDC);
+			}
+		}
+
+		void Link_LineFirst() {
+			for (auto iter = LineContainer.begin(); iter != LineContainer.end(); ++iter) {
+				if (iter == LineContainer.begin()) {
+					(*iter).vStart = { 0.f,400.f,0.f };
+					(*iter).vEnd = { fDistanceX,409.f,0.f };
+				}
+				else {
+					auto prev = std::prev(iter); // 이전 요소
+					iter->vStart = prev->vEnd;
+					iter->vEnd = iter->vStart;
+				}
+				(*iter).Set_Angle();
+			}
+		}
+
+		bool CheckCollision(RECT rc, float* y, float* fAngleOut) {
+			list<tagLinePoint>::iterator iter = std::find_if(LineContainer.begin(), LineContainer.end(),
+				[&rc](tagLinePoint& line) {
+
+					if (!line.check_x(rc)) return false;
+					if (!line.check_y(rc)) return false;
+					return true;
+				}
+			); 
+
+			if (iter != LineContainer.end()) {
+				tagLinePoint& line = *iter;
+
+				// 사각형 중심 x값
+				float centerX = (rc.left + rc.right) / 2.f;
+
+				// 직선 방정식으로 y값 계산
+				D3DXVECTOR3 dir = line.vEndWO - line.vStartWO;
+				float t = (centerX - line.vStartWO.x) / (dir.x == 0 ? 0.0001f : dir.x);
+				float calcY = line.vStartWO.y + dir.y * t;
+
+				if (y) *y = calcY;
+				if (fAngleOut) *fAngleOut = line.fAngle;
+				return true;
+			}
+			return false;
+		}
 	};
 };

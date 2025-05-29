@@ -34,9 +34,20 @@ void CMainGame::Late_Update()
 
 void CMainGame::Render()
 {
-	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
-	CSceneMgr::Get_Instance()->Render(m_hDC); 
-	CTimeMgr::Get_Instance()->Render(m_hDC);
+	HDC hBackDC = CreateCompatibleDC(m_hDC);
+	HBITMAP hBackBitmap = CreateCompatibleBitmap(m_hDC, WINCX, WINCY);
+	HBITMAP hOldBitmap = (HBITMAP)SelectObject(hBackDC, hBackBitmap);
+
+	Rectangle(hBackDC, 0, 0, WINCX, WINCY);
+
+	CSceneMgr::Get_Instance()->Render(hBackDC);
+	CTimeMgr::Get_Instance()->Render(hBackDC);
+
+	BitBlt(m_hDC, 0, 0, WINCX, WINCY, hBackDC, 0, 0, SRCCOPY);
+
+	SelectObject(hBackDC, hOldBitmap);
+	DeleteObject(hBackBitmap);
+	DeleteDC(hBackDC);
 }
 
 void CMainGame::Release()

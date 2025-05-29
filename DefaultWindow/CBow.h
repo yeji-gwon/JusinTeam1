@@ -9,6 +9,7 @@ public:
     virtual ~CBow();
 
 public:
+    void                Set_Target(CObj* pTarget) { m_pTarget = pTarget; }
     void                Set_VecArrow(vector<CObj*>* pVecArrow) { m_pVecArrow = pVecArrow; }
     void                Set_Offset(float fOffset) { m_fOffset = fOffset; }
     void                Add_Offset(float fOffset) { m_fOffset += fOffset; }
@@ -28,11 +29,13 @@ private:
     D3DXVECTOR3         m_vPoint[3];
     D3DXVECTOR3         m_vOriginPoint[3];
 
-    struct tagPolygon   m_tPolygon;
-    struct tagPolygon   m_tOriginPolygon;
+    tagPolygon          m_tPolygon;
+    tagPolygon          m_tOriginPolygon;
 
     vector<CObj*>*      m_pVecArrow;
 
     bool                m_bReload;
     bool                m_bFire;
+
+    CObj*               m_pTarget;
 };

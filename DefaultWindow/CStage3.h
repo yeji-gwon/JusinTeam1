@@ -20,4 +20,5 @@ public:
 private:
     CObj* m_pSki;
     CObj* m_pSlope;
+    int* trigger;
 };
