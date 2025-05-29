@@ -25,5 +25,6 @@ public:
 private:
 	Poly<tagPolygon>	Head;
 	Poly<D3DXVECTOR3>	Eyes[2];
+	Poly<D3DXVECTOR3>	Mouth[3];
 };
 

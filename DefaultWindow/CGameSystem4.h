@@ -1,5 +1,7 @@
 #pragma once
 #include "CObj.h"
+#include "CHead.h"
+
 enum BTYPE {BU, BD, BEND};
 enum WTYPE {WU, WD, WEND};
 
@@ -28,6 +30,7 @@ public:
 private:
     void Input_Type();
     void Validate_Result();
+    void Select_String(BTYPE btype, WTYPE wtype);
 
 private:
     queue<std::pair<BTYPE, WTYPE>> q;
@@ -42,5 +45,17 @@ private:
     float   m_fResultTime;
 
     bool    m_bResult;
+
+    unordered_multimap<string, wstring> TypeString;
+    wstring SelectBString;
+    wstring SelectWString;
+
+    Poly<tagPolygon> Circle[2];
+
+    D3DXVECTOR3     m_vOrigin[4];
+    D3DXVECTOR3     m_vOrigin2[4];
+    D3DXVECTOR3     m_vPoint[4];
+
+    D3DXMATRIX		XMatrix;
 };
 

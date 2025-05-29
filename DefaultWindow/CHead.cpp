@@ -17,6 +17,10 @@ void CHead::Initialize()
 
 	Eyes[0].LPoly = D3DXVECTOR3(-20, -10, 0);
 	Eyes[1].LPoly = D3DXVECTOR3(20, -10, 0);
+
+	Mouth[0].LPoly = D3DXVECTOR3(-10, 10, 0);
+	Mouth[1].LPoly = D3DXVECTOR3(10, 10, 0);
+	Mouth[2].LPoly = D3DXVECTOR3(0, 20, 0);
 }
 
 int CHead::Update()
@@ -50,7 +54,8 @@ void CHead::Late_Update()
 		D3DXMATRIX matScale, matRotZ, matTrans;
 		D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
 
-		D3DXMatrixRotationZ(&matRotZ, 0.f);
+		if(i == 0) D3DXMatrixRotationZ(&matRotZ, 10.f);
+		else D3DXMatrixRotationZ(&matRotZ, -10.f);
 
 		D3DXMatrixTranslation(&matTrans, Eyes[i].LPoly.x, Eyes[i].LPoly.y, 0.0f);
 
@@ -59,6 +64,19 @@ void CHead::Late_Update()
 		D3DXVec3TransformCoord(&Eyes[i].WPoly, &Eyes[i].LPoly, &Eyes[i].matWorld);
 	}
 
+	for (int i = 0; i < 3; ++i)
+	{
+		D3DXMATRIX matScale, matRotZ, matTrans;
+		D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
+
+		D3DXMatrixRotationZ(&matRotZ, 0.f);
+
+		D3DXMatrixTranslation(&matTrans, Mouth[i].LPoly.x, Mouth[i].LPoly.y, 0.0f);
+
+		Mouth[i].matWorld = matScale * matRotZ * matTrans * m_tInfo.matWorld;
+
+		D3DXVec3TransformCoord(&Mouth[i].WPoly, &Mouth[i].LPoly, &Mouth[i].matWorld);
+	}
 
 }
 
@@ -71,6 +89,12 @@ void CHead::Render(HDC hDC)
 
 	MoveToEx(hDC, 420, 140, nullptr);
 	LineTo(hDC, Eyes[1].WPoly.x, Eyes[1].WPoly.y);
+
+	MoveToEx(hDC, Mouth[0].WPoly.x, Mouth[0].WPoly.y, nullptr);
+	for (int i = 0; i < 3; ++i)
+	{
+		LineTo(hDC, Mouth[(i + 1) % 3].WPoly.x, Mouth[(i + 1) % 3].WPoly.y);
+	}
 }
 
 void CHead::Release()
