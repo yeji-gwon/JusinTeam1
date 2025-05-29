@@ -27,7 +27,12 @@ private:
 private:
 	Poly<tagPolygon> Body;
 	Poly<D3DXVECTOR3> Arm[2];
+	Poly<D3DXVECTOR3> Hand[2];
 	Poly<D3DXVECTOR3> Leg[2];
+
+	D3DMATRIX		LArmMatWorld;
+	D3DMATRIX		RArmMatWorld;
+	D3DMATRIX		BodyMatWorld;
 
 	Poly<tagPolygon> WhiteFlag;
 	Poly<tagPolygon> BlueFlag;
