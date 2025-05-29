@@ -111,8 +111,12 @@ void CArrow::Render(HDC hDC)
 	MoveToEx(hDC, (int)m_vPoint[0].x, (int)m_vPoint[0].y, nullptr);
 	LineTo(hDC, (int)m_vPoint[1].x, (int)m_vPoint[1].y);
 
+	HBRUSH  hBrushBlack = CreateSolidBrush(RGB(0, 0, 0));
+	HBRUSH  hOldBrush = (HBRUSH)SelectObject(hDC, hBrushBlack);
 	Ellipse(hDC, (int)m_vPoint[0].x - 5, (int)m_vPoint[0].y - 5, (int)m_vPoint[0].x + 5, (int)m_vPoint[0].y + 5);
-
+	SelectObject(hDC, hOldBrush);
+	DeleteObject(hBrushBlack);
+	 
 	//TCHAR szText[32];
 	//swprintf_s(szText, L"%f", m_vPoint[0].x);
 	//TextOut(hDC, 700, 100, szText, lstrlen(szText));

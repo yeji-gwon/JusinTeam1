@@ -3,6 +3,7 @@
 
 CTarget::CTarget()
 {
+    ZeroMemory(&m_bColor, sizeof(m_bColor));
 }
 
 CTarget::~CTarget()
@@ -24,6 +25,14 @@ void CTarget::Initialize()
 
     m_vRange[0] = { m_tInfo.vPos.x - m_tOriginPolygon.m_vScale.x, m_tInfo.vPos.y - m_tOriginPolygon.m_vScale.y, 0.f };
     m_vRange[1] = { m_tInfo.vPos.x, m_tInfo.vPos.y + m_tOriginPolygon.m_vScale.y, 0.f };
+    
+    BYTE temp[3][3] = {
+        { 252, 212, 63 },
+        { 216, 50, 39 },
+        { 0, 157, 202 }
+    };
+
+    memcpy(m_bColor, temp, sizeof(m_bColor));
 }
 
 int CTarget::Update()
@@ -57,9 +66,15 @@ void CTarget::Late_Update()
 
 void CTarget::Render(HDC hDC)
 {
-    /// Target
-    for (int i = 0; i < sizeof(m_tPolygon) / sizeof(tagPolygon); ++i)
-        m_tPolygon[i].DrawPolyLine(hDC);
+    /// Target 
+    for (int i = sizeof(m_tPolygon) / sizeof(tagPolygon) - 1; i >= 0; --i)
+    {
+        HBRUSH  hBrushBlue = CreateSolidBrush(RGB(m_bColor[i][0], m_bColor[i][1], m_bColor[i][2]));
+        HBRUSH  hOldBrush = (HBRUSH)SelectObject(hDC, hBrushBlue);
+        m_tPolygon[i].DrawPolygon(hDC);
+        SelectObject(hDC, hOldBrush);
+        DeleteObject(hBrushBlue);
+    }
 }
 
 void CTarget::Release()

@@ -25,4 +25,6 @@ private:
     tagPolygon          m_tOriginPolygon;
 
     D3DXVECTOR3         m_vRange[2];
+
+    BYTE                m_bColor[3][3];
 };
