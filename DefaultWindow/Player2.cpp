@@ -102,8 +102,11 @@ void Player2::Key_Input()
 {
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT))  m_vCenterHead.x -= m_fSpeed;
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT)) m_vCenterHead.x += m_fSpeed;
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_UP))    m_vCenterHead.y -= m_fSpeed;
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN))  m_vCenterHead.y += m_fSpeed;
+	if (!m_bFlip && !m_bShuvit && !m_bHardFlip)
+	{
+		if (CKeyMgr::Get_Instance()->Key_Down(VK_UP))    m_vCenterHead.y -= m_fSpeed;
+		if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN))  m_vCenterHead.y += m_fSpeed;
+	}
 
 
 	if (CKeyMgr::Get_Instance()->Key_Tap('Q'))
@@ -250,8 +253,8 @@ void Player2::Update_Jump()
 		}
 		float fHeight = 5.f * m_tHead.m_vScale.y;
 		float fBoardLineY = Board2::Get_Instance()->Get_Center().second - (Board2::Get_Instance()->Get_Scale().second / 2.f);
-		// 착지 처리 : -20.f 마진
-		if (m_vCenterHead.y + fHeight >= fBoardLineY - 5.f)
+		// 착지 처리 : -5.f 마진
+		if ((m_vCenterHead.y + fHeight >= fBoardLineY - 5.f))
 		{
 			// 머리 좌표 = 발 좌표(주로 오른발이 바닥에 먼저 닫는다) - 머리 중심 좌표(=0) + 보드 중심 y 좌표  (relative)
 			m_vCenterHead.y = fBoardLineY - fHeight;

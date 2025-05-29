@@ -35,6 +35,7 @@ public:
         return { m_vCenterHead.x , m_vCenterHead.y };
     }
 
+
     PLAYERSTATE Get_State()
     {
         return m_eState;

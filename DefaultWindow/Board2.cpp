@@ -24,18 +24,25 @@ void Board2::Initialize()
 	m_tBoard.m_vScale = { 90.f, 15.f, 0.f };
 	m_tBoard.Set_Size(8);
 
-	// IP TODO : 시간되면 바퀴안에 사각형 만들기(회전 시각화)
-
 	// 바퀴 설정 (보드 중심 기준으로 앞뒤 배치)
 	// 앞바퀴 (보드 중심에서 앞쪽으로 30.f)
 	m_tWheel[0].m_vCenter = { 40.f, 20.f, 0.f };
-	m_tWheel[0].m_vScale = { 8.f, 8.f, 0.f };
-	m_tWheel[0].Set_Size(36);
-
 	// 뒷바퀴 (보드 중심에서 뒤쪽으로 30.f)
 	m_tWheel[1].m_vCenter = { -40.f, 20.f, 0.f };
-	m_tWheel[1].m_vScale = { 8.f, 8.f, 0.f };
-	m_tWheel[1].Set_Size(36);
+	for (int i = 0; i < 2; i++)
+	{
+		m_tWheel[i].Set_Size(64);
+		m_tWheel[i].m_vScale = { 8.f, 8.f, 0.f };
+	}
+	// 바퀴 중심(허브 : 사각형)
+
+	for (int i = 0; i < 2; i++)
+	{
+		m_tWheelHub[i].Set_Size(4);
+		m_tWheelHub[i].m_vCenter = m_tWheel[i].m_vCenter;
+		m_tWheelHub[i].m_vScale = { 6.f, 6.f, 0.f };
+
+	}
 
 }
 
@@ -64,11 +71,17 @@ int Board2::Update()
 		m_bHardFlip = false;
 		m_fAngleZ = 0;
 	}
-
+	// 바퀴 허브를 일정 속도로 Z축 회전
+	m_fDelta += 5.f;
+	// PI * k 가 정수에 가까워지는 k중 가장 작은 정수 중
+	// m_fDelta로 나누어 떨어지는 수 k = 113 => PI * 113 = 355
+	if (m_fDelta >= 113 * 3.1412592f)	
+	{
+		m_fDelta = 0;
+	}
 	Key_Input();
-
 	Update_Matrix();
-
+	
 	return 0;
 }
 
@@ -86,26 +99,26 @@ void Board2::Render(HDC hDC)
 		D3DXVec3TransformCoord(&WorldBoard.m_vPoints[i], &m_tBoard.m_vPoints[i], &m_matWorld);
 	WorldBoard.DrawPolygon(hDC);
 
-	// 바퀴 렌더링
+	tagPolygon WorldWheel;
+	tagPolygon WorldHub;
 	for (int wheelIdx = 0; wheelIdx < 2; wheelIdx++)
 	{
-		tagPolygon WorldWheel;
-		WorldWheel.Set_Size(m_tWheel[0].Size());
-		for (int i = 0; i < m_tWheel[0].Size(); i++)
+		// 바퀴 렌더링
+		WorldWheel.Set_Size(m_tWheel[wheelIdx].Size());
+		for (int i = 0; i < m_tWheel[wheelIdx].Size(); i++)
 		{
-			D3DXVec3TransformCoord(&WorldWheel.m_vPoints[i], &m_tWheel[0].m_vPoints[i], &m_matWorldWheel[0]);
+			D3DXVec3TransformCoord(&WorldWheel.m_vPoints[i], &m_tWheel[wheelIdx].m_vPoints[i], &m_matWorldWheel[wheelIdx]);
 		}
 		WorldWheel.DrawPolygon(hDC);
 
-		for (int i = 0; i < m_tWheel[1].Size(); i++)
+		// 허브 렌더링
+		WorldHub.Set_Size(m_tWheelHub[wheelIdx].Size());
+		for (int i = 0; i < m_tWheelHub[wheelIdx].Size(); i++)
 		{
-			D3DXVec3TransformCoord(&WorldWheel.m_vPoints[i], &m_tWheel[1].m_vPoints[i], &m_matWorldWheel[1]);
+			D3DXVec3TransformCoord(&WorldHub.m_vPoints[i], &m_tWheelHub[wheelIdx].m_vPoints[i], &m_matWorldHub[wheelIdx]);
 		}
-		WorldWheel.DrawPolygon(hDC);
-			
+		WorldHub.DrawPolygon(hDC);
 	}
-
-	
 }
 
 void Board2::Release()
@@ -117,8 +130,11 @@ void Board2::Key_Input()
 {
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT))  m_tBoard.m_vCenter.x -= m_fSpeed;
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT)) m_tBoard.m_vCenter.x += m_fSpeed;
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_UP))    m_tBoard.m_vCenter.y -= m_fSpeed;
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN))  m_tBoard.m_vCenter.y += m_fSpeed;
+	if(!m_bFlip && !m_bShuvit && !m_bHardFlip)
+	{
+		if (CKeyMgr::Get_Instance()->Key_Down(VK_UP))    m_tBoard.m_vCenter.y -= m_fSpeed;
+		if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN))  m_tBoard.m_vCenter.y += m_fSpeed;
+	}
 
 	if (CKeyMgr::Get_Instance()->Key_Tap('Q'))
 		m_bFlip = true;
@@ -132,6 +148,7 @@ void Board2::Update_Matrix()
 {
 	D3DXMATRIX	m_matScaleB;
 	D3DXMATRIX	m_matScaleW;
+	D3DXMATRIX	m_matScaleH;
 	// 회전 행렬
 	D3DXMATRIX  m_matRotX;
 	D3DXMATRIX  m_matRotY;
@@ -141,12 +158,15 @@ void Board2::Update_Matrix()
 	D3DXMATRIX  m_matRotYW;
 	D3DXMATRIX  m_matRotZW;
 
+	D3DXMATRIX  m_matRotZH;
+
 	D3DXMATRIX  m_matTransB;
 	D3DXMATRIX  m_matTransW[2];
+	D3DXMATRIX  m_matTransH[2];
 
 	D3DXMatrixScaling(&m_matScaleB, m_tBoard.m_vScale.x, m_tBoard.m_vScale.y, m_tBoard.m_vScale.z);
 	D3DXMatrixScaling(&m_matScaleW, m_tWheel[0].m_vScale.x, m_tWheel[0].m_vScale.y, m_tWheel[0].m_vScale.z);
-	//D3DXMatrixScaling(&m_matScaleW[1], m_tWheel[1].m_vScale.x, m_tWheel[1].m_vScale.y, m_tWheel[1].m_vScale.z);
+	D3DXMatrixScaling(&m_matScaleH, m_tWheelHub[0].m_vScale.x, m_tWheelHub[0].m_vScale.y, m_tWheelHub[0].m_vScale.z);
 
 	// 회전 행렬 업데이트 : 보드
 	D3DXMatrixRotationX(&m_matRotX, m_fAngleX);
@@ -158,6 +178,7 @@ void Board2::Update_Matrix()
 	D3DXMatrixRotationY(&m_matRotYW, m_fAngleY);
 	D3DXMatrixRotationZ(&m_matRotZW, m_fAngleZ);
 
+	D3DXMatrixRotationZ(&m_matRotZH, m_fDelta);
 
 
 	// 이동 행렬
@@ -170,8 +191,10 @@ void Board2::Update_Matrix()
 	m_matWorld = m_matScaleB * m_matRotY * m_matRotX * m_matRotZ * m_matTransB;
 
 	// 바퀴 행렬 계산 (보드와 동일한 회전과 이동 적용)
-	//m_matWorldWheel[0] = m_matScaleW * m_matRotY * m_matRotX * m_matRotZ * m_matTransW[0] * m_matTransB;
-	//m_matWorldWheel[1] = m_matScaleW * m_matRotY * m_matRotX * m_matRotZ * m_matTransW[1] * m_matTransB;
-	m_matWorldWheel[0] = m_matScaleW * m_matTransW[0] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB ;
+	m_matWorldWheel[0] = m_matScaleW * m_matTransW[0] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
 	m_matWorldWheel[1] = m_matScaleW * m_matTransW[1] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
+
+	// 허브 행렬 계산
+	m_matWorldHub[0] = m_matScaleH * m_matRotZH * m_matTransW[0] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
+	m_matWorldHub[1] = m_matScaleH * m_matRotZH * m_matTransW[1] * m_matRotYW * m_matRotXW * m_matRotZW * m_matTransB;
 }

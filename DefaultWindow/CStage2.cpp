@@ -21,9 +21,11 @@ void CStage2::Initialize()
 
 int CStage2::Update()
 {
+	
 	pPlayer->Update();
 	pBoard->Update();
 	SyncPlayer();
+	
 	return 0;
 }
 
@@ -50,19 +52,22 @@ void CStage2::Release()
 	pBoard->Destroy_Instance();
 }
 
-// IP TODO : 자연스러운 싱크 
 void CStage2::SyncPlayer()
 {
 	m_eCurState = pPlayer->Get_State();
 	pair<float, float> fCenter = pBoard->Get_Center();
+	pair<float, float> fScale = pBoard->Get_Scale();
+
+
+	float fBoardLineY = fCenter.second - (fScale.second / 2.f);
+	float fHeight = 5.f * 20.f;
 	switch (m_eCurState)
 	{
 	case PLAYER_IDLE:
-		pPlayer->Set_Center(fCenter.first + 40.f, pPlayer->Get_Center().second);
+		pPlayer->Set_Center(fCenter.first + 40.f, fBoardLineY - fHeight);
 		break;
 	default:
 		pPlayer->Set_Center(fCenter.first, pPlayer->Get_Center().second);
 		break;
 	}
-
 }
