@@ -3,6 +3,7 @@
 #include "CKeyMgr.h"
 #include "CObj.h"
 #include "CSki.h"
+#include "CSceneMgr.h"
 #include "CSlope.h"
 CStage3::CStage3()
 	:m_pSki(nullptr), trigger(nullptr)
@@ -32,6 +33,10 @@ int CStage3::Update()
 		m_pSki->Update();
 		m_pSlope->Update();
 	}
+	if (CKeyMgr::Get_Instance()->Key_Tap(VK_BACK)) {
+		CSceneMgr::Get_Instance()->Scene_Change(SC_MENU);
+	}
+
 	return 0;
 }
 
