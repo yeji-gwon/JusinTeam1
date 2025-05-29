@@ -148,13 +148,7 @@ void Board2::Update_Matrix()
 	D3DXMatrixScaling(&m_matScaleW, m_tWheel[0].m_vScale.x, m_tWheel[0].m_vScale.y, m_tWheel[0].m_vScale.z);
 	//D3DXMatrixScaling(&m_matScaleW[1], m_tWheel[1].m_vScale.x, m_tWheel[1].m_vScale.y, m_tWheel[1].m_vScale.z);
 
-<<<<<<< Updated upstream
-
-	// TODO : 바퀴의 회전 구현
-	// 회전 행렬 업데이트
-=======
 	// 회전 행렬 업데이트 : 보드
->>>>>>> Stashed changes
 	D3DXMatrixRotationX(&m_matRotX, m_fAngleX);
 	D3DXMatrixRotationY(&m_matRotY, m_fAngleY);
 	D3DXMatrixRotationZ(&m_matRotZ, m_fAngleZ);
