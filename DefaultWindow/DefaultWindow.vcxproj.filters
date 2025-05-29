@@ -247,6 +247,9 @@
     <Filter Include="02. Design\03. TimeMgr">
       <UniqueIdentifier>{f112fc57-adb7-431f-bb3f-6c43551646c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. Stage\02. Stage2\02. Obstacle">
+      <UniqueIdentifier>{dc9445c3-6b28-473c-8b78-f7c17f365de3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DefaultWindow.rc">
