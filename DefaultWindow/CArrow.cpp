@@ -2,7 +2,7 @@
 #include "CArrow.h"
 #include "CTarget.h"
 
-CArrow::CArrow()	: m_bFire(false), m_fShootAngle(0.f), m_fTime(0.f), m_pTarget(nullptr)
+CArrow::CArrow()	: m_bFire(false), m_fShootAngle(0.f), m_fTime(0.f), m_pTarget(nullptr), m_bHit(false), m_bActive(false), m_iPoint(0)
 {
 	ZeroMemory(&m_vPoint, sizeof(m_vPoint));
 	ZeroMemory(&m_vOriginPoint, sizeof(m_vOriginPoint));
@@ -18,6 +18,8 @@ void CArrow::Initialize()
 {
 	m_vOriginPoint[0] = { -60.f, 0.f, 0.f };
 	m_vOriginPoint[1] = { 0.f, 0.f, 0.f };
+
+	m_bActive = true;
 }
 
 int CArrow::Update()
@@ -43,16 +45,47 @@ int CArrow::Update()
 	}
 	else
 	{ 
-		float fX = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMin().x;
+		m_tInfo.vPos.y -= m_fSpeed * sinf(D3DXToRadian(m_fShootAngle)) * m_fTime - (9.8f * m_fTime * m_fTime * 0.5f);
+		m_tInfo.vPos.x -= m_fSpeed * cosf(D3DXToRadian(m_fShootAngle)) * m_fTime;
+
+		m_fTime += 0.2f;
+
+		m_fAngle -= 5.f * sinf(D3DXToRadian(m_fShootAngle));
+
+		float fMinX = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMin().x;
+		float fMaxX = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMax().x;
 		float fMinY = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMin().y;
 		float fMaxY = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMax().y;
 
-		if (m_tInfo.vPos.x - 60.f * cosf(D3DXToRadian(m_fAngle)) <= fX &&
+		if (m_tInfo.vPos.x - 60.f * cosf(D3DXToRadian(m_fAngle)) <= fMaxX &&
 			m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= fMinY &&
 			m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) <= fMaxY)
-		{
-			m_tInfo.vPos.x = fX + 60.f * cosf(D3DXToRadian(m_fAngle));
+		{ 
+			m_tInfo.vPos.x = fMaxX + 60.f * cosf(D3DXToRadian(m_fAngle));
+
+			//for (int i = 0; i < dynamic_cast<CTarget*>(m_pTarget)->Get_Size(); ++i)
+			//{
+			//	if (m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= fMinY + 60.f * (dynamic_cast<CTarget*>(m_pTarget)->Get_Size() - i - 1) &&
+			//		m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) <= fMaxY - 60.f * (dynamic_cast<CTarget*>(m_pTarget)->Get_Size() - i - 1))
+			//	{
+			//		m_iPoint = dynamic_cast<CTarget*>(m_pTarget)->Get_Size() - i;
+			//		break;
+			//	}
+			//		 
+			//}
+
+			if (m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= fMinY + 40.f &&
+				m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) <= fMaxY - 40.f)
+				m_iPoint = 3;
+			else if (m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= fMinY + 20.f &&
+				m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) <= fMaxY - 20.f)
+				m_iPoint = 2;
+			else
+				m_iPoint = 1;
+
 			m_bFire = false;
+			m_bHit = true;
+
 			return 0;
 		}
 		if (m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= 500.f)
@@ -62,13 +95,7 @@ int CArrow::Update()
 			return 0;
 		}
 
-
-		m_tInfo.vPos.y -= m_fSpeed * sinf(D3DXToRadian(m_fShootAngle)) * m_fTime - (9.8f * m_fTime * m_fTime * 0.5f);
-		m_tInfo.vPos.x -= m_fSpeed * cosf(D3DXToRadian(m_fShootAngle)) * m_fTime;
-
-		m_fTime += 0.2f;
-
-		m_fAngle -= 5.f * sinf(D3DXToRadian(m_fShootAngle));
+		 
 		 
 	}
 
@@ -84,19 +111,23 @@ void CArrow::Render(HDC hDC)
 	MoveToEx(hDC, (int)m_vPoint[0].x, (int)m_vPoint[0].y, nullptr);
 	LineTo(hDC, (int)m_vPoint[1].x, (int)m_vPoint[1].y);
 
+	HBRUSH  hBrushBlack = CreateSolidBrush(RGB(0, 0, 0));
+	HBRUSH  hOldBrush = (HBRUSH)SelectObject(hDC, hBrushBlack);
 	Ellipse(hDC, (int)m_vPoint[0].x - 5, (int)m_vPoint[0].y - 5, (int)m_vPoint[0].x + 5, (int)m_vPoint[0].y + 5);
-
-	TCHAR szText[32];
-	swprintf_s(szText, L"%f", m_vPoint[0].x);
-	TextOut(hDC, 100, 100, szText, lstrlen(szText));
-	swprintf_s(szText, L"%f", m_vPoint[0].y);
-	TextOut(hDC, 100, 120, szText, lstrlen(szText));
-	swprintf_s(szText, L"%f", m_vPoint[1].x);
-	TextOut(hDC, 100, 140, szText, lstrlen(szText));
-	swprintf_s(szText, L"%f", m_vPoint[1].y);
-	TextOut(hDC, 100, 160, szText, lstrlen(szText));
-	swprintf_s(szText, L"%f", m_tInfo.vPos.x);
-	TextOut(hDC, 100, 80, szText, lstrlen(szText));
+	SelectObject(hDC, hOldBrush);
+	DeleteObject(hBrushBlack);
+	 
+	//TCHAR szText[32];
+	//swprintf_s(szText, L"%f", m_vPoint[0].x);
+	//TextOut(hDC, 700, 100, szText, lstrlen(szText));
+	//swprintf_s(szText, L"%f", m_vPoint[0].y);
+	//TextOut(hDC, 700, 120, szText, lstrlen(szText));
+	//swprintf_s(szText, L"%f", m_vPoint[1].x);
+	//TextOut(hDC, 700, 140, szText, lstrlen(szText));
+	//swprintf_s(szText, L"%f", m_vPoint[1].y);
+	//TextOut(hDC, 700, 160, szText, lstrlen(szText));
+	//swprintf_s(szText, L"%f", m_tInfo.vPos.x);
+	//TextOut(hDC, 700, 80, szText, lstrlen(szText));
 }
 
 void CArrow::Release()

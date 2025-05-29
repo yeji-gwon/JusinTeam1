@@ -29,8 +29,8 @@ private:
     D3DXVECTOR3         m_vPoint[3];
     D3DXVECTOR3         m_vOriginPoint[3];
 
-    struct tagPolygon   m_tPolygon;
-    struct tagPolygon   m_tOriginPolygon;
+    tagPolygon          m_tPolygon;
+    tagPolygon          m_tOriginPolygon;
 
     vector<CObj*>*      m_pVecArrow;
 

@@ -4,9 +4,11 @@
 #include "CBow.h"
 #include "CArrow.h"
 #include "CTarget.h"
+#include "CSceneMgr.h"
 
 CStage1::CStage1() : m_pArcher(nullptr), m_pBow(nullptr), m_pTarget(nullptr)
 {
+	m_vecArrow.reserve(10);
 }
 
 CStage1::~CStage1()
@@ -34,8 +36,6 @@ void CStage1::Initialize()
 		m_pTarget->Initialize();
 	}
 
-	m_vecArrow.reserve(10);
-
 	dynamic_cast<CArcher*>(m_pArcher)->Set_Bow(m_pBow);
 	dynamic_cast<CBow*>(m_pBow)->Set_VecArrow(&m_vecArrow);
 	dynamic_cast<CBow*>(m_pBow)->Set_Target(m_pTarget);
@@ -43,6 +43,9 @@ void CStage1::Initialize()
 
 int CStage1::Update()
 {
+	if (__super::ReturnToMenu())
+		return 0;
+
 	CKeyMgr::Get_Instance()->Update();
 
 	m_pArcher->Update();
@@ -50,7 +53,14 @@ int CStage1::Update()
 	m_pTarget->Update();
 
 	for (auto pArrow : m_vecArrow)
+	{
 		pArrow->Update();
+		if (dynamic_cast<CArrow*>(pArrow)->Check_Hit() && dynamic_cast<CArrow*>(pArrow)->Check_Active())
+		{
+			dynamic_cast<CArcher*>(m_pArcher)->Add_Point(dynamic_cast<CArrow*>(pArrow)->Get_Point());
+			dynamic_cast<CArrow*>(pArrow)->Set_InActive();
+		}
+	} 
 
 	return 0;
 }
@@ -80,7 +90,7 @@ void CStage1::Render(HDC hDC)
 	LineTo(hDC, 800, 500);
 
 	TCHAR	szText[32];
-	swprintf_s(szText, L"스테이지 1");
+	swprintf_s(szText, L"스테이지 1. 양궁");
 	TextOut(hDC, 10, 10, szText, lstrlen(szText));
 }
 

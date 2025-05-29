@@ -9,6 +9,7 @@ public:
     virtual ~CTarget();
 
 public:
+    int             const Get_Size() { return sizeof(m_tPolygon) / sizeof(tagPolygon); }
     D3DXVECTOR3     const Get_RangeMin() { return m_vRange[0]; }
     D3DXVECTOR3     const Get_RangeMax() { return m_vRange[1]; }
 
@@ -20,8 +21,10 @@ public:
     void                Release() override;
 
 private:
-    struct tagPolygon   m_tPolygon;
-    struct tagPolygon   m_tOriginPolygon;
+    tagPolygon          m_tPolygon[3];
+    tagPolygon          m_tOriginPolygon;
 
     D3DXVECTOR3         m_vRange[2];
+
+    BYTE                m_bColor[3][3];
 };
