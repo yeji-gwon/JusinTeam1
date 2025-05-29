@@ -33,7 +33,7 @@ private:
     vector<Obstacle2*>    m_ObsVector;  // 장애물 관리 리스트
     int iSeed = 1;    // Y좌표 
 
-    float fS2Time = 30.f; // 스테이지2 남은시간
+    float fS2Time = 15.f; // 스테이지2 남은시간
     float fTimeCount = 0.f; // 시간 체크용
     float fSpawnTime = 0.f; // 장애물 스폰 시간
 

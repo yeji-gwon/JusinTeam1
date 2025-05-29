@@ -38,7 +38,7 @@ int CStage2::Update()
 	pBoard->Update();
 	SyncPlayer();
 
-	if (fSpawnTime>3.f)
+	if (fSpawnTime>1.f)
 	{
 		fSpawnTime = 0.f;
 		iSeed = ObsMaker();
