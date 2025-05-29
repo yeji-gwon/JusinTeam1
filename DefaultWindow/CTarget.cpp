@@ -16,13 +16,13 @@ void CTarget::Initialize()
 
     m_tOriginPolygon.m_vCenter = { 0.f, 0.f, 0.f };
     m_tOriginPolygon.m_vScale = { 30.f, 60.f, 1.f };
-    m_tOriginPolygon.Set_Size(36);
-    m_tPolygon.Set_Size(36);
-    m_tPolygon1.Set_Size(36);
-    m_tPolygon2.Set_Size(36);
-    m_tOriginPolygon.SyncToWorld(m_tPolygon);
+    int iSize = 36;
+    m_tOriginPolygon.Set_Size(iSize);
+    for (int i = 0; i < sizeof(m_tPolygon) / sizeof(tagPolygon); ++i)
+        m_tPolygon[i].Set_Size(iSize);
+    m_tOriginPolygon.SyncToWorld(m_tPolygon[0]);
 
-    m_vRange[0] = { m_tInfo.vPos.x, m_tInfo.vPos.y - m_tOriginPolygon.m_vScale.y, 0.f };
+    m_vRange[0] = { m_tInfo.vPos.x - m_tOriginPolygon.m_vScale.x, m_tInfo.vPos.y - m_tOriginPolygon.m_vScale.y, 0.f };
     m_vRange[1] = { m_tInfo.vPos.x, m_tInfo.vPos.y + m_tOriginPolygon.m_vScale.y, 0.f };
 }
 
@@ -32,32 +32,21 @@ int CTarget::Update()
     D3DXMATRIX  matRotZ;
     D3DXMATRIX  matTrans;
 
-    /// Target 0
-    D3DXMatrixScaling(&matScale, m_tOriginPolygon.m_vScale.x, m_tOriginPolygon.m_vScale.y, m_tOriginPolygon.m_vScale.z);
+    /// Target
     D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
     D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, m_tInfo.vPos.z);
+    
+    for (int i = 0; i < sizeof(m_tPolygon) / sizeof(tagPolygon); ++i)
+    {
+        D3DXMatrixScaling(&matScale, m_tOriginPolygon.m_vScale.x * (i + 1) * 0.3f, m_tOriginPolygon.m_vScale.y * (i + 1) * 0.3f, m_tOriginPolygon.m_vScale.z);
+        
+        m_tInfo.matWorld = matScale * matRotZ * matTrans;
 
-    m_tInfo.matWorld = matScale * matRotZ * matTrans;
-
-    for (int i = 0; i < m_tOriginPolygon.Size(); ++i)
-        D3DXVec3TransformCoord(&m_tPolygon.m_vPoints[i], &m_tOriginPolygon.m_vPoints[i], &m_tInfo.matWorld);
-
-    /// Target 1
-    D3DXMatrixScaling(&matScale, m_tOriginPolygon.m_vScale.x * 0.6f, m_tOriginPolygon.m_vScale.y * 0.6f, m_tOriginPolygon.m_vScale.z);
-
-    m_tInfo.matWorld = matScale * matRotZ * matTrans;
-
-    for (int i = 0; i < m_tOriginPolygon.Size(); ++i)
-        D3DXVec3TransformCoord(&m_tPolygon1.m_vPoints[i], &m_tOriginPolygon.m_vPoints[i], &m_tInfo.matWorld);
-
-    /// Target 2
-    D3DXMatrixScaling(&matScale, m_tOriginPolygon.m_vScale.x * 0.3f, m_tOriginPolygon.m_vScale.y * 0.3f, m_tOriginPolygon.m_vScale.z);
-
-    m_tInfo.matWorld = matScale * matRotZ * matTrans;
-
-    for (int i = 0; i < m_tOriginPolygon.Size(); ++i)
-        D3DXVec3TransformCoord(&m_tPolygon2.m_vPoints[i], &m_tOriginPolygon.m_vPoints[i], &m_tInfo.matWorld);
-
+        for (int j = 0; j < m_tOriginPolygon.Size(); ++j)
+        {             
+            D3DXVec3TransformCoord(&m_tPolygon[i].m_vPoints[j], &m_tOriginPolygon.m_vPoints[j], &m_tInfo.matWorld);
+        }
+    } 
 
 	return 0;
 }
@@ -69,12 +58,8 @@ void CTarget::Late_Update()
 void CTarget::Render(HDC hDC)
 {
     /// Target
-    m_tPolygon.DrawPolyLine(hDC);
-    m_tPolygon1.DrawPolyLine(hDC);
-    m_tPolygon2.DrawPolyLine(hDC);
-
-    //MoveToEx(hDC, 100, 0, nullptr);
-    //LineTo(hDC, 100, 600);
+    for (int i = 0; i < sizeof(m_tPolygon) / sizeof(tagPolygon); ++i)
+        m_tPolygon[i].DrawPolyLine(hDC);
 }
 
 void CTarget::Release()

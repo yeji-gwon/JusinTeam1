@@ -52,17 +52,27 @@ int CArrow::Update()
 
 		m_fAngle -= 5.f * sinf(D3DXToRadian(m_fShootAngle));
 
-		float fX = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMin().x;
+		float fMinX = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMin().x;
+		float fMaxX = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMax().x;
 		float fMinY = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMin().y;
 		float fMaxY = dynamic_cast<CTarget*>(m_pTarget)->Get_RangeMax().y;
 
-		if (m_tInfo.vPos.x - 60.f * cosf(D3DXToRadian(m_fAngle)) <= fX &&
+		if (m_tInfo.vPos.x - 60.f * cosf(D3DXToRadian(m_fAngle)) <= fMaxX &&
 			m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= fMinY &&
 			m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) <= fMaxY)
-		{
-			m_tInfo.vPos.x = fX + 60.f * cosf(D3DXToRadian(m_fAngle));
-			m_bFire = false;
-			m_bHit = true;
+		{ 
+			m_tInfo.vPos.x = fMaxX + 60.f * cosf(D3DXToRadian(m_fAngle));
+
+			//for (int i = 0; i < dynamic_cast<CTarget*>(m_pTarget)->Get_Size(); ++i)
+			//{
+			//	if (m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= fMinY + 60.f * (dynamic_cast<CTarget*>(m_pTarget)->Get_Size() - i - 1) &&
+			//		m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) <= fMaxY - 60.f * (dynamic_cast<CTarget*>(m_pTarget)->Get_Size() - i - 1))
+			//	{
+			//		m_iPoint = dynamic_cast<CTarget*>(m_pTarget)->Get_Size() - i;
+			//		break;
+			//	}
+			//		 
+			//}
 
 			if (m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= fMinY + 40.f &&
 				m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) <= fMaxY - 40.f)
@@ -72,6 +82,10 @@ int CArrow::Update()
 				m_iPoint = 2;
 			else
 				m_iPoint = 1;
+
+			m_bFire = false;
+			m_bHit = true;
+
 			return 0;
 		}
 		if (m_tInfo.vPos.y - 60.f * sinf(D3DXToRadian(m_fAngle)) >= 500.f)

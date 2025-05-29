@@ -26,15 +26,18 @@ private:
     D3DXVECTOR3     m_vBodyPoint[4];
     D3DXVECTOR3     m_vOriginBodyPoint[4];
 
+    D3DXVECTOR3     m_vLegPoint[7];
+    D3DXVECTOR3     m_vOriginLegPoint[7];
+
+    tagPolygon      m_tHead;
+    tagPolygon      m_tOriginHead;
+
     D3DXVECTOR3     m_vUpperArmPoint[4];
     D3DXVECTOR3     m_vOriginUpperArmPoint[4];
 
     D3DXVECTOR3     m_vForeArmPoint[4];
     D3DXVECTOR3     m_vOriginForeArmPoint[4];
-
-    D3DXVECTOR3     m_vLegPoint[7];
-    D3DXVECTOR3     m_vOriginLegPoint[7];
-
+     
     CObj*           m_pBow;
 
     int             m_iMaxArrow;

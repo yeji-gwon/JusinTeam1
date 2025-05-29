@@ -20,8 +20,9 @@ void CBow::Initialize()
 
     m_tOriginPolygon.m_vCenter = { 0.f, 0.f, 0.f };
     m_tOriginPolygon.m_vScale = { 30.f, 60.f, 1.f };
-    m_tOriginPolygon.Set_Size(36);
-    m_tPolygon.Set_Size(36);
+    int iSize = 36;
+    m_tOriginPolygon.Set_Size(iSize);
+    m_tPolygon.Set_Size(iSize);
     m_tOriginPolygon.SyncToWorld(m_tPolygon);
 }
 

@@ -40,8 +40,16 @@ void CMenu::Late_Update()
 void CMenu::Render(HDC hDC)
 {
 	TCHAR	szText[128];
-	swprintf_s(szText, L"메뉴 : 1. 스테이지1  2. 스테이지 2  3. 스테이지3  4. 스테이지4" );
-	TextOut(hDC, 10, 10, szText, lstrlen(szText));
+	swprintf_s(szText, L"쥬신 155기 체육관" );
+	TextOut(hDC, 320, 200, szText, lstrlen(szText));
+	swprintf_s(szText, L"1. 양궁");
+	TextOut(hDC, 320, 280, szText, lstrlen(szText));
+	swprintf_s(szText, L"2. 스케이트 보드");
+	TextOut(hDC, 320, 320, szText, lstrlen(szText));
+	swprintf_s(szText, L"3. 스키");
+	TextOut(hDC, 320, 360, szText, lstrlen(szText));
+	swprintf_s(szText, L"4. 청기 백기");
+	TextOut(hDC, 320, 400, szText, lstrlen(szText));
 }
 
 void CMenu::Release()
